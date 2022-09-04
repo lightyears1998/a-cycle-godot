@@ -1,0 +1,9 @@
+[configuration]
+
+entry_symbol = "sqlite_library_init"
+
+[libraries]
+
+windows.x86_64 = "res://addons/godot-sqlite/bin/libgdsqlite.windows.release.x86_64.dll"
+
+[dependencies]
