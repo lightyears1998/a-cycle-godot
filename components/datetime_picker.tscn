@@ -1,0 +1,116 @@
+[gd_scene format=3 uid="uid://srybtqy25mj6"]
+
+[node name="VBoxContainer" type="VBoxContainer"]
+offset_right = 490.0
+offset_bottom = 137.0
+
+[node name="datetime_picker" type="GridContainer" parent="."]
+layout_mode = 2
+offset_right = 538.0
+offset_bottom = 90.0
+columns = 6
+
+[node name="Label" type="Label" parent="datetime_picker"]
+layout_mode = 2
+offset_top = 2.0
+offset_right = 56.0
+offset_bottom = 40.0
+text = "Year"
+
+[node name="LineEditYear" type="SpinBox" parent="datetime_picker"]
+layout_mode = 2
+offset_left = 60.0
+offset_right = 160.0
+offset_bottom = 43.0
+
+[node name="Label2" type="Label" parent="datetime_picker"]
+layout_mode = 2
+offset_left = 164.0
+offset_top = 2.0
+offset_right = 242.0
+offset_bottom = 40.0
+text = "Month"
+
+[node name="LineEditMonth" type="SpinBox" parent="datetime_picker"]
+layout_mode = 2
+offset_left = 246.0
+offset_right = 346.0
+offset_bottom = 43.0
+
+[node name="Label3" type="Label" parent="datetime_picker"]
+layout_mode = 2
+offset_left = 350.0
+offset_top = 2.0
+offset_right = 434.0
+offset_bottom = 40.0
+text = "Day"
+
+[node name="LineEditDay" type="SpinBox" parent="datetime_picker"]
+layout_mode = 2
+offset_left = 438.0
+offset_right = 538.0
+offset_bottom = 43.0
+
+[node name="Label4" type="Label" parent="datetime_picker"]
+layout_mode = 2
+offset_top = 49.0
+offset_right = 56.0
+offset_bottom = 87.0
+text = "Hour"
+
+[node name="LineEditHour" type="SpinBox" parent="datetime_picker"]
+layout_mode = 2
+offset_left = 60.0
+offset_top = 47.0
+offset_right = 160.0
+offset_bottom = 90.0
+
+[node name="Label5" type="Label" parent="datetime_picker"]
+layout_mode = 2
+offset_left = 164.0
+offset_top = 49.0
+offset_right = 242.0
+offset_bottom = 87.0
+text = "Minute"
+
+[node name="LineEditMinute" type="SpinBox" parent="datetime_picker"]
+layout_mode = 2
+offset_left = 246.0
+offset_top = 47.0
+offset_right = 346.0
+offset_bottom = 90.0
+
+[node name="Label6" type="Label" parent="datetime_picker"]
+layout_mode = 2
+offset_left = 350.0
+offset_top = 49.0
+offset_right = 434.0
+offset_bottom = 87.0
+text = "Second"
+
+[node name="LineEditSecond" type="SpinBox" parent="datetime_picker"]
+layout_mode = 2
+offset_left = 438.0
+offset_top = 47.0
+offset_right = 538.0
+offset_bottom = 90.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+offset_top = 94.0
+offset_right = 538.0
+offset_bottom = 137.0
+
+[node name="NowButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+offset_right = 436.0
+offset_bottom = 43.0
+size_flags_horizontal = 3
+text = "Now"
+
+[node name="ConfirmButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+offset_left = 440.0
+offset_right = 538.0
+offset_bottom = 43.0
+text = "Confirm"

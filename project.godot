@@ -8,14 +8,38 @@
 
 config_version=5
 
+_global_script_classes=[{
+"base": "Resource",
+"class": &"AppConfig",
+"language": &"GDScript",
+"path": "res://scripts/resources/app_config.gd"
+}, {
+"base": "Resource",
+"class": &"SyncServerConfig",
+"language": &"GDScript",
+"path": "res://scripts/resources/sync_server_config.gd"
+}]
+_global_script_class_icons={
+"AppConfig": "",
+"SyncServerConfig": ""
+}
+
 [application]
 
 config/name="A Cycle"
-config/description="Godot client for A Cycle, the Getting-Things-Done auxiliary application."
+config/description="Godot implement of A Cycle, the Getting-Things-Done auxiliary application."
 run/main_scene="res://screens/home_screen.tscn"
 config/features=PackedStringArray("4.0", "Vulkan Clustered")
 run/low_processor_mode=true
 config/icon="res://icon.svg"
+config/quit_on_go_back=false
+
+[autoload]
+
+Datetime="*res://scripts/globals/datetime.gd"
+Utils="*res://scripts/globals/utils.gd"
+Settings="*res://scripts/globals/settings.gd"
+Screens="*res://scripts/globals/screens.gd"
 
 [display]
 

@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4a41pp57pva4"]
+
+[ext_resource type="Script" path="res://screens/tabs/settings_tab.gd" id="1_560g0"]
+
+[node name="SettingsTab" type="VBoxContainer"]
+theme_override_constants/separation = 32
+script = ExtResource("1_560g0")
+
+[node name="ManageServerButton" type="Button" parent="."]
+offset_right = 508.0
+offset_bottom = 43.0
+text = "Manage server"
+
+[node name="BackupButton" type="Button" parent="."]
+offset_top = 75.0
+offset_right = 508.0
+offset_bottom = 118.0
+text = "Export full database to online backup service"
+
+[node name="ViewLogButton" type="Button" parent="."]
+offset_top = 150.0
+offset_right = 508.0
+offset_bottom = 193.0
+text = "View log"
+
+[connection signal="pressed" from="ManageServerButton" to="." method="_on_manage_server_button_pressed"]
+[connection signal="pressed" from="BackupButton" to="." method="_on_backup_button_pressed"]
+[connection signal="pressed" from="ViewLogButton" to="." method="_on_view_log_button_pressed"]
