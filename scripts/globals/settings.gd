@@ -10,6 +10,7 @@ func _load():
 	var loaded_config = ResourceLoader.load(save_path, "AppConfig")
 	if loaded_config:
 		app_config = loaded_config
+	app_config._normalize()
 
 func _ready():
 	_load()

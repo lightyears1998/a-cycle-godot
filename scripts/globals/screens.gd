@@ -2,10 +2,18 @@ extends Node
 
 var go_back_stack: Array[Node] = []
 
+func _get_current_screen() -> Node:
+	return $/root.get_children()[$/root.get_child_count() - 1]
+
+func _replace_current_screen(new_screen: Node) -> void:
+	var current_screen = _get_current_screen()
+	$/root.remove_child(current_screen)
+	$/root.add_child(new_screen)
+
 func go_back() -> bool:
 	if len(go_back_stack) > 0:
 		var last_screen = go_back_stack.pop_back()
-		get_tree().change_scene(last_screen)
+		_replace_current_screen(last_screen)
 		return true
 	return false
 
@@ -14,12 +22,10 @@ func go_back_otherwise_quit() -> void:
 	if not went_back:
 		get_tree().quit()
 
-func go_to(path: String) -> void:
-	var next_screen_packed = load(path) as PackedScene
-	var next_screen = next_screen_packed.instantiate()
-	var current_screen = $/root.get_children()[$/root.get_child_count() - 1]
-	$/root.remove_child(current_screen)
-	$/root.add_child(next_screen)
+func go_to(next_screen: Node) -> void:
+	var current_screen = _get_current_screen()
+	_replace_current_screen(next_screen)
+	go_back_stack.push_back(current_screen)
 
 func clear_go_back_stack() -> void:
 	while true:
