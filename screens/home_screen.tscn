@@ -13,7 +13,6 @@ script = ExtResource("1_jjxqv")
 metadata/_edit_lock_ = true
 
 [node name="HomeScreen" type="VBoxContainer" parent="."]
-layout_mode = 2
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 592.0
@@ -22,63 +21,54 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TabContainer" type="CenterContainer" parent="HomeScreen"]
-layout_mode = 2
 offset_right = 584.0
 offset_bottom = 953.0
 size_flags_vertical = 3
 
 [node name="SettingsTab" parent="HomeScreen/TabContainer" instance=ExtResource("2_g2bml")]
 visible = false
-layout_mode = 2
 offset_left = 38.0
 offset_top = 380.0
 offset_right = 546.0
 offset_bottom = 573.0
 
 [node name="ButtomNavigationBar" type="HBoxContainer" parent="HomeScreen"]
-layout_mode = 2
 offset_top = 957.0
 offset_right = 584.0
 offset_bottom = 1000.0
 alignment = 1
 
 [node name="FocusButton" type="Button" parent="HomeScreen/ButtomNavigationBar"]
-layout_mode = 2
 offset_left = 32.0
 offset_right = 106.0
 offset_bottom = 43.0
 text = "Focus"
 
 [node name="ActivityButton" type="Button" parent="HomeScreen/ButtomNavigationBar"]
-layout_mode = 2
 offset_left = 110.0
 offset_right = 203.0
 offset_bottom = 43.0
 text = "Activity"
 
 [node name="LedgerButton" type="Button" parent="HomeScreen/ButtomNavigationBar"]
-layout_mode = 2
 offset_left = 207.0
 offset_right = 291.0
 offset_bottom = 43.0
 text = "Ledger"
 
 [node name="SportsButton" type="Button" parent="HomeScreen/ButtomNavigationBar"]
-layout_mode = 2
 offset_left = 295.0
 offset_right = 376.0
 offset_bottom = 43.0
 text = "Sports"
 
 [node name="DiaryButton" type="Button" parent="HomeScreen/ButtomNavigationBar"]
-layout_mode = 2
 offset_left = 380.0
 offset_right = 448.0
 offset_bottom = 43.0
 text = "Diary"
 
 [node name="SettingsButton" type="Button" parent="HomeScreen/ButtomNavigationBar"]
-layout_mode = 2
 offset_left = 452.0
 offset_right = 552.0
 offset_bottom = 43.0

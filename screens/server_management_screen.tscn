@@ -11,6 +11,7 @@ offset_bottom = 1008.0
 script = ExtResource("1_r3dbc")
 
 [node name="TopBar" parent="." instance=ExtResource("1_sbf8p")]
+layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
 offset_right = 584.0
@@ -18,6 +19,7 @@ offset_bottom = 43.0
 grow_horizontal = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
 offset_top = 47.0
 offset_right = 584.0
 offset_bottom = 1000.0
@@ -26,23 +28,27 @@ grow_vertical = 2
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 576.0
 offset_bottom = 937.0
 
 [node name="AddServerButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
 offset_right = 568.0
 offset_bottom = 43.0
 text = "Add Server"
 
 [node name="EditServerButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
 offset_top = 47.0
 offset_right = 568.0
 offset_bottom = 90.0
 text = "Edit Server"
 
 [node name="RemoveServerButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
 offset_top = 94.0
 offset_right = 568.0
 offset_bottom = 137.0
@@ -50,6 +56,7 @@ text = "Remove Server"
 
 [node name="ServerList" type="ItemList" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+layout_mode = 2
 offset_top = 141.0
 offset_right = 568.0
 offset_bottom = 929.0
@@ -59,34 +66,45 @@ size_flags_vertical = 3
 unique_name_in_owner = true
 size = Vector2i(526, 188)
 
-[node name="GridContainer" type="GridContainer" parent="ServerEditorPopup"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ServerEditorPopup"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GridContainer" type="GridContainer" parent="ServerEditorPopup/VBoxContainer"]
+layout_mode = 2
 offset_left = 4.0
 offset_top = 4.0
-offset_right = 522.0
-offset_bottom = 141.0
+offset_right = 776.0
+offset_bottom = 230.0
 columns = 2
 
-[node name="Label" type="Label" parent="ServerEditorPopup/GridContainer"]
+[node name="Label" type="Label" parent="ServerEditorPopup/VBoxContainer/GridContainer"]
+layout_mode = 2
 offset_top = 2.0
 offset_right = 114.0
 offset_bottom = 40.0
 text = "Url"
 
-[node name="UrlEdit" type="LineEdit" parent="ServerEditorPopup/GridContainer"]
+[node name="UrlEdit" type="LineEdit" parent="ServerEditorPopup/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
 offset_left = 118.0
 offset_right = 518.0
 offset_bottom = 43.0
 caret_blink = true
 caret_blink_speed = 0.5
 
-[node name="Label2" type="Label" parent="ServerEditorPopup/GridContainer"]
+[node name="Label2" type="Label" parent="ServerEditorPopup/VBoxContainer/GridContainer"]
+layout_mode = 2
 offset_top = 49.0
 offset_right = 114.0
 offset_bottom = 87.0
 text = "Username"
 
-[node name="UsernameEdit" type="LineEdit" parent="ServerEditorPopup/GridContainer"]
+[node name="UsernameEdit" type="LineEdit" parent="ServerEditorPopup/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
 offset_left = 118.0
 offset_top = 47.0
 offset_right = 518.0
@@ -94,36 +112,54 @@ offset_bottom = 90.0
 caret_blink = true
 caret_blink_speed = 0.5
 
-[node name="Label3" type="Label" parent="ServerEditorPopup/GridContainer"]
+[node name="Label3" type="Label" parent="ServerEditorPopup/VBoxContainer/GridContainer"]
+layout_mode = 2
 offset_top = 96.0
 offset_right = 114.0
 offset_bottom = 134.0
 text = "Password"
 
-[node name="PasswrodEdit" type="LineEdit" parent="ServerEditorPopup/GridContainer"]
+[node name="PasswordEdit" type="LineEdit" parent="ServerEditorPopup/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
 offset_left = 118.0
 offset_top = 94.0
 offset_right = 518.0
 offset_bottom = 137.0
+secret = true
 caret_blink = true
 caret_blink_speed = 0.5
 
-[node name="TestButton" type="Button" parent="ServerEditorPopup/GridContainer"]
+[node name="TestButton" type="Button" parent="ServerEditorPopup/VBoxContainer/GridContainer"]
+layout_mode = 2
 offset_top = 141.0
 offset_right = 114.0
 offset_bottom = 184.0
 text = "Test"
 
-[node name="SaveButton" type="Button" parent="ServerEditorPopup/GridContainer"]
+[node name="SaveButton" type="Button" parent="ServerEditorPopup/VBoxContainer/GridContainer"]
+layout_mode = 2
 offset_left = 118.0
 offset_top = 141.0
 offset_right = 518.0
 offset_bottom = 184.0
 text = "Save"
 
+[node name="TestResultLabel" type="Label" parent="ServerEditorPopup/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_right = 368.0
+offset_bottom = 38.0
+size_flags_horizontal = 3
+text = "Click button to test server config."
+
+[node name="HttpRequest" type="HTTPRequest" parent="."]
+unique_name_in_owner = true
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/AddServerButton" to="." method="_on_add_server_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/EditServerButton" to="." method="_on_edit_server_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/RemoveServerButton" to="." method="_on_remove_server_button_pressed"]
-[connection signal="popup_hide" from="ServerEditorPopup" to="." method="_on_server_editor_popup_popup_hide"]
-[connection signal="pressed" from="ServerEditorPopup/GridContainer/TestButton" to="." method="_on_test_button_pressed"]
-[connection signal="pressed" from="ServerEditorPopup/GridContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="item_activated" from="MarginContainer/VBoxContainer/ServerList" to="." method="_on_server_list_item_activated"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/ServerList" to="." method="_on_server_list_item_selected"]
+[connection signal="pressed" from="ServerEditorPopup/VBoxContainer/GridContainer/TestButton" to="." method="_on_test_button_pressed"]
+[connection signal="pressed" from="ServerEditorPopup/VBoxContainer/GridContainer/SaveButton" to="." method="_on_save_button_pressed"]
