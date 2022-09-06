@@ -3,3 +3,6 @@
 
 # Exported assets
 exports
+
+# IDE
+.vscode
