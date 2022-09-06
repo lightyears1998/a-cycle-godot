@@ -14,6 +14,7 @@ func go_back() -> bool:
 	if len(go_back_stack) > 0:
 		var last_screen = go_back_stack.pop_back()
 		_replace_current_screen(last_screen)
+		last_screen.queue_free()
 		return true
 	return false
 
