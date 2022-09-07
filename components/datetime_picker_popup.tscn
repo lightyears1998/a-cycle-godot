@@ -1,0 +1,125 @@
+[gd_scene load_steps=2 format=3 uid="uid://srybtqy25mj6"]
+
+[ext_resource type="Script" path="res://components/datetime_picker_popup.gd" id="1_ob7yd"]
+
+[node name="DatetimePickerPopup" type="Popup"]
+size = Vector2i(538, 137)
+borderless = false
+script = ExtResource("1_ob7yd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 490.0
+offset_bottom = 137.0
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+offset_right = 538.0
+offset_bottom = 90.0
+columns = 6
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer"]
+offset_top = 2.0
+offset_right = 56.0
+offset_bottom = 40.0
+text = "Year"
+
+[node name="YearEdit" type="SpinBox" parent="VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+offset_left = 60.0
+offset_right = 160.0
+offset_bottom = 43.0
+max_value = 9999.0
+
+[node name="Label2" type="Label" parent="VBoxContainer/GridContainer"]
+offset_left = 164.0
+offset_top = 2.0
+offset_right = 242.0
+offset_bottom = 40.0
+text = "Month"
+
+[node name="MonthEdit" type="SpinBox" parent="VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+offset_left = 246.0
+offset_right = 346.0
+offset_bottom = 43.0
+max_value = 12.0
+
+[node name="Label3" type="Label" parent="VBoxContainer/GridContainer"]
+offset_left = 350.0
+offset_top = 2.0
+offset_right = 434.0
+offset_bottom = 40.0
+text = "Day"
+
+[node name="DayEdit" type="SpinBox" parent="VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+offset_left = 438.0
+offset_right = 538.0
+offset_bottom = 43.0
+max_value = 31.0
+
+[node name="Label4" type="Label" parent="VBoxContainer/GridContainer"]
+offset_top = 49.0
+offset_right = 56.0
+offset_bottom = 87.0
+text = "Hour"
+
+[node name="HourEdit" type="SpinBox" parent="VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+offset_left = 60.0
+offset_top = 47.0
+offset_right = 160.0
+offset_bottom = 90.0
+max_value = 23.0
+
+[node name="Label5" type="Label" parent="VBoxContainer/GridContainer"]
+offset_left = 164.0
+offset_top = 49.0
+offset_right = 242.0
+offset_bottom = 87.0
+text = "Minute"
+
+[node name="MinuteEdit" type="SpinBox" parent="VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+offset_left = 246.0
+offset_top = 47.0
+offset_right = 346.0
+offset_bottom = 90.0
+max_value = 59.0
+
+[node name="Label6" type="Label" parent="VBoxContainer/GridContainer"]
+offset_left = 350.0
+offset_top = 49.0
+offset_right = 434.0
+offset_bottom = 87.0
+text = "Second"
+
+[node name="SecondEdit" type="SpinBox" parent="VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+offset_left = 438.0
+offset_top = 47.0
+offset_right = 538.0
+offset_bottom = 90.0
+max_value = 59.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+offset_top = 94.0
+offset_right = 538.0
+offset_bottom = 137.0
+
+[node name="NowButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+offset_right = 436.0
+offset_bottom = 43.0
+size_flags_horizontal = 3
+text = "Now"
+
+[node name="ConfirmButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+offset_left = 440.0
+offset_right = 538.0
+offset_bottom = 43.0
+text = "Confirm"
+
+[connection signal="about_to_popup" from="." to="." method="_on_datetime_picker_popup_about_to_popup"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/NowButton" to="." method="_on_now_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]

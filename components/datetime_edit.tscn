@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://2iokc6u23ov1"]
+
+[ext_resource type="PackedScene" uid="uid://srybtqy25mj6" path="res://components/datetime_picker_popup.tscn" id="1_2gjw2"]
+[ext_resource type="Script" path="res://components/datetime_edit.gd" id="1_85jip"]
+
+[node name="DatetimeEdit" type="HBoxContainer"]
+script = ExtResource("1_85jip")
+datetime_dict = {
+"day": 1,
+"hour": 0,
+"minute": 0,
+"month": 1,
+"second": 0,
+"year": 0
+}
+
+[node name="DatetimeLabel" type="Label" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+offset_top = 2.0
+offset_right = 256.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+text = "0000-01-01 00:00:00"
+
+[node name="PickButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 260.0
+offset_right = 315.0
+offset_bottom = 43.0
+text = "Pick"
+
+[node name="ClearButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 319.0
+offset_right = 385.0
+offset_bottom = 43.0
+text = "Clear"
+
+[node name="DatetimePickerPopup" parent="." instance=ExtResource("1_2gjw2")]
+unique_name_in_owner = true
+datetime_dict = {
+"day": 7,
+"dst": false,
+"hour": 19,
+"minute": 50,
+"month": 9,
+"second": 53,
+"weekday": 3,
+"year": 2022
+}
+
+[connection signal="pressed" from="PickButton" to="." method="_on_pick_button_pressed"]
+[connection signal="pressed" from="ClearButton" to="." method="_on_clear_button_pressed"]
+[connection signal="datetime_changed" from="DatetimePickerPopup" to="." method="_on_datetime_picker_popup_datetime_changed"]

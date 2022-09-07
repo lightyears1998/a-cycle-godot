@@ -52,10 +52,10 @@ func _process_clock_update():
 		var total_unix_time = accumulated_unix_time + current_unix_time - start_unix_time
 		var time_dict = Time.get_time_dict_from_unix_time(total_unix_time)
 		clocking_label.text = "%02d:%02d" % [
-			time_dict["hour"] * 60 + time_dict["minute"], 
+			time_dict["hour"] * 60 + time_dict["minute"],
 			time_dict['second']
 		]
-		
+
 func _process(_delta):
 	_process_clock_update()
 
