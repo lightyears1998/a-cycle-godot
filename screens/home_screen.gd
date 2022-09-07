@@ -1,12 +1,21 @@
 extends MarginContainer
 
 @onready var tab_container = %TabContainer
+@onready var focus_tab = %FocusTab
 @onready var settings_tab = %SettingsTab
+
+@onready var last_tab = focus_tab
 
 func _show_tab(tab: Node):
 	for node in tab_container.get_children():
 		node.visible = false
 	tab.visible = true
 
+func _ready():
+	_show_tab(last_tab)
+
 func _on_settings_button_pressed():
 	_show_tab(settings_tab)
+
+func _on_focus_button_pressed():
+	_show_tab(focus_tab)

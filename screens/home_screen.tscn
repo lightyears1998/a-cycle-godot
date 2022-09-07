@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c37otjyjx62pp"]
+[gd_scene load_steps=4 format=3 uid="uid://c37otjyjx62pp"]
 
 [ext_resource type="Script" path="res://screens/home_screen.gd" id="1_jjxqv"]
+[ext_resource type="PackedScene" uid="uid://cpj3ktsvpuugf" path="res://screens/tabs/focus_tab.tscn" id="2_atg77"]
 [ext_resource type="PackedScene" uid="uid://d4a41pp57pva4" path="res://screens/tabs/settings_tab.tscn" id="2_g2bml"]
 
 [node name="MarginContainer" type="MarginContainer"]
@@ -26,12 +27,20 @@ offset_right = 584.0
 offset_bottom = 953.0
 size_flags_vertical = 3
 
+[node name="FocusTab" parent="HomeScreen/TabContainer" instance=ExtResource("2_atg77")]
+unique_name_in_owner = true
+visible = false
+offset_left = 92.0
+offset_top = 222.0
+offset_right = 492.0
+offset_bottom = 731.0
+
 [node name="SettingsTab" parent="HomeScreen/TabContainer" instance=ExtResource("2_g2bml")]
 unique_name_in_owner = true
 visible = false
-offset_left = 38.0
+offset_left = 202.0
 offset_top = 380.0
-offset_right = 546.0
+offset_right = 382.0
 offset_bottom = 573.0
 
 [node name="ButtomNavigationBar" type="HBoxContainer" parent="HomeScreen"]
@@ -41,39 +50,40 @@ offset_bottom = 1000.0
 alignment = 1
 
 [node name="FocusButton" type="Button" parent="HomeScreen/ButtomNavigationBar"]
-offset_left = 32.0
-offset_right = 106.0
+offset_left = 31.0
+offset_right = 105.0
 offset_bottom = 43.0
 text = "Focus"
 
 [node name="ActivityButton" type="Button" parent="HomeScreen/ButtomNavigationBar"]
-offset_left = 110.0
-offset_right = 203.0
+offset_left = 109.0
+offset_right = 202.0
 offset_bottom = 43.0
 text = "Activity"
 
 [node name="LedgerButton" type="Button" parent="HomeScreen/ButtomNavigationBar"]
-offset_left = 207.0
-offset_right = 291.0
+offset_left = 206.0
+offset_right = 290.0
 offset_bottom = 43.0
 text = "Ledger"
 
-[node name="SportsButton" type="Button" parent="HomeScreen/ButtomNavigationBar"]
-offset_left = 295.0
-offset_right = 376.0
+[node name="HealthButton" type="Button" parent="HomeScreen/ButtomNavigationBar"]
+offset_left = 294.0
+offset_right = 377.0
 offset_bottom = 43.0
-text = "Sports"
+text = "Health"
 
 [node name="DiaryButton" type="Button" parent="HomeScreen/ButtomNavigationBar"]
-offset_left = 380.0
-offset_right = 448.0
+offset_left = 381.0
+offset_right = 449.0
 offset_bottom = 43.0
 text = "Diary"
 
 [node name="SettingsButton" type="Button" parent="HomeScreen/ButtomNavigationBar"]
-offset_left = 452.0
-offset_right = 552.0
+offset_left = 453.0
+offset_right = 553.0
 offset_bottom = 43.0
 text = "Settings"
 
+[connection signal="pressed" from="HomeScreen/ButtomNavigationBar/FocusButton" to="." method="_on_focus_button_pressed"]
 [connection signal="pressed" from="HomeScreen/ButtomNavigationBar/SettingsButton" to="." method="_on_settings_button_pressed"]

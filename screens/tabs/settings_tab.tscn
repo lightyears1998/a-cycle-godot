@@ -6,26 +6,23 @@
 theme_override_constants/separation = 32
 script = ExtResource("1_560g0")
 
-[node name="ManageServerButton" type="Button" parent="."]
-layout_mode = 2
-offset_right = 508.0
+[node name="ManageServersButton" type="Button" parent="."]
+offset_right = 180.0
 offset_bottom = 43.0
-text = "Manage server"
+text = "Manage servers"
 
-[node name="BackupButton" type="Button" parent="."]
-layout_mode = 2
+[node name="ExportButton" type="Button" parent="."]
 offset_top = 75.0
-offset_right = 508.0
+offset_right = 180.0
 offset_bottom = 118.0
-text = "Export full database to online backup service"
+text = "Export"
 
-[node name="ViewLogButton" type="Button" parent="."]
-layout_mode = 2
+[node name="LogcatButton" type="Button" parent="."]
 offset_top = 150.0
-offset_right = 508.0
+offset_right = 180.0
 offset_bottom = 193.0
-text = "View log"
+text = "Logcat"
 
-[connection signal="pressed" from="ManageServerButton" to="." method="_on_manage_server_button_pressed"]
-[connection signal="pressed" from="BackupButton" to="." method="_on_backup_button_pressed"]
-[connection signal="pressed" from="ViewLogButton" to="." method="_on_view_log_button_pressed"]
+[connection signal="pressed" from="ManageServersButton" to="." method="_on_manage_servers_button_pressed"]
+[connection signal="pressed" from="ExportButton" to="." method="_on_export_button_pressed"]
+[connection signal="pressed" from="LogcatButton" to="." method="_on_logcat_button_pressed"]
