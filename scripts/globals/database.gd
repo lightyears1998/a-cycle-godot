@@ -16,7 +16,7 @@ func _ready():
 		"content": { "data_type": "text" },
 		"createdAt": { "data_type": "text" },
 		"updatedAt": { "data_type": "text" },
-		"updatedBy": { "data_type": "txet" },
+		"updatedBy": { "data_type": "text" },
 	})
 
 func _clean_up():
