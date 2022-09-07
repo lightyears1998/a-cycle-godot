@@ -21,11 +21,13 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TabContainer" type="CenterContainer" parent="HomeScreen"]
+unique_name_in_owner = true
 offset_right = 584.0
 offset_bottom = 953.0
 size_flags_vertical = 3
 
 [node name="SettingsTab" parent="HomeScreen/TabContainer" instance=ExtResource("2_g2bml")]
+unique_name_in_owner = true
 visible = false
 offset_left = 38.0
 offset_top = 380.0

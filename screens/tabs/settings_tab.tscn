@@ -7,17 +7,20 @@ theme_override_constants/separation = 32
 script = ExtResource("1_560g0")
 
 [node name="ManageServerButton" type="Button" parent="."]
+layout_mode = 2
 offset_right = 508.0
 offset_bottom = 43.0
 text = "Manage server"
 
 [node name="BackupButton" type="Button" parent="."]
+layout_mode = 2
 offset_top = 75.0
 offset_right = 508.0
 offset_bottom = 118.0
 text = "Export full database to online backup service"
 
 [node name="ViewLogButton" type="Button" parent="."]
+layout_mode = 2
 offset_top = 150.0
 offset_right = 508.0
 offset_bottom = 193.0

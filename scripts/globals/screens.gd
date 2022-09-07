@@ -13,8 +13,9 @@ func _replace_current_screen(new_screen: Node) -> void:
 func go_back() -> bool:
 	if len(go_back_stack) > 0:
 		var last_screen = go_back_stack.pop_back()
+		var current_screen = _get_current_screen()
 		_replace_current_screen(last_screen)
-		last_screen.queue_free()
+		current_screen.queue_free()
 		return true
 	return false
 

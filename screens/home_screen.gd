@@ -1,6 +1,12 @@
 extends MarginContainer
 
-const ServerManagementScreen = preload("res://screens/server_management_screen.tscn")
+@onready var tab_container = %TabContainer
+@onready var settings_tab = %SettingsTab
+
+func _show_tab(tab: Node):
+	for node in tab_container.get_children():
+		node.visible = false
+	tab.visible = true
 
 func _on_settings_button_pressed():
-	Screens.go_to(ServerManagementScreen.instantiate())
+	_show_tab(settings_tab)

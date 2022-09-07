@@ -1,0 +1,117 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1or8rqt33tmw"]
+
+[ext_resource type="Script" path="res://screens/server_editor_screen.gd" id="1_mp0hp"]
+[ext_resource type="PackedScene" uid="uid://822i4oxf53qt" path="res://components/top_bar.tscn" id="2_rnjm8"]
+
+[node name="ServerEditorScreen" type="VBoxContainer"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mp0hp")
+
+[node name="TopBar" parent="." instance=ExtResource("2_rnjm8")]
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+offset_right = 600.0
+offset_bottom = 43.0
+grow_horizontal = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_top = 47.0
+offset_right = 600.0
+offset_bottom = 1024.0
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
+offset_right = 600.0
+offset_bottom = 184.0
+columns = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+offset_top = 2.0
+offset_right = 114.0
+offset_bottom = 40.0
+text = "Url"
+
+[node name="UrlEdit" type="LineEdit" parent="VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+offset_left = 118.0
+offset_right = 518.0
+offset_bottom = 43.0
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="Label2" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+offset_top = 49.0
+offset_right = 114.0
+offset_bottom = 87.0
+text = "Username"
+
+[node name="UsernameEdit" type="LineEdit" parent="VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 118.0
+offset_top = 47.0
+offset_right = 518.0
+offset_bottom = 90.0
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="Label3" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+offset_top = 96.0
+offset_right = 114.0
+offset_bottom = 134.0
+text = "Password"
+
+[node name="PasswordEdit" type="LineEdit" parent="VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 118.0
+offset_top = 94.0
+offset_right = 518.0
+offset_bottom = 137.0
+secret = true
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="TestButton" type="Button" parent="VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_top = 141.0
+offset_right = 114.0
+offset_bottom = 184.0
+text = "Test"
+
+[node name="SaveButton" type="Button" parent="VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 118.0
+offset_top = 141.0
+offset_right = 518.0
+offset_bottom = 184.0
+text = "Save"
+
+[node name="TestResultLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_top = 188.0
+offset_right = 600.0
+offset_bottom = 226.0
+size_flags_horizontal = 3
+text = "Click button to test server config."
+
+[node name="HttpRequest" type="HTTPRequest" parent="."]
+unique_name_in_owner = true
+
+[connection signal="pressed" from="VBoxContainer/GridContainer/SaveButton" to="." method="_on_save_button_pressed"]
