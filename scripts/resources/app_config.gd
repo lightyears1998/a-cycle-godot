@@ -1,9 +1,9 @@
 extends Resource
 class_name AppConfig
- 
+
 @export var sync_servers: Array[Resource] = [] # Array[SyncServerConfig]
-@export var nodeUuid: String = Utils.uuidv4()
+@export var node_uuid: String = Utils.uuidv4()
 
 func _normalize():
-	if nodeUuid == "":
-		nodeUuid = Utils.uuidv4()
+	if node_uuid == "":
+		node_uuid = Utils.uuidv4()
