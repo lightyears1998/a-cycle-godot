@@ -5,6 +5,4 @@
 A productivity application that evolves with me.
 
 - 🚧 **Under development...** 🚧
-- ~~A GTD tool with customizable features.~~
-- ~~To enable data synchronization across multiple clients, the app should cooperate with [a dedicated server](https://github.com/lightyears1998/a-cycle-server).~~
-  - ~~WebDav support is under consideration.~~
+- The app could work offline. ~~To enable data synchronization/backup across multiple devices, it should cooperate with [a dedicated server](https://github.com/lightyears1998/a-cycle-server). WebDav support is under consideration.~~
