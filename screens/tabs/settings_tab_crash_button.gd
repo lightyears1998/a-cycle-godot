@@ -4,8 +4,8 @@ signal _user_confirmed;
 
 var _should_crash := false
 
-func _crash_the_application() -> int:
-	return int(0 / "0".to_int())
+func _crash_the_application() -> void:
+	OS.crash("User wants to crash the application.")
 
 func _on_crash_button_pressed() -> void:
 	var dialog = ConfirmationDialog.new()
