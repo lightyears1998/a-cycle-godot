@@ -51,7 +51,7 @@ _global_script_class_icons={
 [application]
 
 config/name="A Cycle"
-config/description="Godot implement of A Cycle, the Getting-Things-Done auxiliary application."
+config/description="A Cycle, the productivity application."
 run/main_scene="res://screens/home_screen.tscn"
 config/use_custom_user_dir=true
 config/features=PackedStringArray("4.0", "Vulkan Clustered")
