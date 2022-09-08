@@ -1,11 +1,11 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://bocaspue6ye7d"]
 
-[ext_resource type="FontFile" uid="uid://dt4bia6d2o0to" path="res://assets/fonts/NotoSansSC-Regular.otf" id="1_p0nn7"]
+[ext_resource type="FontFile" uid="uid://bpratsylh3dph" path="res://assets/fonts/NotoSansSC-Regular.otf" id="1_p0nn7"]
 
 [resource]
 default_font = ExtResource("1_p0nn7")
 default_font_size = 24
-MarginContainer/constants/margin_top = 8
 MarginContainer/constants/margin_bottom = 16
 MarginContainer/constants/margin_left = 8
 MarginContainer/constants/margin_right = 8
+MarginContainer/constants/margin_top = 16
