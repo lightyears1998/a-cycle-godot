@@ -2,7 +2,7 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dt4bia6d2o0to"
+uid="uid://bpratsylh3dph"
 path="res://.godot/imported/NotoSansSC-Regular.otf-c0c85f3b3b2ad6d96b65df5f3103bb43.fontdata"
 
 [deps]
@@ -26,7 +26,13 @@ Fallbacks=null
 fallbacks=[]
 Compress=null
 compress=true
-preload=[]
+preload=[{
+"chars": [],
+"glyphs": [],
+"name": "Theme font",
+"size": 24,
+"variation_embolden": 0.0
+}]
 language_support={}
 script_support={}
 opentype_features={}
