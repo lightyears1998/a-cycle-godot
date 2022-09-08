@@ -85,3 +85,7 @@ theme/custom="res://themes/main_theme.tres"
 [internationalization]
 
 locale/locale_filter_mode=0
+
+[rendering]
+
+shader_compiler/shader_cache/enabled=false
