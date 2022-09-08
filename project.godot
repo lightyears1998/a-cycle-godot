@@ -9,10 +9,25 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "RefCounted",
+"class": &"ActivityEntity",
+"language": &"GDScript",
+"path": "res://scripts/entities/activity.gd"
+}, {
 "base": "Resource",
 "class": &"AppConfig",
 "language": &"GDScript",
 "path": "res://scripts/resources/app_config.gd"
+}, {
+"base": "EntryEntity",
+"class": &"DiaryEntity",
+"language": &"GDScript",
+"path": "res://scripts/entities/diary.gd"
+}, {
+"base": "RefCounted",
+"class": &"EntryEntity",
+"language": &"GDScript",
+"path": "res://scripts/entities/entry.gd"
 }, {
 "base": "Resource",
 "class": &"SyncServerConfig",
@@ -20,7 +35,10 @@ _global_script_classes=[{
 "path": "res://scripts/resources/sync_server_config.gd"
 }]
 _global_script_class_icons={
+"ActivityEntity": "",
 "AppConfig": "",
+"DiaryEntity": "",
+"EntryEntity": "",
 "SyncServerConfig": ""
 }
 
