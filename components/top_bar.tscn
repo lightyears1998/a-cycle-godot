@@ -10,7 +10,6 @@ grow_horizontal = 2
 script = ExtResource("1_m6yf8")
 
 [node name="GoBackButton" type="Button" parent="."]
-layout_mode = 2
 offset_right = 98.0
 offset_bottom = 43.0
 text = "Go back"
