@@ -1,28 +1,41 @@
-[gd_scene load_steps=2 format=3 uid="uid://d4a41pp57pva4"]
+[gd_scene load_steps=3 format=3 uid="uid://d4a41pp57pva4"]
 
 [ext_resource type="Script" path="res://screens/tabs/settings_tab.gd" id="1_560g0"]
+[ext_resource type="Script" path="res://screens/tabs/settings_tab_crash_button.gd" id="2_frcag"]
 
 [node name="SettingsTab" type="VBoxContainer"]
 theme_override_constants/separation = 32
 script = ExtResource("1_560g0")
 
 [node name="ManageServersButton" type="Button" parent="."]
+layout_mode = 2
 offset_right = 180.0
 offset_bottom = 43.0
 text = "Manage servers"
 
 [node name="ExportButton" type="Button" parent="."]
+layout_mode = 2
 offset_top = 75.0
 offset_right = 180.0
 offset_bottom = 118.0
 text = "Export"
 
 [node name="LogcatButton" type="Button" parent="."]
+layout_mode = 2
 offset_top = 150.0
 offset_right = 180.0
 offset_bottom = 193.0
 text = "Logcat"
 
+[node name="CrashButton" type="Button" parent="."]
+layout_mode = 2
+offset_top = 225.0
+offset_right = 180.0
+offset_bottom = 268.0
+text = "Crash"
+script = ExtResource("2_frcag")
+
 [connection signal="pressed" from="ManageServersButton" to="." method="_on_manage_servers_button_pressed"]
 [connection signal="pressed" from="ExportButton" to="." method="_on_export_button_pressed"]
 [connection signal="pressed" from="LogcatButton" to="." method="_on_logcat_button_pressed"]
+[connection signal="pressed" from="CrashButton" to="CrashButton" method="_on_crash_button_pressed"]

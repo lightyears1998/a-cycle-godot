@@ -10,4 +10,4 @@ func _on_export_button_pressed():
 	Screens.go_to(ExportScreen.instantiate())
 
 func _on_logcat_button_pressed():
-	pass # Replace with function body.
+	pass # Not implemented yet.
