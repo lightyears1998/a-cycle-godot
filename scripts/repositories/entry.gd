@@ -22,11 +22,11 @@ func _from_plain_dict(entry: Dictionary) -> Dictionary:
 
 func create() -> Dictionary:
 	var entry = ENTRY_TEMPLATE.duplicate(true)
-	var created_at = Datetime.new().to_unix_time()
+	var created_at = Datetime.new().to_iso_timestamp()
 	entry.uuid = null
-	entry.createdAt = created_at
-	entry.updatedAt = created_at
-	entry.updatedBy = Settings.app_config.node_uuid
+	entry["createdAt"] = created_at
+	entry["updatedAt"] = created_at
+	entry["updatedBy"] = Settings.app_config.node_uuid
 	return entry
 
 func insert(entry: Dictionary):
@@ -46,8 +46,13 @@ func save(entry: Dictionary):
 	else:
 		update(entry)
 
-func findByUuid(uuid: String):
-	var entries = Database.db.select_rows('entry', "uuid='%s'" % uuid, ENTRY_TEMPLATE.keys())
+func select_rows(query_condition: String, selected_columns := ["*"]) -> Array[Dictionary]:
+	var result = Database.db.select_rows('entry', query_condition, selected_columns)
+	result.map(func (item): _from_plain_dict(item))
+	return result
+
+func find_by_uuid(uuid: String):
+	var entries = select_rows("uuid='%s'" % uuid)
 	if len(entries) == 0:
 		return {}
-	return _from_plain_dict(entries[0])
+	return entries[0]

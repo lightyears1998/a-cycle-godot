@@ -68,6 +68,7 @@ layout_mode = 2
 offset_top = 220.0
 offset_right = 600.0
 offset_bottom = 732.0
+wrap_mode = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -83,3 +84,7 @@ offset_left = 237.0
 offset_right = 363.0
 offset_bottom = 43.0
 text = "Save Diary"
+
+[connection signal="text_changed" from="VBoxContainer/TitleEdit" to="." method="_on_title_edit_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/ContentEdit" to="." method="_on_content_edit_text_changed"]
+[connection signal="pressed" from="HBoxContainer/SaveDiaryButton" to="." method="_on_save_diary_button_pressed"]

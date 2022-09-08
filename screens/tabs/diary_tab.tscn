@@ -12,17 +12,20 @@ grow_vertical = 2
 script = ExtResource("1_vp0qv")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
 offset_right = 600.0
 offset_bottom = 43.0
 
 [node name="PreviousDayButton" type="Button" parent="HBoxContainer"]
 unique_name_in_owner = true
+layout_mode = 2
 offset_right = 31.0
 offset_bottom = 43.0
 text = " < "
 
 [node name="DateLabel" type="Label" parent="HBoxContainer"]
 unique_name_in_owner = true
+layout_mode = 2
 offset_left = 35.0
 offset_top = 2.0
 offset_right = 565.0
@@ -34,6 +37,7 @@ vertical_alignment = 1
 
 [node name="NextDayButton" type="Button" parent="HBoxContainer"]
 unique_name_in_owner = true
+layout_mode = 2
 offset_left = 569.0
 offset_right = 600.0
 offset_bottom = 43.0
@@ -41,28 +45,33 @@ text = " > "
 
 [node name="DiaryList" type="ItemList" parent="."]
 custom_minimum_size = Vector2(0, 256)
+layout_mode = 2
 offset_top = 47.0
 offset_right = 600.0
 offset_bottom = 303.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
 offset_top = 307.0
 offset_right = 600.0
 offset_bottom = 694.0
 
 [node name="TitleLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
 offset_right = 600.0
 offset_bottom = 38.0
 text = "Title"
 
 [node name="TtileEdit" type="LineEdit" parent="VBoxContainer"]
 unique_name_in_owner = true
+layout_mode = 2
 offset_top = 42.0
 offset_right = 600.0
 offset_bottom = 85.0
 editable = false
 
 [node name="ContentLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
 offset_top = 89.0
 offset_right = 600.0
 offset_bottom = 127.0
@@ -71,12 +80,14 @@ text = "Content"
 [node name="ContentEdit" type="TextEdit" parent="VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 256)
+layout_mode = 2
 offset_top = 131.0
 offset_right = 600.0
 offset_bottom = 387.0
 editable = false
 
 [node name="ActionBar" type="HBoxContainer" parent="."]
+layout_mode = 2
 offset_top = 698.0
 offset_right = 600.0
 offset_bottom = 741.0
@@ -84,6 +95,7 @@ alignment = 1
 
 [node name="AddDiaryButton" type="Button" parent="ActionBar"]
 unique_name_in_owner = true
+layout_mode = 2
 offset_left = 158.0
 offset_right = 276.0
 offset_bottom = 43.0
@@ -91,6 +103,7 @@ text = "Add Diary"
 
 [node name="RemoveDiaryButton" type="Button" parent="ActionBar"]
 unique_name_in_owner = true
+layout_mode = 2
 offset_left = 280.0
 offset_right = 442.0
 offset_bottom = 43.0
