@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c37otjyjx62pp"]
+[gd_scene load_steps=5 format=3 uid="uid://c37otjyjx62pp"]
 
 [ext_resource type="Script" path="res://screens/home_screen.gd" id="1_jjxqv"]
 [ext_resource type="PackedScene" uid="uid://cpj3ktsvpuugf" path="res://screens/tabs/focus_tab.tscn" id="2_atg77"]
 [ext_resource type="PackedScene" uid="uid://d4a41pp57pva4" path="res://screens/tabs/settings_tab.tscn" id="2_g2bml"]
+[ext_resource type="PackedScene" uid="uid://bhjschdcxwhq4" path="res://screens/tabs/diary_tab.tscn" id="3_0ea5u"]
 
 [node name="MarginContainer" type="MarginContainer"]
 anchors_preset = 15
@@ -14,76 +15,107 @@ script = ExtResource("1_jjxqv")
 metadata/_edit_lock_ = true
 
 [node name="HomeScreen" type="VBoxContainer" parent="."]
+layout_mode = 2
 offset_left = 8.0
 offset_top = 8.0
-offset_right = 592.0
+offset_right = 600.0
 offset_bottom = 1008.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TabContainer" type="CenterContainer" parent="HomeScreen"]
 unique_name_in_owner = true
-offset_right = 584.0
+layout_mode = 2
+offset_right = 592.0
 offset_bottom = 953.0
 size_flags_vertical = 3
 
 [node name="FocusTab" parent="HomeScreen/TabContainer" instance=ExtResource("2_atg77")]
 unique_name_in_owner = true
-visible = false
-offset_left = 92.0
+layout_mode = 2
+offset_left = 96.0
 offset_top = 222.0
-offset_right = 492.0
+offset_right = 496.0
 offset_bottom = 731.0
+
+[node name="DiaryTab" parent="HomeScreen/TabContainer" instance=ExtResource("3_0ea5u")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 40.0
+offset_top = 106.0
+offset_right = 552.0
+offset_bottom = 847.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="SettingsTab" parent="HomeScreen/TabContainer" instance=ExtResource("2_g2bml")]
 unique_name_in_owner = true
 visible = false
-offset_left = 202.0
-offset_top = 380.0
-offset_right = 382.0
-offset_bottom = 573.0
+layout_mode = 2
+offset_left = 206.0
+offset_top = 342.0
+offset_right = 386.0
+offset_bottom = 610.0
 
 [node name="ButtomNavigationBar" type="HBoxContainer" parent="HomeScreen"]
+layout_mode = 2
 offset_top = 957.0
-offset_right = 584.0
+offset_right = 592.0
 offset_bottom = 1000.0
 alignment = 1
 
 [node name="FocusButton" type="Button" parent="HomeScreen/ButtomNavigationBar"]
-offset_left = 31.0
-offset_right = 105.0
+layout_mode = 2
+offset_right = 74.0
 offset_bottom = 43.0
 text = "Focus"
 
 [node name="ActivityButton" type="Button" parent="HomeScreen/ButtomNavigationBar"]
-offset_left = 109.0
-offset_right = 202.0
+layout_mode = 2
+offset_left = 78.0
+offset_right = 171.0
 offset_bottom = 43.0
 text = "Activity"
 
+[node name="TodoButton" type="Button" parent="HomeScreen/ButtomNavigationBar"]
+layout_mode = 2
+offset_left = 175.0
+offset_right = 241.0
+offset_bottom = 43.0
+text = "Todo"
+
 [node name="LedgerButton" type="Button" parent="HomeScreen/ButtomNavigationBar"]
-offset_left = 206.0
-offset_right = 290.0
+layout_mode = 2
+offset_left = 245.0
+offset_right = 329.0
 offset_bottom = 43.0
 text = "Ledger"
 
 [node name="HealthButton" type="Button" parent="HomeScreen/ButtomNavigationBar"]
-offset_left = 294.0
-offset_right = 377.0
+layout_mode = 2
+offset_left = 333.0
+offset_right = 416.0
 offset_bottom = 43.0
 text = "Health"
 
 [node name="DiaryButton" type="Button" parent="HomeScreen/ButtomNavigationBar"]
-offset_left = 381.0
-offset_right = 449.0
+layout_mode = 2
+offset_left = 420.0
+offset_right = 488.0
 offset_bottom = 43.0
 text = "Diary"
 
 [node name="SettingsButton" type="Button" parent="HomeScreen/ButtomNavigationBar"]
-offset_left = 453.0
-offset_right = 553.0
+layout_mode = 2
+offset_left = 492.0
+offset_right = 592.0
 offset_bottom = 43.0
 text = "Settings"
 
 [connection signal="pressed" from="HomeScreen/ButtomNavigationBar/FocusButton" to="." method="_on_focus_button_pressed"]
+[connection signal="pressed" from="HomeScreen/ButtomNavigationBar/DiaryButton" to="." method="_on_diary_button_pressed"]
 [connection signal="pressed" from="HomeScreen/ButtomNavigationBar/SettingsButton" to="." method="_on_settings_button_pressed"]

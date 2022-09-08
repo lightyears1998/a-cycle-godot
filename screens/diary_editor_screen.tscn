@@ -1,0 +1,85 @@
+[gd_scene load_steps=4 format=3 uid="uid://nafyqhrhr8sc"]
+
+[ext_resource type="Script" path="res://screens/diary_editor_screen.gd" id="1_y2u2i"]
+[ext_resource type="PackedScene" uid="uid://822i4oxf53qt" path="res://components/top_bar.tscn" id="2_4yx7i"]
+[ext_resource type="PackedScene" uid="uid://2iokc6u23ov1" path="res://components/datetime_edit.tscn" id="3_5dv5a"]
+
+[node name="DiaryEditorScreen" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y2u2i")
+
+[node name="TopBar" parent="." instance=ExtResource("2_4yx7i")]
+unique_name_in_owner = true
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+offset_right = 600.0
+offset_bottom = 43.0
+grow_horizontal = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_top = 47.0
+offset_right = 600.0
+offset_bottom = 779.0
+
+[node name="DateLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+offset_right = 600.0
+offset_bottom = 38.0
+text = "Date"
+
+[node name="DatetimeEdit" parent="VBoxContainer" instance=ExtResource("3_5dv5a")]
+unique_name_in_owner = true
+layout_mode = 2
+offset_top = 42.0
+offset_right = 600.0
+offset_bottom = 85.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+offset_top = 89.0
+offset_right = 600.0
+offset_bottom = 127.0
+text = "Title"
+
+[node name="TitleEdit" type="LineEdit" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_top = 131.0
+offset_right = 600.0
+offset_bottom = 174.0
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+offset_top = 178.0
+offset_right = 600.0
+offset_bottom = 216.0
+text = "Content"
+
+[node name="ContentEdit" type="TextEdit" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 512)
+layout_mode = 2
+offset_top = 220.0
+offset_right = 600.0
+offset_bottom = 732.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+offset_top = 783.0
+offset_right = 600.0
+offset_bottom = 826.0
+alignment = 1
+
+[node name="SaveDiaryButton" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 237.0
+offset_right = 363.0
+offset_bottom = 43.0
+text = "Save Diary"
