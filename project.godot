@@ -12,7 +12,7 @@ _global_script_classes=[{
 "base": "EntryRepository",
 "class": &"ActivityRepository",
 "language": &"GDScript",
-"path": "res://scripts/entities/activity.gd"
+"path": "res://scripts/repositories/activity.gd"
 }, {
 "base": "Resource",
 "class": &"AppConfig",
@@ -27,12 +27,12 @@ _global_script_classes=[{
 "base": "EntryRepository",
 "class": &"DiaryRepository",
 "language": &"GDScript",
-"path": "res://scripts/entities/diary.gd"
+"path": "res://scripts/repositories/diary.gd"
 }, {
 "base": "RefCounted",
 "class": &"EntryRepository",
 "language": &"GDScript",
-"path": "res://scripts/entities/entry.gd"
+"path": "res://scripts/repositories/entry.gd"
 }, {
 "base": "Resource",
 "class": &"SyncServerConfig",
