@@ -60,7 +60,6 @@ config/quit_on_go_back=false
 
 [autoload]
 
-Datetime="*res://scripts/globals/datetime.gd"
 Utils="*res://scripts/globals/utils.gd"
 Settings="*res://scripts/globals/settings.gd"
 Database="*res://scripts/globals/database.gd"
