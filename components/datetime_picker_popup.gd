@@ -1,13 +1,13 @@
 @tool
 extends Popup
 
-@export var datetime_dict = Time.get_datetime_dict_from_system()
+@export var datetime_dict = Time.get_datetime_dict_from_system(false)
 
 @onready var year_edit = %YearEdit as SpinBox
 @onready var month_edit = %MonthEdit as SpinBox
 @onready var day_edit = %DayEdit as SpinBox
 @onready var hour_edit = %HourEdit as SpinBox
-@onready var minute_edit = %HourEdit as SpinBox
+@onready var minute_edit = %MinuteEdit as SpinBox
 @onready var second_edit = %SecondEdit as SpinBox
 
 signal datetime_changed(datetime_dict)
@@ -41,5 +41,5 @@ func _on_confirm_button_pressed():
 	hide()
 
 func _on_now_button_pressed():
-	datetime_dict = Time.get_datetime_dict_from_system()
+	datetime_dict = Time.get_datetime_dict_from_system(false)
 	_update_ui()

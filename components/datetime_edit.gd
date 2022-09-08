@@ -25,12 +25,11 @@ var _datetime_dict: Dictionary = {
 @onready var datetime_picker_popup = %DatetimePickerPopup as Popup
 
 func _update_ui() -> void:
-	if not is_inside_tree():
-		return
-	if datetime_dict:
-		datetime_label.text = Time.get_datetime_string_from_datetime_dict(datetime_dict, true)
-	else:
-		datetime_label.text = "No date"
+	if is_inside_tree():
+		if datetime_dict:
+			datetime_label.text = Time.get_datetime_string_from_datetime_dict(datetime_dict, true)
+		else:
+			datetime_label.text = "No date"
 
 func clear_datetime() -> void:
 	datetime_dict = {}

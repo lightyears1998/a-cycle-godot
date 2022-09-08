@@ -3,9 +3,19 @@
 [ext_resource type="Script" path="res://components/datetime_picker_popup.gd" id="1_ob7yd"]
 
 [node name="DatetimePickerPopup" type="Popup"]
-size = Vector2i(538, 137)
-borderless = false
+size = Vector2i(576, 137)
+transient = false
 script = ExtResource("1_ob7yd")
+datetime_dict = {
+"day": 8,
+"dst": false,
+"hour": 19,
+"minute": 50,
+"month": 9,
+"second": 33,
+"weekday": 4,
+"year": 2022
+}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 offset_right = 490.0
@@ -28,6 +38,7 @@ offset_left = 60.0
 offset_right = 160.0
 offset_bottom = 43.0
 max_value = 9999.0
+value = 2022.0
 
 [node name="Label2" type="Label" parent="VBoxContainer/GridContainer"]
 offset_left = 164.0
@@ -42,6 +53,7 @@ offset_left = 246.0
 offset_right = 346.0
 offset_bottom = 43.0
 max_value = 12.0
+value = 9.0
 
 [node name="Label3" type="Label" parent="VBoxContainer/GridContainer"]
 offset_left = 350.0
@@ -56,6 +68,7 @@ offset_left = 438.0
 offset_right = 538.0
 offset_bottom = 43.0
 max_value = 31.0
+value = 8.0
 
 [node name="Label4" type="Label" parent="VBoxContainer/GridContainer"]
 offset_top = 49.0
@@ -70,6 +83,7 @@ offset_top = 47.0
 offset_right = 160.0
 offset_bottom = 90.0
 max_value = 23.0
+value = 23.0
 
 [node name="Label5" type="Label" parent="VBoxContainer/GridContainer"]
 offset_left = 164.0
@@ -100,6 +114,7 @@ offset_top = 47.0
 offset_right = 538.0
 offset_bottom = 90.0
 max_value = 59.0
+value = 33.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 offset_top = 94.0
