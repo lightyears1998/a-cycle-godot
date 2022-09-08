@@ -41,7 +41,7 @@ func _append_test_result(text: String):
 func _on_test_button_pressed():
 	test_result_label.text = "Testing..."
 	http_request.cancel_request()
-	
+
 	_update_config_from_ui_input(testing_config)
 	_test_username()
 
@@ -61,18 +61,18 @@ func _on_http_request_completed(result, response_code, _headers, body) -> Dictio
 	if result != 0 or response_code != 200:
 		_append_test_result("Error requesting username (result, response_code): (" + str(result) + " " + str(response_code) + ")")
 		return {}
-	
+
 	var data = JSON.parse_string(body.get_string_from_utf8())
 	_append_test_result(str(data))
 	return data["payload"]
 
 func _on_test_username_request_completed(result, response_code, _headers, body):
 	var payload = _on_http_request_completed(result, response_code, _headers, body)
-	
+
 	if not payload.has("user") or not payload["user"].has("id"):
 		_append_test_result("Error getting userId: User may not exist in this server.")
 		return
-	
+
 	var user = payload["user"]
 	_append_test_result("UserId: " + str(user["id"]))
 	_test_password(user["id"])
@@ -91,5 +91,5 @@ func _test_password(user_id: String):
 	_append_test_result("Requesting: " + request_url)
 
 func _on_test_password_request_completed(result, response_code, _headers, body):
-	var payload = _on_http_request_completed(result, response_code, _headers, body)
+	var _payload = _on_http_request_completed(result, response_code, _headers, body)
 	_append_test_result("Config OK.")
