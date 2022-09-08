@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpe7bpjdkyet6"]
+
+[ext_resource type="Script" path="res://screens/tabs/todo_list_tab.gd" id="1_8m5ij"]
+
+[node name="TodoListTab" type="VBoxContainer"]
+script = ExtResource("1_8m5ij")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_right = 242.0
+offset_bottom = 38.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+offset_right = 242.0
+offset_bottom = 38.0
+text = "Unresolved Acitivities"
