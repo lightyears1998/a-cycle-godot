@@ -51,6 +51,10 @@ window/handheld/orientation=1
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_width"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot-sqlite/plugin.cfg")
+
 [gui]
 
 theme/custom="res://themes/main_theme.tres"
