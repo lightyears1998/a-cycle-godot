@@ -4,9 +4,9 @@ var db : SQLite = null
 const db_path := "user://database.sqlite3"
 const db_verbosity_level := SQLite.VERBOSE
 
-var Entry = EntryEntity.new()
-var Activity = ActivityEntity.new()
-var Diary = DiaryEntity.new()
+var Entry = EntryRepository.new()
+var Activity = ActivityRepository.new()
+var Diary = DiaryRepository.new()
 
 var Entities = [
 	Entry, Activity, Diary
@@ -39,3 +39,4 @@ func _exit_tree():
 func _clean_up():
 	if db:
 		db.close_db()
+

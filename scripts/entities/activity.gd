@@ -1,5 +1,5 @@
-extends RefCounted
-class_name ActivityEntity
+extends EntryRepository
+class_name ActivityRepository
 
 const ACTIIVITY_TEMPLATE = {
 	"title": "text",
