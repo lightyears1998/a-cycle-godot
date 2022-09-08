@@ -12,7 +12,7 @@ func _init(unix_time: int = 0, unix_time_bias_from_utc := 0) -> void:
 	_to_local()
 
 static func now() -> Datetime:
-	var unix_time = Time.get_unix_time_from_system()
+	var unix_time = int(Time.get_unix_time_from_system())
 	return Datetime.new(unix_time)
 
 static func _get_time_zone_bias_seconds() -> int:
