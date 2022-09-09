@@ -66,6 +66,10 @@ Settings="*res://scripts/globals/settings.gd"
 Database="*res://scripts/globals/database.gd"
 Screens="*res://scripts/globals/screens.gd"
 
+[debug]
+
+file_logging/log_path.editor="user://logs_dev/godot.log"
+
 [display]
 
 window/size/viewport_width=600
