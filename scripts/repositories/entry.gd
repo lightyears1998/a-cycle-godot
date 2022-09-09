@@ -41,10 +41,10 @@ func update(entry: Dictionary):
 		print(Database.db.error_message)
 
 func save(entry: Dictionary):
-	if not entry.uuid:
-		insert(entry)
-	else:
+	if entry.uuid:
 		update(entry)
+	else:
+		insert(entry)
 
 func select_rows(query_condition: String, selected_columns := ["*"]) -> Array[Dictionary]:
 	var result = Database.db.select_rows('entry', query_condition, selected_columns)

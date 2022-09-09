@@ -3,6 +3,17 @@ extends HBoxContainer
 
 signal datetime_dict_changed(datetime_dict)
 
+@export var datetime_dict: Dictionary:
+	get:
+		return _datetime_dict
+	set(value):
+		_datetime_dict = value
+		_update_ui()
+
+var datetime: Datetime:
+	get:
+		return Datetime.from_local_datetime_dict(_datetime_dict)
+
 var _datetime_dict: Dictionary = {
 	"year": 0,
 	"month": 1,
@@ -11,13 +22,6 @@ var _datetime_dict: Dictionary = {
 	"minute": 0,
 	"second": 0
 }
-
-@export var datetime_dict: Dictionary:
-	get:
-		return _datetime_dict
-	set(value):
-		_datetime_dict = value
-		_update_ui()
 
 @onready var datetime_label = %DatetimeLabel as Label
 @onready var pick_button = %PickButton as Button

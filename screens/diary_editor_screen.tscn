@@ -40,7 +40,7 @@ offset_top = 42.0
 offset_right = 600.0
 offset_bottom = 85.0
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 offset_top = 89.0
 offset_right = 600.0
@@ -54,7 +54,7 @@ offset_top = 131.0
 offset_right = 600.0
 offset_bottom = 174.0
 
-[node name="Label2" type="Label" parent="VBoxContainer"]
+[node name="ContentLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 offset_top = 178.0
 offset_right = 600.0

@@ -4,6 +4,8 @@ signal _user_made_go_back_decision
 
 var DiaryRepo = DiaryRepository.new()
 
+@export var diary: Dictionary = DiaryRepo.create()
+
 @onready var top_bar = %TopBar
 @onready var datetime_edit = %DatetimeEdit
 @onready var title_edit = %TitleEdit as LineEdit
@@ -48,10 +50,8 @@ func _on_content_edit_text_changed() -> void:
 	_on_diary_updated()
 
 func _on_save_diary_button_pressed() -> void:
-	var diary = DiaryRepo.create(
-		Datetime.from_local_datetime_dict(datetime_edit.datetime_dict).to_unix_time(),
-		title_edit.text,
-		content_edit.text
-	)
+	diary.content.date = datetime_edit.datetime.to_unix_time()
+	diary.content.title = title_edit.text
+	diary.content.contet = content_edit.text
 	DiaryRepo.save(diary)
 	_diary_saved = true
