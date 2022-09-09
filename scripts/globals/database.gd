@@ -1,8 +1,8 @@
 extends Node
 
-var db : SQLite = null
-const db_path := "user://database.sqlite3"
-const db_verbosity_level := SQLite.VERBOSE
+var db: SQLite = null
+var db_path: String = Settings.db_path
+var db_verbosity_level := SQLite.NORMAL if not Settings.is_dev_env() else SQLite.VERY_VERBOSE
 
 var Entry = EntryRepository.new()
 var Activity = ActivityRepository.new()
@@ -39,4 +39,3 @@ func _exit_tree():
 func _clean_up():
 	if db:
 		db.close_db()
-
