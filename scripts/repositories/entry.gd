@@ -35,7 +35,10 @@ func insert(entry: Dictionary):
 	if !ok:
 		print(Database.db.error_message)
 
-func update(entry: Dictionary):
+func update(entry: Dictionary, update_timestamp := true):
+	if update_timestamp:
+		entry["updatedAt"] = Datetime.new().to_iso_timestamp()
+		entry["updatedBy"] = Settings.app_config.node_uuid
 	var ok = Database.db.update_rows('entry', "uuid='%s'" % entry.uuid, _to_plain_dict(entry))
 	if !ok:
 		print(Database.db.error_message)
@@ -46,8 +49,13 @@ func save(entry: Dictionary):
 	else:
 		insert(entry)
 
-func select_rows(query_condition: String, selected_columns := ["*"]) -> Array[Dictionary]:
-	var result = Database.db.select_rows('entry', query_condition, selected_columns)
+func select_rows(query_condition: String, discard_removed := true) -> Array[Dictionary]:
+	if discard_removed:
+		if query_condition.strip_edges() == "":
+			query_condition = "removedAt is null"
+		else:
+			query_condition += " and removedAt is null"
+	var result = Database.db.select_rows('entry', query_condition, ["*"])
 	result.map(func (item): _from_plain_dict(item))
 	return result
 
@@ -56,3 +64,7 @@ func find_by_uuid(uuid: String):
 	if len(entries) == 0:
 		return {}
 	return entries[0]
+
+func soft_remove(entry: Dictionary):
+	entry["removedAt"] = Datetime.new().to_iso_timestamp()
+	update(entry)

@@ -1,5 +1,6 @@
 extends VBoxContainer
 
+signal diary_changed(diary: Dictionary)
 signal _user_made_go_back_decision
 
 var DiaryRepo = DiaryRepository.new()
@@ -17,7 +18,8 @@ var _go_back_decision := false
 func _ready() -> void:
 	top_bar.before_go_back_hook = _before_go_back_check
 	datetime_edit.datetime_dict = Datetime.now().to_local_datetime_dict()
-	print(DiaryRepo.find_by_date(Datetime.now()))
+	title_edit.text = diary.content.title
+	content_edit.text = diary.content.content
 
 func prompt_on_go_back() -> bool:
 	var dialog = ConfirmationDialog.new()
@@ -43,7 +45,7 @@ func _before_go_back_check() -> bool:
 func _on_diary_updated() -> void:
 	_diary_saved = false
 
-func _on_title_edit_text_changed(new_text: String) -> void:
+func _on_title_edit_text_changed(_next_text: String) -> void:
 	_on_diary_updated()
 
 func _on_content_edit_text_changed() -> void:
@@ -52,6 +54,7 @@ func _on_content_edit_text_changed() -> void:
 func _on_save_diary_button_pressed() -> void:
 	diary.content.date = datetime_edit.datetime.to_unix_time()
 	diary.content.title = title_edit.text
-	diary.content.contet = content_edit.text
+	diary.content.content = content_edit.text
 	DiaryRepo.save(diary)
 	_diary_saved = true
+	diary_changed.emit(diary)
