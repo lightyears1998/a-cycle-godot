@@ -33,7 +33,7 @@ func insert(entry: Dictionary):
 	entry.uuid = Utils.uuidv4()
 	var ok = Database.db.insert_row('entry', _to_plain_dict(entry))
 	if !ok:
-		print(Database.db.error_message)
+		Logcat.log(Database.db.error_message)
 
 func update(entry: Dictionary, update_timestamp := true):
 	if update_timestamp:
@@ -41,7 +41,7 @@ func update(entry: Dictionary, update_timestamp := true):
 		entry["updatedBy"] = Settings.app_config.node_uuid
 	var ok = Database.db.update_rows('entry', "uuid='%s'" % entry.uuid, _to_plain_dict(entry))
 	if !ok:
-		print(Database.db.error_message)
+		Logcat.log(Database.db.error_message)
 
 func save(entry: Dictionary):
 	if entry.uuid:

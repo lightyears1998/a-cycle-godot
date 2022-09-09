@@ -22,13 +22,12 @@ func _load():
 
 func _ready():
 	_load()
-	_print_settings()
+	_log_settings()
 
 func _exit_tree():
 	_save()
 
-func _print_settings():
-	printt("time_zone", time_zone)
-	printt('db_path  ', db_path)
-	printt('node_uuid', app_config.node_uuid)
-
+func _log_settings():
+	Logcat.info("time_zone\t" + str(time_zone))
+	Logcat.info('db_path  \t' + str(db_path))
+	Logcat.info('node_uuid\t' + str(app_config.node_uuid))

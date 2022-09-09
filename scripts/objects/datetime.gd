@@ -15,6 +15,9 @@ static func now() -> Datetime:
 	var unix_time = int(Time.get_unix_time_from_system())
 	return Datetime.new(unix_time)
 
+static func now_iso_timestamp() -> String:
+	return Time.get_datetime_string_from_system(true, false) + "Z"
+
 static func _get_time_zone_bias_seconds() -> int:
 	return 60 * Settings.time_zone.bias
 
@@ -49,15 +52,15 @@ func _to_local() -> void:
 	_local_unix_time += bias_diff
 	_local_unix_time_bias_from_utc += bias_diff
 
-func format(str: String) -> String:
+func format(format_str: String) -> String:
 	var datetime_dict = to_local_datetime_dict()
-	str = str.replace("YYYY", str(datetime_dict['year']).lpad(4, '0'))
-	str = str.replace("MM", str(datetime_dict['month']).lpad(2, '0'))
-	str = str.replace("DD", str(datetime_dict['day']).lpad(2, '0'))
-	str = str.replace('HH', str(datetime_dict['hour']).lpad(2, '0'))
-	str = str.replace('mm', str(datetime_dict['minute']).lpad(2, '0'))
-	str = str.replace('ss', str(datetime_dict['second']).lpad(2, '0'))
-	return str
+	format_str = format_str.replace("YYYY", str(datetime_dict['year']).lpad(4, '0'))
+	format_str = format_str.replace("MM", str(datetime_dict['month']).lpad(2, '0'))
+	format_str = format_str.replace("DD", str(datetime_dict['day']).lpad(2, '0'))
+	format_str = format_str.replace('HH', str(datetime_dict['hour']).lpad(2, '0'))
+	format_str = format_str.replace('mm', str(datetime_dict['minute']).lpad(2, '0'))
+	format_str = format_str.replace('ss', str(datetime_dict['second']).lpad(2, '0'))
+	return format_str
 
 ## Get current ISO 8601 timestamp with timezone information.
 ## This timestamp is compatible with Node.js default Date converting from JSON.
