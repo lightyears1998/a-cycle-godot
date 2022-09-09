@@ -18,6 +18,9 @@ static func now() -> Datetime:
 static func _get_time_zone_bias_seconds() -> int:
 	return 60 * Settings.time_zone.bias
 
+static func from_unix_time(unix_time: int) -> Datetime:
+	return Datetime.new(unix_time)
+
 ## Convert an local datetime dict to Datetime object.
 static func from_local_datetime_dict(local_datetime_dict) -> Datetime:
 	var local_unix_time = Time.get_unix_time_from_datetime_dict(local_datetime_dict)
@@ -45,6 +48,16 @@ func _to_local() -> void:
 	var bias_diff = _get_time_zone_bias_seconds() - _local_unix_time_bias_from_utc
 	_local_unix_time += bias_diff
 	_local_unix_time_bias_from_utc += bias_diff
+
+func format(str: String) -> String:
+	var datetime_dict = to_local_datetime_dict()
+	str = str.replace("YYYY", str(datetime_dict['year']).lpad(4, '0'))
+	str = str.replace("MM", str(datetime_dict['month']).lpad(2, '0'))
+	str = str.replace("DD", str(datetime_dict['day']).lpad(2, '0'))
+	str = str.replace('HH', str(datetime_dict['hour']).lpad(2, '0'))
+	str = str.replace('mm', str(datetime_dict['minute']).lpad(2, '0'))
+	str = str.replace('ss', str(datetime_dict['second']).lpad(2, '0'))
+	return str
 
 ## Get current ISO 8601 timestamp with timezone information.
 ## This timestamp is compatible with Node.js default Date converting from JSON.
