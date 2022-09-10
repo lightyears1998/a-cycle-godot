@@ -70,6 +70,19 @@ class RequestAsyncResult:
 var last_error := OK
 var last_response: HTTPResponse = HTTPResponse.new(OK, 200, [], [])
 
+func _prepare_request_data(request_headers: PackedStringArray, request_data: Variant) -> String:
+	match typeof(request_data):
+		TYPE_STRING:
+			pass
+		TYPE_DICTIONARY:
+			# As JSON
+			request_headers.append("Content-Type: application/json")
+			request_data = JSON.stringify(request_data)
+		_:
+			request_data = var_to_str(request_data)
+			Logcat.debug("Using fallback `var_to_str` method, which may lead to bugs.")
+	return request_data
+
 ## Wrap `request` method and `request_completed` singal
 func request_async(
 	url: String,
@@ -81,20 +94,16 @@ func request_async(
 	if _is_making_request:
 		cancel_request()
 
-	match typeof(request_data):
-		TYPE_STRING:
-			pass
-		TYPE_DICTIONARY:
-			request_data = JSON.stringify(request_data)
-		_:
-			request_data = var_to_str(request_data)
+	request_data = _prepare_request_data(custom_headers, request_data)
 
 	var error = request(url, custom_headers, ssl_validate_domain, method, request_data)
 	if error:
 		return RequestAsyncResult.new(error, null)
 
+	Logcat.verbose("Request: " + url + " initialized.")
 	await _request_async_completed_or_canceled
 
+	Logcat.verbose("Request: " + url + " done.")
 	last_error = OK
 	last_response = _http_response
 	return RequestAsyncResult.new(OK, _http_response)

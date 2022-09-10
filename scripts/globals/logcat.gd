@@ -10,8 +10,8 @@ var log_buffer_idx := 0
 func _init() -> void:
 	log_buffer.resize(BUFFER_SIZE)
 
-func _write_to_stdout(time: Datetime, statement: String) -> void:
-	printt(time.to_iso_timestamp(), statement)
+func _write_to_stdout(time: Datetime, statement: String, level: String) -> void:
+	printt("%s/%s" % [time.to_iso_timestamp(), level[0].to_upper()], statement)
 
 func _write_to_log_buffer(time: Datetime, statement: String, level: String) -> void:
 	log_buffer[log_buffer_idx] = {
@@ -23,9 +23,15 @@ func _write_to_log_buffer(time: Datetime, statement: String, level: String) -> v
 
 func _log(statement: String, level: String) -> void:
 	var time = Datetime.new()
-	_write_to_stdout(time, statement)
+	_write_to_stdout(time, statement, level)
 	_write_to_log_buffer(time, statement, level)
 	log_logged.emit(time, statement, level)
+
+func verbose(statement: String) -> void:
+	_log(statement, "verbose")
+
+func debug(statement: String) -> void:
+	_log(statement, "debug")
 
 func info(statement: String) -> void:
 	_log(statement, "info")
