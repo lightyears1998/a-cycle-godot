@@ -7,14 +7,13 @@ func _clear_result():
 	result_edit.text = "Requesting..."
 
 func _print_result(result):
-	if result.error:
-		result_edit.text = error_string(result.error)
+	if result.is_errored():
+		result_edit.text = result.error_string
 	else:
 		var response = result.response
-		result_edit.text = response.result_string
-		result_edit.text += '\n' + str(response.response_code)
-		result_edit.text += '\n' + var_to_str(response.headers)
-		result_edit.text += '\n' + str(response.body)
+		result_edit.text = 'status_code:\n' + str(response.status_code)
+		result_edit.text += '\n\nheaders:\n' + str(response.headers)
+		result_edit.text += '\n\nbody:\n' + str(response.body)
 
 func _on_cancel_request_button_pressed() -> void:
 	req.cancel_request()

@@ -34,6 +34,16 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://scripts/repositories/entry.gd"
 }, {
+"base": "RefCounted",
+"class": &"HTTPHeaders",
+"language": &"GDScript",
+"path": "res://scripts/promises/promised_http_request/http_headers.gd"
+}, {
+"base": "RefCounted",
+"class": &"HTTPResponse",
+"language": &"GDScript",
+"path": "res://scripts/promises/promised_http_request/http_response.gd"
+}, {
 "base": "ConfirmationDialog",
 "class": &"PromisedConfirmationDialog",
 "language": &"GDScript",
@@ -60,6 +70,8 @@ _global_script_class_icons={
 "Datetime": "",
 "DiaryRepository": "",
 "EntryRepository": "",
+"HTTPHeaders": "",
+"HTTPResponse": "",
 "PromisedConfirmationDialog": "",
 "PromisedHTTPRequest": "",
 "SyncServerConfig": "",

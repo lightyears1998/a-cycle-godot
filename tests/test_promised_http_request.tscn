@@ -16,14 +16,12 @@ unique_name_in_owner = true
 script = ExtResource("2_cexoy")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
-layout_mode = 2
 offset_right = 600.0
 offset_bottom = 486.0
 size_flags_vertical = 3
 
 [node name="ResultEdit" type="CodeEdit" parent="ScrollContainer"]
 unique_name_in_owner = true
-layout_mode = 2
 offset_right = 600.0
 offset_bottom = 486.0
 size_flags_horizontal = 3
@@ -32,27 +30,23 @@ text = "HTTP response goes here."
 editable = false
 
 [node name="CancelRequestButton" type="Button" parent="."]
-layout_mode = 2
 offset_top = 490.0
 offset_right = 600.0
 offset_bottom = 533.0
 text = "Cancel Request"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 2
 offset_top = 537.0
 offset_right = 600.0
 offset_bottom = 1024.0
 size_flags_vertical = 3
 
 [node name="GetExampleDotComButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
 offset_right = 600.0
 offset_bottom = 43.0
 text = "Get example.com"
 
 [node name="RequestJSONButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
 offset_top = 47.0
 offset_right = 600.0
 offset_bottom = 90.0

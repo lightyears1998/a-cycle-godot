@@ -3,15 +3,20 @@ class_name PromisedHTTPRequest
 
 signal _request_async_completed_or_canceled
 
+var last_client_error_code := OK
+var last_result_error_code := RESULT_SUCCESS
+var last_response: HTTPResponse
+
 var _is_making_request := false
-var _http_response: HTTPResponse
 
 func _ready():
 	request_completed.connect(_on_request_completed)
 
-## Returns a human-readable name for the given error result code.
-static func result_string(result: int) -> String:
-	match result:
+static func client_error_string(client_error_code: int) -> String:
+	return error_string(client_error_code)
+
+static func result_error_string(result_error_code: int) -> String:
+	match result_error_code:
 		RESULT_SUCCESS: return "RESULT_SUCCESS"
 		RESULT_CHUNKED_BODY_SIZE_MISMATCH: return "RESULT_CHUNKED_BODY_SIZE_MISMATCH"
 		RESULT_CANT_CONNECT: return "RESULT_CANT_CONNECT"
@@ -28,47 +33,29 @@ static func result_string(result: int) -> String:
 		RESULT_TIMEOUT: return "RESULT_TIMEOUT"
 	return ""
 
-class HTTPHeaders:
-	var _headers := {}
-
-	static func from_headers_string_array(headers: PackedStringArray):
-		var neo = HTTPHeaders.new()
-		for header in headers:
-			var kv = header.split(':', false, 1)
-			if len(kv) == 2:
-				neo._headers[str(kv[0]).to_lower()] = str(kv[1]).strip_edges()
-		return neo
-
-	func get_header(name: String) -> String:
-		return _headers.get(name.to_lower())
-
-	func _to_string() -> String:
-		return str(_headers)
-
-class HTTPResponse:
-	var result := HTTPRequest.Result.RESULT_SUCCESS
-	var result_string := PromisedHTTPRequest.result_string(HTTPRequest.Result.RESULT_SUCCESS)
-	var response_code := 200
-	var headers := HTTPHeaders.new()
-	var body: Variant = {}
-
-	func _init(p_result: HTTPRequest.Result, p_response_code: int, p_headers: PackedStringArray, p_body: PackedByteArray) -> void:
-		result = p_result
-		result_string = PromisedHTTPRequest.result_string(p_result)
-		response_code = p_response_code
-		headers = HTTPHeaders.from_headers_string_array(p_headers)
-		body = p_body
-
 class RequestAsyncResult:
-	var error := OK
+	var client_error_code := OK
+	var client_error_string: String
+	var result_error_code := HTTPRequest.RESULT_SUCCESS
+	var result_error_string: String
 	var response: HTTPResponse
 
-	func _init(p_error: int, p_response: HTTPResponse = null) -> void:
-		error = p_error
+	func _init(p_client_error_code: int, p_result_error_code: int = 0, p_response: HTTPResponse = null) -> void:
+		client_error_code = p_client_error_code
+		client_error_string = PromisedHTTPRequest.client_error_string(client_error_code)
+		result_error_code = p_result_error_code
+		result_error_string = PromisedHTTPRequest.result_error_string(result_error_code)
 		response = p_response
 
-var last_error := OK
-var last_response: HTTPResponse = HTTPResponse.new(OK, 200, [], [])
+	func is_errored() -> bool:
+		return client_error_code != OK or result_error_code != HTTPRequest.RESULT_SUCCESS
+
+	func get_error_string() -> String:
+		if client_error_code != OK:
+			return client_error_string
+		elif result_error_code != HTTPRequest.RESULT_SUCCESS:
+			return result_error_string
+		return ""
 
 func _prepare_request_data(request_headers: PackedStringArray, request_data: Variant) -> String:
 	match typeof(request_data):
@@ -96,21 +83,25 @@ func request_async(
 
 	request_data = _prepare_request_data(custom_headers, request_data)
 
-	var error = request(url, custom_headers, ssl_validate_domain, method, request_data)
-	if error:
-		return RequestAsyncResult.new(error, null)
+	Logcat.verbose("Request: " + url + " initializing.")
+	var client_error_code = request(url, custom_headers, ssl_validate_domain, method, request_data)
+	if client_error_code:
+		last_client_error_code = client_error_code
+		return RequestAsyncResult.new(client_error_code, 0, null)
 
-	Logcat.verbose("Request: " + url + " initialized.")
+	Logcat.verbose("Request: " + url + " ongoing.")
+	_is_making_request = true
 	await _request_async_completed_or_canceled
+	last_client_error_code = OK
 
 	Logcat.verbose("Request: " + url + " done.")
-	last_error = OK
-	last_response = _http_response
-	return RequestAsyncResult.new(OK, _http_response)
+	return RequestAsyncResult.new(last_client_error_code, last_result_error_code, last_response)
 
-func _on_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray):
-	_http_response = HTTPResponse.new(result, response_code, headers, body)
-	_parse_content(_http_response)
+func _on_request_completed(result_error_code: int, status_code: int, headers: PackedStringArray, body: PackedByteArray):
+	last_result_error_code = result_error_code
+	last_response = HTTPResponse.new(status_code, headers, body)
+	if last_result_error_code == HTTPRequest.RESULT_SUCCESS:
+		_parse_content(last_response)
 	_is_making_request = false
 	_request_async_completed_or_canceled.emit()
 
