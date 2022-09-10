@@ -48,6 +48,11 @@ _global_script_classes=[{
 "class": &"SyncServerConfig",
 "language": &"GDScript",
 "path": "res://scripts/resources/sync_server_config.gd"
+}, {
+"base": "RefCounted",
+"class": &"SyncService",
+"language": &"GDScript",
+"path": "res://scripts/services/sync.gd"
 }]
 _global_script_class_icons={
 "ActivityRepository": "",
@@ -57,7 +62,8 @@ _global_script_class_icons={
 "EntryRepository": "",
 "PromisedConfirmationDialog": "",
 "PromisedHTTPRequest": "",
-"SyncServerConfig": ""
+"SyncServerConfig": "",
+"SyncService": ""
 }
 
 [application]
