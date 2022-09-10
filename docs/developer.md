@@ -1,5 +1,7 @@
 # For Developer
 
+Similar projects:
+
 - <https://github.com/Mad-Cookies-Studio/mad-productivity>
 
 ## Datetime processing
