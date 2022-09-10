@@ -43,7 +43,7 @@ func get_user_token(config: SyncServerConfig) -> String:
 		"passwordSha256": config.password.sha256_text()
 	})
 	if result.is_errored():
-		Logcat.error(var_to_str(result.error))
+		Logcat.error(result.get_error_string())
 		return ""
 	var response = result.response
 

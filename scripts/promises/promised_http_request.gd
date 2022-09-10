@@ -7,7 +7,8 @@ var last_client_error_code := OK
 var last_result_error_code := RESULT_SUCCESS
 var last_response: HTTPResponse
 
-var _is_making_request := false
+var _is_request_ongoing := false
+var _is_canceled := false
 
 func _ready():
 	request_completed.connect(_on_request_completed)
@@ -40,7 +41,11 @@ class RequestAsyncResult:
 	var result_error_string: String
 	var response: HTTPResponse
 
-	func _init(p_client_error_code: int, p_result_error_code: int = 0, p_response: HTTPResponse = null) -> void:
+	func _init(
+		p_client_error_code: int,
+		p_result_error_code: int = HTTPRequest.RESULT_SUCCESS,
+		p_response: HTTPResponse = null
+	) -> void:
 		client_error_code = p_client_error_code
 		client_error_string = PromisedHTTPRequest.client_error_string(client_error_code)
 		result_error_code = p_result_error_code
@@ -62,7 +67,7 @@ func _prepare_request_data(request_headers: PackedStringArray, request_data: Var
 		TYPE_STRING:
 			pass
 		TYPE_DICTIONARY:
-			# As JSON
+			# Convert Godot Dictionary to JSON object
 			request_headers.append("Content-Type: application/json")
 			request_data = JSON.stringify(request_data)
 		_:
@@ -70,7 +75,12 @@ func _prepare_request_data(request_headers: PackedStringArray, request_data: Var
 			Logcat.debug("Using fallback `var_to_str` method, which may lead to bugs.")
 	return request_data
 
-## Wrap `request` method and `request_completed` singal
+func cancel_request():
+	super.cancel_request()
+	_is_request_ongoing = false
+	_is_canceled = true
+	_request_async_completed_or_canceled.emit()
+
 func request_async(
 	url: String,
 	custom_headers: PackedStringArray = PackedStringArray(),
@@ -78,8 +88,12 @@ func request_async(
 	method: HTTPClient.Method = HTTPClient.Method.METHOD_GET,
 	request_data: Variant = ""
 ) -> RequestAsyncResult:
-	if _is_making_request:
-		cancel_request()
+	if _is_request_ongoing:
+		# If user make a new request when the previous request is ongoing,
+		# cancel both the previous request and the new one.
+		Logcat.panic("Making simultaneous requests under the same PromisedHTTPRequest node will corrupt their data and thus should be avoided.")
+		self.cancel_request()
+		return RequestAsyncResult.new(ERR_ALREADY_IN_USE)
 
 	request_data = _prepare_request_data(custom_headers, request_data)
 
@@ -90,8 +104,11 @@ func request_async(
 		return RequestAsyncResult.new(client_error_code, 0, null)
 
 	Logcat.verbose("Request: " + url + " ongoing.")
-	_is_making_request = true
+	_is_request_ongoing = true
+	_is_canceled = false
 	await _request_async_completed_or_canceled
+	if _is_canceled:
+		return RequestAsyncResult.new(ERR_SKIP)
 	last_client_error_code = OK
 
 	Logcat.verbose("Request: " + url + " done.")
@@ -102,7 +119,7 @@ func _on_request_completed(result_error_code: int, status_code: int, headers: Pa
 	last_response = HTTPResponse.new(status_code, headers, body)
 	if last_result_error_code == HTTPRequest.RESULT_SUCCESS:
 		_parse_content(last_response)
-	_is_making_request = false
+	_is_request_ongoing = false
 	_request_async_completed_or_canceled.emit()
 
 func _parse_content(http_response: HTTPResponse):
