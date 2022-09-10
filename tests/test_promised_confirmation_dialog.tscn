@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3oelsijdgefk"]
+
+[ext_resource type="Script" path="res://tests/test_promised_confirmation_dialog.gd" id="1_5f8la"]
+[ext_resource type="Script" path="res://scripts/promises/promised_confirmation_dialog.gd" id="2_abvi2"]
+
+[node name="PromisedConfirmationDialogTest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5f8la")
+
+[node name="PromisedConfirmationDialog" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_abvi2")
