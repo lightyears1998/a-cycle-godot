@@ -49,7 +49,7 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://scripts/resources/sync_server_config.gd"
 }, {
-"base": "RefCounted",
+"base": "Node",
 "class": &"SyncService",
 "language": &"GDScript",
 "path": "res://scripts/services/sync.gd"
@@ -82,6 +82,7 @@ Logcat="*res://scripts/globals/logcat.gd"
 Utils="*res://scripts/globals/utils.gd"
 Settings="*res://scripts/globals/settings.gd"
 Database="*res://scripts/globals/database.gd"
+Service="*res://scripts/services/service.gd"
 Screens="*res://scripts/globals/screens.gd"
 
 [debug]
