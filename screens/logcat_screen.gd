@@ -11,14 +11,14 @@ func _get_logs_in_buffer():
 	while idx != Logcat.log_buffer_idx:
 		var log_item = Logcat.log_buffer[idx]
 		if log_item != null:
-			_show_log(log_item.time, log_item.statement)
+			_show_log(log_item.time, log_item.statement, log_item.level)
 		idx = (idx - 1 + Logcat.BUFFER_SIZE) % Logcat.BUFFER_SIZE
 
-func _show_log(time: Datetime, statement: String):
+func _show_log(time: Datetime, statement: String, level: String):
 	var label= Label.new()
-	label.text = time.to_iso_timestamp() + "\n" + statement
+	label.text = time.to_iso_timestamp() + " " + level + "\n" + statement
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	log_container.add_child(label)
 
-func _on_log_logged(time: Datetime, statement: String):
-	_show_log(time, statement)
+func _on_log_logged(time: Datetime, statement: String, level: String):
+	_show_log(time, statement, level)
