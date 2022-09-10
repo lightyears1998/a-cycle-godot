@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://cntgtkkcan1s2"]
+
+[ext_resource type="Script" path="res://tests/test_promised_http_request.gd" id="1_pbrcs"]
+[ext_resource type="Script" path="res://scripts/promises/promised_http_request.gd" id="2_cexoy"]
+
+[node name="TestPromisedHTTPRequest" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pbrcs")
+
+[node name="PromisedHTTPRequest" type="HTTPRequest" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_cexoy")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+offset_right = 600.0
+offset_bottom = 510.0
+size_flags_vertical = 3
+
+[node name="ResultEdit" type="CodeEdit" parent="ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_right = 600.0
+offset_bottom = 510.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "HTTP response goes here."
+editable = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_top = 514.0
+offset_right = 600.0
+offset_bottom = 1024.0
+size_flags_vertical = 3
+
+[node name="GetExampleDotComButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+offset_right = 600.0
+offset_bottom = 43.0
+text = "Get example.com"
+
+[connection signal="pressed" from="VBoxContainer/GetExampleDotComButton" to="." method="_on_get_example_dot_com_button_pressed"]

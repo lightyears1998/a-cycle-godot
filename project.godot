@@ -39,6 +39,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://scripts/promises/promised_confirmation_dialog.gd"
 }, {
+"base": "HTTPRequest",
+"class": &"PromisedHTTPRequest",
+"language": &"GDScript",
+"path": "res://scripts/promises/promised_http_request.gd"
+}, {
 "base": "Resource",
 "class": &"SyncServerConfig",
 "language": &"GDScript",
@@ -50,6 +55,8 @@ _global_script_class_icons={
 "Datetime": "",
 "DiaryRepository": "",
 "EntryRepository": "",
+"PromisedConfirmationDialog": "",
+"PromisedHTTPRequest": "",
 "SyncServerConfig": ""
 }
 
