@@ -17,3 +17,6 @@ func _on_get_user_id_button_pressed() -> void:
 
 func _on_get_user_token_button_pressed() -> void:
 	sync.get_user_token(server_config)
+
+func _on_prepare_sync_button_pressed() -> void:
+	sync.prepare_sync(server_config)

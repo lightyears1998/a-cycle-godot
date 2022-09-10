@@ -60,5 +60,13 @@ offset_right = 600.0
 offset_bottom = 90.0
 text = "Get User Token"
 
+[node name="PrepareSyncButton" type="Button" parent="SyncServiceTest/VBoxContainer"]
+layout_mode = 2
+offset_top = 94.0
+offset_right = 600.0
+offset_bottom = 137.0
+text = "Prepare Sync"
+
 [connection signal="pressed" from="SyncServiceTest/VBoxContainer/GetUserIdButton" to="." method="_on_get_user_id_button_pressed"]
 [connection signal="pressed" from="SyncServiceTest/VBoxContainer/GetUserTokenButton" to="." method="_on_get_user_token_button_pressed"]
+[connection signal="pressed" from="SyncServiceTest/VBoxContainer/PrepareSyncButton" to="." method="_on_prepare_sync_button_pressed"]
