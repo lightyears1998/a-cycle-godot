@@ -19,7 +19,7 @@ func _on_crash_button_pressed() -> void:
 	add_child(dialog)
 	dialog.popup_centered()
 	await _user_confirmed
-	dialog.queue_free()
+	dialog.queue_free() # TODO: Fix dialog instance leakage.
 
 	if _should_crash:
 		_crash_the_application()

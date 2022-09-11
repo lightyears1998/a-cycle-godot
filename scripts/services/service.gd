@@ -10,7 +10,3 @@ func _init() -> void:
 func _enter_tree() -> void:
 	add_child(Sync)
 	add_child(Backup)
-
-func _exit_tree() -> void:
-	Sync.queue_free()
-	Backup.queue_free()
