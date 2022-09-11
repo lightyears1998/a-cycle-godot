@@ -25,6 +25,8 @@ func _get_date_string() -> String:
 func _read_diaries() -> void:
 	var diaries = DiaryRepo.find_by_date(_datetime)
 	diaries.sort_custom(func (a, b): return a.content.date < b.content.date)
+	diary_list.clear()
+	_selected_diary_idx = -1
 	for diary in diaries:
 		diary_list.add_item("%s @ %s" % [diary.content.title, Datetime.new(diary.content.date).format("HH:mm")])
 		diary_list.set_item_metadata(diary_list.item_count - 1, diary)
@@ -40,6 +42,9 @@ func _update_ui() -> void:
 		content_edit.text = ""
 
 func _ready() -> void:
+	_on_screen_resume()
+
+func _on_screen_resume() -> void:
 	_read_diaries()
 	_update_ui()
 

@@ -16,6 +16,8 @@ func go_back() -> bool:
 		var previous_screen = go_back_stack.pop_back()
 		var replaced_screen = _change_screen_to(previous_screen)
 		replaced_screen.queue_free()
+		if previous_screen.has_method("_on_screen_resume"):
+			previous_screen._on_screen_resume()
 		return true
 	return false
 
