@@ -12,7 +12,6 @@ grow_vertical = 2
 script = ExtResource("1_jljcm")
 
 [node name="TopBar" parent="." instance=ExtResource("1_88erb")]
-layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
 offset_right = 600.0
@@ -20,7 +19,6 @@ offset_bottom = 43.0
 grow_horizontal = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
-layout_mode = 2
 offset_top = 47.0
 offset_right = 600.0
 offset_bottom = 1024.0
@@ -28,7 +26,6 @@ size_flags_vertical = 3
 
 [node name="LogContainer" type="VBoxContainer" parent="ScrollContainer"]
 unique_name_in_owner = true
-layout_mode = 2
 offset_right = 600.0
 offset_bottom = 977.0
 size_flags_horizontal = 3

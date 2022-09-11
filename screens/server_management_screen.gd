@@ -49,15 +49,15 @@ func _on_remove_server_button_pressed():
 		confirmation_dialog.dialog_text = "Do you want to remove server?"
 		add_child(confirmation_dialog)
 		confirmation_dialog.get_ok_button().connect(
-			"pressed", 
-			func(): 
+			"pressed",
+			func():
 				server_list.remove_item(editing_idx);
 				confirmation_dialog.queue_free();
 				editing_idx = -1
 		)
 		confirmation_dialog.get_cancel_button().connect(
-			"pressed", 
-			func(): 
+			"pressed",
+			func():
 				confirmation_dialog.queue_free()
 				editing_idx = -1
 		)
