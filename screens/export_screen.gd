@@ -1,14 +1,11 @@
 extends VBoxContainer
 
-@onready var export2clipboard_button = %ExportToClipboardButton
-
-func _on_export_to_clipboard_button_pressed():
-	DisplayServer.clipboard_set("Not implemented.")
-	var button_text = export2clipboard_button.text
-	export2clipboard_button.text = "Copied to clipboard!"
-	await get_tree().create_timer(3).timeout
-	export2clipboard_button.text = button_text
+@onready var export_to_json_file_button = %ExportToJSONFileButton
+@onready var export_to_json_file_button_file_dialog = %ExportToJSONFileButton/FileDialog as FileDialog
 
 func _on_open_data_directory_button_pressed() -> void:
 	var data_dir = ProjectSettings.globalize_path("user://")
 	OS.shell_open("file://" + data_dir)
+
+func _on_export_to_json_file_button_pressed():
+	pass
