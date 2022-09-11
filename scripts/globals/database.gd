@@ -8,6 +8,7 @@ var Entry = EntryRepository.new()
 var EntryHistory = EntryHistoryRepository.new()
 var Activity = ActivityRepository.new()
 var Diary = DiaryRepository.new()
+var PeerNode = PeerNodeRepository.new()
 
 var Entities = [
 	Entry, Activity, Diary
@@ -40,10 +41,10 @@ func _create_table():
 		"entryUpdatedBy": { "data_type": "text" },
 		"createdAt": { "data_type": "int" }
 	})
-	db.create_table("node", {
+	db.create_table("peer_node", {
 		"uuid": { "data_type": "text", "primary_key": true },
 		"historyCursor": { "data_type": "text", "default": "null" },
-		"updatedAt": { "data_type": "text" },
+		"updatedAt": { "data_type": "int" },
 	})
 
 func _exit_tree():

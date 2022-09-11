@@ -30,13 +30,16 @@ func go_to(next_screen: Node) -> void:
 	var replaced_screen = _change_screen_to(next_screen)
 	go_back_stack.push_back(replaced_screen)
 
-func clear_go_back_stack() -> void:
+func free_nodes_in_go_back_stack() -> void:
 	while true:
 		var node = go_back_stack.pop_back()
 		if node:
 			node.queue_free()
 		else:
 			break
+
+func _exit_tree() -> void:
+	free_nodes_in_go_back_stack()
 
 func _notification(what):
 	match what:
