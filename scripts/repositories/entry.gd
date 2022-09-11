@@ -31,23 +31,37 @@ func create() -> Dictionary:
 
 func insert(entry: Dictionary):
 	entry.uuid = Utils.uuidv4()
-	var ok = Database.db.insert_row('entry', _to_plain_dict(entry))
-	if !ok:
-		Logcat.log(Database.db.error_message)
+	var ok = Database.EntryHistory.write_history(entry)
+	if ok:
+		ok = Database.db.insert_row('entry', _to_plain_dict(entry))
+		if !ok:
+			Logcat.error(Database.db.error_message)
 
-func update(entry: Dictionary, update_timestamp := true):
-	if update_timestamp:
+func update(entry: Dictionary, update_stamp := true):
+	if update_stamp:
 		entry["updatedAt"] = Datetime.new().to_iso_timestamp()
 		entry["updatedBy"] = Settings.app_config.node_uuid
-	var ok = Database.db.update_rows('entry', "uuid='%s'" % entry.uuid, _to_plain_dict(entry))
-	if !ok:
-		Logcat.log(Database.db.error_message)
+	var ok = Database.EntryHistory.write_history(entry)
+	if ok:
+		ok = Database.db.update_rows('entry', "uuid='%s'" % entry.uuid, _to_plain_dict(entry))
+		if !ok:
+			Logcat.error(Database.db.error_message)
 
 func save(entry: Dictionary):
 	if entry.uuid:
 		update(entry)
 	else:
 		insert(entry)
+
+func save_if_fresher(new_entry: Dictionary):
+	var old_entry = find_by_uuid(new_entry.uuid)
+	if old_entry:
+		var old_entry_updated_at = Datetime.new(old_entry["updatedAt"]).to_unix_time()
+		var new_entry_updated_at = Datetime.new(new_entry["updatedAt"]).to_unix_time()
+		if new_entry_updated_at > old_entry_updated_at:
+			update(new_entry, false)
+	else:
+		insert(new_entry)
 
 func select_rows(query_condition: String, discard_removed := true) -> Array[Dictionary]:
 	if discard_removed:

@@ -69,3 +69,6 @@ func get_user_token(config: SyncServerConfig) -> String:
 	Logcat.info(config.get_identifier() + " Accquired user token %s for %s." % [token, config.user_id])
 	config.token = token
 	return token
+
+func sync(config: SyncServerConfig) -> void:
+	return

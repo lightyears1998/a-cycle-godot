@@ -40,33 +40,68 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SyncServiceTest"]
+[node name="HBoxContainer" type="HBoxContainer" parent="SyncServiceTest"]
 layout_mode = 2
 offset_right = 600.0
 offset_bottom = 510.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="GetUserIdButton" type="Button" parent="SyncServiceTest/VBoxContainer"]
+[node name="VBoxContainer" type="ScrollContainer" parent="SyncServiceTest/HBoxContainer"]
 layout_mode = 2
-offset_right = 600.0
+offset_right = 298.0
+offset_bottom = 510.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SyncServiceTest/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+offset_right = 298.0
+offset_bottom = 510.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GetUserIdButton" type="Button" parent="SyncServiceTest/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+offset_right = 298.0
 offset_bottom = 43.0
 text = "Get User Id"
 
-[node name="GetUserTokenButton" type="Button" parent="SyncServiceTest/VBoxContainer"]
+[node name="GetUserTokenButton" type="Button" parent="SyncServiceTest/HBoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 offset_top = 47.0
-offset_right = 600.0
+offset_right = 298.0
 offset_bottom = 90.0
 text = "Get User Token"
 
-[node name="PrepareSyncButton" type="Button" parent="SyncServiceTest/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="SyncServiceTest/HBoxContainer"]
 layout_mode = 2
-offset_top = 94.0
+offset_left = 302.0
 offset_right = 600.0
-offset_bottom = 137.0
+offset_bottom = 510.0
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SyncServiceTest/HBoxContainer/ScrollContainer"]
+layout_mode = 2
+offset_right = 298.0
+offset_bottom = 510.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PrepareSyncButton" type="Button" parent="SyncServiceTest/HBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+offset_right = 298.0
+offset_bottom = 43.0
 text = "Prepare Sync"
 
-[connection signal="pressed" from="SyncServiceTest/VBoxContainer/GetUserIdButton" to="." method="_on_get_user_id_button_pressed"]
-[connection signal="pressed" from="SyncServiceTest/VBoxContainer/GetUserTokenButton" to="." method="_on_get_user_token_button_pressed"]
-[connection signal="pressed" from="SyncServiceTest/VBoxContainer/PrepareSyncButton" to="." method="_on_prepare_sync_button_pressed"]
+[node name="SyncButton" type="Button" parent="SyncServiceTest/HBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+offset_top = 47.0
+offset_right = 298.0
+offset_bottom = 90.0
+text = "Sync"
+
+[connection signal="pressed" from="SyncServiceTest/HBoxContainer/VBoxContainer/VBoxContainer/GetUserIdButton" to="." method="_on_get_user_id_button_pressed"]
+[connection signal="pressed" from="SyncServiceTest/HBoxContainer/VBoxContainer/VBoxContainer/GetUserTokenButton" to="." method="_on_get_user_token_button_pressed"]
+[connection signal="pressed" from="SyncServiceTest/HBoxContainer/ScrollContainer/VBoxContainer/PrepareSyncButton" to="." method="_on_prepare_sync_button_pressed"]
+[connection signal="pressed" from="SyncServiceTest/HBoxContainer/ScrollContainer/VBoxContainer/SyncButton" to="." method="_on_sync_button_pressed"]

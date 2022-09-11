@@ -35,6 +35,11 @@ _global_script_classes=[{
 "path": "res://scripts/repositories/diary.gd"
 }, {
 "base": "RefCounted",
+"class": &"EntryHistoryRepository",
+"language": &"GDScript",
+"path": "res://scripts/repositories/entry_history.gd"
+}, {
+"base": "RefCounted",
 "class": &"EntryRepository",
 "language": &"GDScript",
 "path": "res://scripts/repositories/entry.gd"
@@ -75,6 +80,7 @@ _global_script_class_icons={
 "BackupService": "",
 "Datetime": "",
 "DiaryRepository": "",
+"EntryHistoryRepository": "",
 "EntryRepository": "",
 "HTTPHeaders": "",
 "HTTPResponse": "",

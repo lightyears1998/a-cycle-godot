@@ -5,6 +5,7 @@ var db_path: String = Settings.db_path
 var db_verbosity_level := SQLite.NORMAL if not Settings.is_dev_env() else SQLite.VERY_VERBOSE
 
 var Entry = EntryRepository.new()
+var EntryHistory = EntryHistoryRepository.new()
 var Activity = ActivityRepository.new()
 var Diary = DiaryRepository.new()
 
@@ -31,6 +32,18 @@ func _create_table():
 		"createdAt": { "data_type": "text" },
 		"updatedAt": { "data_type": "text" },
 		"updatedBy": { "data_type": "text" },
+	})
+	db.create_table("entry_history", {
+		"id": { "data_type": "int", "primary_key": true, "auto_increment": true },
+		"entryUuid": { "data_type": "text" },
+		"entryUpdatedAt": { "data_type": "text" },
+		"entryUpdatedBy": { "data_type": "text" },
+		"createdAt": { "data_type": "int" }
+	})
+	db.create_table("node", {
+		"uuid": { "data_type": "text", "primary_key": true },
+		"historyCursor": { "data_type": "text", "default": "null" },
+		"updatedAt": { "data_type": "text" },
 	})
 
 func _exit_tree():
