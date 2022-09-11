@@ -17,7 +17,8 @@ func _to_plain_dict(entry: Dictionary) -> Dictionary:
 	return plain_dict
 
 func _from_plain_dict(entry: Dictionary) -> Dictionary:
-	entry.content = JSON.parse_string(entry.content)
+	if "content" in entry:
+		entry.content = JSON.parse_string(entry.content)
 	return entry
 
 func create() -> Dictionary:
@@ -53,7 +54,7 @@ func save(entry: Dictionary):
 	else:
 		insert(entry)
 
-func save_if_fresher(new_entry: Dictionary):
+func save_if_new_or_fresher(new_entry: Dictionary):
 	var old_entry = find_by_uuid(new_entry.uuid)
 	if old_entry:
 		var old_entry_updated_at = Datetime.new(old_entry["updatedAt"]).to_unix_time()
@@ -63,13 +64,28 @@ func save_if_fresher(new_entry: Dictionary):
 	else:
 		insert(new_entry)
 
-func select_rows(query_condition: String, discard_removed := true) -> Array[Dictionary]:
+func select_rows(
+	query_condition: String,
+	discard_removed := true,
+	selected_columns := "*",
+	skip := 0,
+	take := 0,
+) -> Array[Dictionary]:
 	if discard_removed:
 		if query_condition.strip_edges() == "":
 			query_condition = "removedAt is null"
 		else:
 			query_condition += " and removedAt is null"
-	var result = Database.db.select_rows('entry', query_condition, ["*"])
+
+	var sql = "select %s from entry" % selected_columns
+	if query_condition: sql += " where %s" % query_condition
+	if take: sql += " limit %d" % take
+	if skip: sql += " offset %d" % skip
+
+	var ok = Database.db.query(sql)
+	if not ok:
+		return []
+	var result = Database.db.query_result.duplicate()
 	result.map(func (item): _from_plain_dict(item))
 	return result
 
@@ -78,6 +94,11 @@ func find_by_uuid(uuid: String):
 	if len(entries) == 0:
 		return {}
 	return entries[0]
+
+func find_by_uuids(uuids: Array):
+	var uuids_string = ', '.join(PackedStringArray(uuids.map(func(uuid): return "'%s'" % uuid)))
+	var query_conditon = 'uuid in (%s)' % uuids_string
+	return self.select_rows(query_conditon, false)
 
 func soft_remove(entry: Dictionary):
 	entry["removedAt"] = Datetime.new().to_iso_timestamp()

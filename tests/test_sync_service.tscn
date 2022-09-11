@@ -29,7 +29,6 @@ offset_bottom = 510.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 editable = false
-wrap_mode = 1
 
 [node name="SyncServiceTest" type="ScrollContainer" parent="."]
 layout_mode = 2

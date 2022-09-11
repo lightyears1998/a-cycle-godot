@@ -18,7 +18,7 @@ func get_restful_url() -> String:
 
 func get_socket_url() -> String:
 	var schema = "wss" if use_tls else "ws"
-	return schema + "://" + host + ":" + str(ws_port) + "/" + path
+	return schema + "://" + host + ":" + str(ws_port) + "/" + path + '/socket'
 
 func get_identifier() -> String:
 	return "%s@%s" % [username, host]
