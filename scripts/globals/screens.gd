@@ -5,17 +5,17 @@ var go_back_stack: Array[Node] = []
 func _get_current_screen() -> Node:
 	return $/root.get_children()[$/root.get_child_count() - 1]
 
-func _replace_current_screen(new_screen: Node) -> void:
-	var current_screen = _get_current_screen()
-	$/root.remove_child(current_screen)
+func _change_screen_to(new_screen: Node) -> Node:
+	var old_screen = _get_current_screen()
+	$/root.remove_child(old_screen)
 	$/root.add_child(new_screen)
+	return old_screen
 
 func go_back() -> bool:
 	if len(go_back_stack) > 0:
-		var last_screen = go_back_stack.pop_back()
-		var current_screen = _get_current_screen()
-		_replace_current_screen(last_screen)
-		current_screen.queue_free()
+		var previous_screen = go_back_stack.pop_back()
+		var replaced_screen = _change_screen_to(previous_screen)
+		replaced_screen.queue_free()
 		return true
 	return false
 
@@ -25,20 +25,20 @@ func go_back_otherwise_quit() -> void:
 		get_tree().quit()
 
 func go_to(next_screen: Node) -> void:
-	var current_screen = _get_current_screen()
-	_replace_current_screen(next_screen)
-	go_back_stack.push_back(current_screen)
+	var replaced_screen = _change_screen_to(next_screen)
+	go_back_stack.push_back(replaced_screen)
 
 func clear_go_back_stack() -> void:
 	while true:
 		var node = go_back_stack.pop_back()
-		if not node:
-			break
-		else:
+		if node:
 			node.queue_free()
+		else:
+			break
 
 func _notification(what):
-	if OS.get_name() == "Android":
-		if what == MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST:
-			if !go_back():
-				get_tree().quit()
+	match what:
+		NOTIFICATION_WM_CLOSE_REQUEST:
+			go_back_otherwise_quit()
+		NOTIFICATION_WM_GO_BACK_REQUEST:
+			go_back_otherwise_quit()

@@ -92,6 +92,7 @@ run/main_scene="res://screens/home_screen.tscn"
 config/use_custom_user_dir=true
 config/features=PackedStringArray("4.0", "Vulkan Clustered")
 config/icon="res://icon.svg"
+config/auto_accept_quit=false
 config/quit_on_go_back=false
 
 [autoload]
