@@ -85,7 +85,7 @@ func request_async(
 	url: String,
 	custom_headers: PackedStringArray = PackedStringArray(),
 	ssl_validate_domain: bool = true,
-	method: HTTPClient.Method = HTTPClient.Method.METHOD_GET,
+	method = HTTPClient.Method.METHOD_GET,
 	request_data: Variant = ""
 ) -> RequestAsyncResult:
 	if _is_request_ongoing:
