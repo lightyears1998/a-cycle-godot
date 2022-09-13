@@ -29,8 +29,8 @@ func validate_history_cursor(history_cursor) -> bool:
 
 func get_following_histories(history_cursor: Dictionary) -> Array:
 	var ok = Database.db.query_with_bindings(
-		"select * from entry_history where id>? order by id asc", [
-			history_cursor.id
+		"select * from entry_history where id>? order by id asc limit 50", [
+			history_cursor.id,
 		])
 	if not ok:
 		return []

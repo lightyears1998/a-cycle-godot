@@ -43,7 +43,7 @@ func _create_table():
 	})
 	db.create_table("peer_node", {
 		"uuid": { "data_type": "text", "primary_key": true },
-		"historyCursor": { "data_type": "text", "default": "null" },
+		"historyCursor": { "data_type": "text", "default": "'{}'" },
 		"updatedAt": { "data_type": "int" },
 	})
 
