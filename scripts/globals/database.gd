@@ -4,12 +4,6 @@ var db: SQLite = null
 var db_path: String = Settings.db_path
 var db_verbosity_level := SQLite.NORMAL if not Settings.is_dev_env() else SQLite.VERY_VERBOSE
 
-var Entry = load("res://scripts/repositories/entry.gd").new()
-var EntryHistory = load("res://scripts/repositories/entry_history.gd").new()
-var Activity = load("res://scripts/repositories/activity.gd").new()
-var Diary = load("res://scripts/repositories/diary.gd").new()
-var PeerNode = load("res://scripts/repositories/peer_node.gd").new()
-
 func _ready():
 	_open_db()
 	_create_table()

@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-const DiaryEditorScreen = preload("res://screens/diary_editor_screen.tscn")
+var DiaryEditorScreen = load("res://screens/diary_editor_screen.tscn")
 
 var datetime_dict: Dictionary:
 	get:
@@ -9,7 +9,7 @@ var datetime_dict: Dictionary:
 		_datetime = Datetime.from_local_datetime_dict(value)
 		_update_ui()
 
-var DiaryRepo = Database.Diary
+var DiaryRepo = load("res://scripts/repositories/diary.gd").new()
 
 var _diaries := []
 var _selected_diary_idx := -1

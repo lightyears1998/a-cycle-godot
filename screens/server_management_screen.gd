@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-const ServerEditorScreen = preload("res://screens/server_editor_screen.tscn")
+var ServerEditorScreen = load("res://screens/server_editor_screen.tscn")
 
 @onready var server_list = %ServerList as ItemList
 

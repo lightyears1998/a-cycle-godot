@@ -3,7 +3,7 @@ extends VBoxContainer
 signal diary_changed(diary: Dictionary)
 signal _user_made_go_back_decision
 
-var DiaryRepo = Database.Diary
+var DiaryRepo = load("res://scripts/repositories/diary.gd").new()
 
 @export var diary: Dictionary = DiaryRepo.create()
 

@@ -54,7 +54,7 @@ func _on_save_button_pressed():
 
 func _test_username():
 	var request_url = testing_config.get_restful_url() + "/users?username=" + testing_config.username.uri_encode()
-	http_request.request_completed.connect(_on_test_username_request_completed, CONNECT_ONESHOT)
+	http_request.request_completed.connect(_on_test_username_request_completed, CONNECT_ONE_SHOT)
 	var err = http_request.request(request_url)
 	if err != OK:
 		_append_test_result("Error: " + error_string(err) + " " +str(err))
@@ -82,7 +82,7 @@ func _on_test_username_request_completed(result, response_code, _headers, body):
 
 func _test_password(user_id: String):
 	var request_url = testing_config.get_restful_url() + "/users/" + str(user_id) + "/jwt-tokens"
-	http_request.request_completed.connect(_on_test_password_request_completed, CONNECT_ONESHOT)
+	http_request.request_completed.connect(_on_test_password_request_completed, CONNECT_ONE_SHOT)
 	var data = JSON.stringify({
 		"passwordSha256": testing_config.password.sha256_text()
 	})

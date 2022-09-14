@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-@onready var sync = %SyncService as SyncService
+@onready var sync = Service.Sync
 @onready var logger = %Logger as CodeEdit
 
 var server_config: SyncServerConfig

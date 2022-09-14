@@ -1,8 +1,8 @@
 extends VBoxContainer
 
-const ServerManagementScreen = preload("res://screens/server_management_screen.tscn")
-const ExportScreen = preload("res://screens/export_screen.tscn")
-const LogcatScreen = preload("res://screens/logcat_screen.tscn")
+var ServerManagementScreen = load("res://screens/server_management_screen.tscn")
+var ExportScreen = load("res://screens/export_screen.tscn")
+var LogcatScreen = load("res://screens/logcat_screen.tscn")
 
 @onready var sync_button = %SyncButton as Button
 

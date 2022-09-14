@@ -4,10 +4,10 @@ entry_symbol = "sqlite_library_init"
 
 [libraries]
 
-windows.debug.x86_64 = "res://addons/godot-sqlite/bin/libgdsqlite.windows.release.x86_64.dll"
-windows.release.x86_64 = "res://addons/godot-sqlite/bin/libgdsqlite.windows.release.x86_64.dll"
-android.debug.arm64-v8a = "res://addons/godot-sqlite/bin/libgdsqlite.android.release.arm64.so"
-android.release.arm64-v8a = "res://addons/godot-sqlite/bin/libgdsqlite.android.release.arm64.so"
+windows.debug.x86_64 = "res://addons/bin/libgdsqlite.windows.release.x86_64.dll"
+windows.release.x86_64 = "res://addons/bin/libgdsqlite.windows.release.x86_64.dll"
+android.debug.arm64-v8a = "res://addons/bin/libgdsqlite.android.release.arm64.so"
+android.release.arm64-v8a = "res://addons/bin/libgdsqlite.android.release.arm64.so"
 
 [dependencies]
 
