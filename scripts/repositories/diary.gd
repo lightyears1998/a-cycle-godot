@@ -1,5 +1,4 @@
-extends EntryRepository
-class_name DiaryRepository
+extends "res://scripts/repositories/entry.gd"
 
 const ENTRY_CONTENT_TYPE := "diary"
 

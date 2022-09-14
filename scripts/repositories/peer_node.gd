@@ -1,5 +1,4 @@
 extends RefCounted
-class_name PeerNodeRepository
 
 func save(peer_node: Dictionary) -> bool:
 	peer_node["updatedAt"] = Datetime.new().to_unix_time()

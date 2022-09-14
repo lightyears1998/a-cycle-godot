@@ -1,5 +1,4 @@
-extends EntryRepository
-class_name ActivityRepository
+extends "res://scripts/repositories/entry.gd"
 
 const ACTIIVITY_TEMPLATE = {
 	"title": "text",

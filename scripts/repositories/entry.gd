@@ -1,5 +1,4 @@
 extends RefCounted
-class_name EntryRepository
 
 const ENTRY_TEMPLATE = {
 	"uuid": "uuid",
