@@ -19,25 +19,25 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://scripts/objects/datetime.gd"
 }, {
-"base": "RefCounted",
-"class": &"HTTPHeaders",
-"language": &"GDScript",
-"path": "res://scripts/promises/promised_http_request/http_headers.gd"
-}, {
-"base": "RefCounted",
-"class": &"HTTPResponse",
-"language": &"GDScript",
-"path": "res://scripts/promises/promised_http_request/http_response.gd"
-}, {
 "base": "ConfirmationDialog",
 "class": &"PromisedConfirmationDialog",
 "language": &"GDScript",
 "path": "res://scripts/promises/promised_confirmation_dialog.gd"
 }, {
+"base": "RefCounted",
+"class": &"PromisedHTTPHeaders",
+"language": &"GDScript",
+"path": "res://scripts/promises/promised_http_request/promised_http_headers.gd"
+}, {
 "base": "HTTPRequest",
 "class": &"PromisedHTTPRequest",
 "language": &"GDScript",
 "path": "res://scripts/promises/promised_http_request.gd"
+}, {
+"base": "RefCounted",
+"class": &"PromisedHTTPResponse",
+"language": &"GDScript",
+"path": "res://scripts/promises/promised_http_request/promised_http_response.gd"
 }, {
 "base": "Resource",
 "class": &"SyncServerConfig",
@@ -47,10 +47,10 @@ _global_script_classes=[{
 _global_script_class_icons={
 "AppConfig": "",
 "Datetime": "",
-"HTTPHeaders": "",
-"HTTPResponse": "",
 "PromisedConfirmationDialog": "",
+"PromisedHTTPHeaders": "",
 "PromisedHTTPRequest": "",
+"PromisedHTTPResponse": "",
 "SyncServerConfig": ""
 }
 

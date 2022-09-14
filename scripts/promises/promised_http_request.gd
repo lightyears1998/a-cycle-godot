@@ -5,7 +5,7 @@ signal _request_async_completed_or_canceled
 
 var last_client_error_code := OK
 var last_result_error_code := RESULT_SUCCESS
-var last_response: HTTPResponse
+var last_response: PromisedHTTPResponse
 
 var _is_request_ongoing := false
 var _is_canceled := false
@@ -39,12 +39,12 @@ class RequestAsyncResult:
 	var client_error_string: String
 	var result_error_code := HTTPRequest.RESULT_SUCCESS
 	var result_error_string: String
-	var response: HTTPResponse
+	var response: PromisedHTTPResponse
 
 	func _init(
 		p_client_error_code: int,
 		p_result_error_code: int = HTTPRequest.RESULT_SUCCESS,
-		p_response: HTTPResponse = null
+		p_response: PromisedHTTPResponse = null
 	) -> void:
 		client_error_code = p_client_error_code
 		client_error_string = PromisedHTTPRequest.client_error_string(client_error_code)
@@ -116,13 +116,13 @@ func request_async(
 
 func _on_request_completed(result_error_code: int, status_code: int, headers: PackedStringArray, body: PackedByteArray):
 	last_result_error_code = result_error_code
-	last_response = HTTPResponse.new(status_code, headers, body)
+	last_response = PromisedHTTPResponse.new(status_code, headers, body)
 	if last_result_error_code == HTTPRequest.RESULT_SUCCESS:
 		_parse_content(last_response)
 	_is_request_ongoing = false
 	_request_async_completed_or_canceled.emit()
 
-func _parse_content(http_response: HTTPResponse):
+func _parse_content(http_response: PromisedHTTPResponse):
 	var content_type = str(http_response.headers.get_header('content-type')).to_lower()
 
 	if http_response.body is PackedByteArray:

@@ -1,10 +1,10 @@
 extends RefCounted
-class_name HTTPHeaders
+class_name PromisedHTTPHeaders
 
 var _headers := {}
 
 static func from_string_array(headers: PackedStringArray):
-	var http_headers = HTTPHeaders.new()
+	var http_headers = PromisedHTTPHeaders.new()
 	for header in headers:
 		var kv_pair = header.split(':', false, 1)
 		if len(kv_pair) == 2:
