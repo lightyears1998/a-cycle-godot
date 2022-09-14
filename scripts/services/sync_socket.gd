@@ -19,12 +19,14 @@ const _RECEIVED_TEMPLATE = {
 
 var _client = WebSocketClient.new()
 var _peer_node_uuid: String = ""
+var _has_sync_begun = false
 var _sent = _SENT_TEMPLATE.duplicate(true)
 var _received = _RECEIVED_TEMPLATE.duplicate(true)
 
 func _reset() -> void:
 	_client.disconnect_from_host()
 	_peer_node_uuid = ""
+	_has_sync_begun = false
 	_sent = _SENT_TEMPLATE.duplicate(true)
 	_received = _RECEIVED_TEMPLATE.duplicate(true)
 
@@ -64,12 +66,32 @@ func _reply_message(request: Dictionary, response: Dictionary):
 	response["session"] = request["session"]
 	_send_message(response)
 
-func _send_bad_apple_message():
-	_send_message({
-	"session": "reimu-hakurei",
-	"type": "bad-apple",
-	"timestamp": Datetime.new().to_iso_timestamp()
-})
+func _is_sync_recent_ongoing() -> bool:
+	return _sent['sync-recent-request-count'] > _received['sync-recent-response-count']
+
+func _is_sync_full_excuted() -> bool:
+	return _sent['sync-full-meta-query-count'] > 0
+
+func _is_sync_full_ongoing() -> bool:
+	return _sent['sync-full-meta-query-count'] > 0 && (
+		_sent['sync-full-meta-query-count'] > _received['sync-full-meta-response-count'] ||
+		_sent['sync-full-entries-query-count'] > _received['sync-full-entries-response-count']
+	)
+
+func _is_sync_full_succeed() -> bool:
+	return _sent['sync-full-meta-query-count'] > 0 && (
+		_sent['sync-full-meta-query-count'] <= _received['sync-full-meta-response-count']
+	) && (
+		_sent['sync-full-entries-query-count'] <= _received['sync-full-entries-response-count']
+	)
+
+func _send_bad_apple_message() -> void:
+	var session_id =  _send_message({
+		"session": "reimu-hakurei",
+		"type": "bad-apple",
+		"timestamp": Datetime.new().to_iso_timestamp()
+	})
+	Logcat.info("Sending BadAppleMessage, ooops... [%s]." % session_id)
 
 func _on_connection_closed(was_clean_closed: bool):
 	Logcat.info('WebSocket connection closed.')
@@ -95,15 +117,34 @@ func _on_data_received():
 			_handshake_message_handler(message)
 		"sync-recent-request":
 			_sync_recent_request_message_handler(message)
+		"sync-recent-response":
+			_sync_recent_response_message_handler(message)
 		"sync-full-meta-query":
 			_sync_full_meta_query_message_handler(message)
+		"sync-full-meta-response":
+			_sync_full_meta_response_message_handler(message)
 		"sync-full-entries-query":
 			_sync_full_entries_query_message_handler(message)
+		"sync-full-entries-response":
+			_sync_full_entries_response_message_handler(message)
 		"goodbye":
 			_goodbye_message_handler(message)
 		_:
 			Logcat.info("Unrecognized message received: (%s)" % message.type)
 			Logcat.info(str(message))
+
+	if _has_sync_begun and not _is_sync_recent_ongoing() and not _is_sync_full_ongoing() and not _sent['goodbye']:
+		_send_message({
+			"session": "goodbye",
+			"type": "goodbye",
+		})
+		_sent['goodbye'] = true
+		_clean_up_after_sync_full()
+		Logcat.info("We are not syncing anything from peer, and it's time to say goodbye.")
+
+	if _sent['goodbye'] and _received['goodbye']:
+		_client.disconnect_from_host()
+		Logcat.info("Two-way synchronziation finished.")
 
 func _handshake_message_handler(message):
 	Logcat.info("Handshake message received.")
@@ -132,6 +173,7 @@ func _init_sync_from_peer_node():
 		}
 		Database.PeerNode.save(node)
 		_send_sync_full_meta_query_message(0)
+	_has_sync_begun = true
 
 func _send_sync_recent_request_message(history_cursor: Dictionary):
 	var message_id = _send_message({
@@ -178,7 +220,7 @@ func _sync_recent_request_message_handler(message):
 			var entries = []
 			if (len(following_histories) > 0):
 				next_cursor = following_histories.back()
-				entries = Database.Entry.find_by_uuids(following_histories.map(func (item): return item["entryUuid"]))
+				entries = Database.Entry.find_by_uuids(following_histories.map(func (item): return item["entryUuid"]), false)
 			else:
 				Logcat.info("History cursor is the lastest cursor.")
 
@@ -192,6 +234,50 @@ func _sync_recent_request_message_handler(message):
 			Logcat.info("Replying SyncModeRecentResponseMessage.")
 	else:
 		reply_invalid_cursor_message.call()
+
+func _sync_recent_response_message_handler(message):
+	_received['sync-recent-response-count'] += 1
+	Logcat.info("Receiving sync recent response message #%s [%s]." % [
+		_received['sync-recent-response-count'], message.session
+	])
+
+	var errors = message.errors
+	if len(errors) > 0:
+		Logcat.info("Sync-recent failed due to errors: %s." % errors[0])
+		Logcat.info("Fall back to sync-full.")
+
+		var session = _send_message({
+			"type": "sync-full-meta-query",
+			"payload": {
+				"skip": 0,
+			}
+		})
+		_sent['sync-full-meta-query-count'] += 1
+		Logcat.info("Sending sync full meta query message #%s [%s]." % [
+			_sent['sync-full-meta-query-count'], session
+		])
+		return
+
+	var history_cursor = message.payload["historyCursor"]
+	var entries = message.payload['entries']
+
+	if history_cursor:
+		Database.PeerNode.save({
+			"uuid": _peer_node_uuid,
+			"historyCursor": history_cursor
+		})
+
+	for entry in entries:
+		Database.Entry.save_if_new_or_fresher(entry)
+
+	if len(entries) == 0:
+		Logcat.info("Entries payload of received message is empty. Sync-full finishes.")
+	else:
+		var session = _send_message({
+			"type": "sync-recent-request",
+		})
+		_sent['sync-recent-request-count'] += 1
+		Logcat.info("Sending sync recent request #%s [%s]." % [_sent['sync-recent-request-count'], session])
 
 func _sync_full_meta_query_message_handler(message):
 	var skip = int(message.payload.skip)
@@ -208,11 +294,53 @@ func _sync_full_meta_query_message_handler(message):
 		}
 	)
 
+func _sync_full_meta_response_message_handler(message):
+	var skip = message.payload["skip"]
+	var current_cursor = message.payload["currentCursor"]
+	var entry_metadata = message.payload["entryMetadata"]
+
+	_received['sync-full-meta-response-count'] += 1
+	Logcat.info("Receiving sync full meta response message #%s [%s]." % [
+		_received['sync-full-meta-response-count'], message.session
+	])
+
+	if current_cursor:
+		if _received['sync-full-entries-response-first-cursor'] == null:
+			_received['sync-full-entries-response-first-cursor'] = current_cursor
+			Logcat.info("Updating cursor from received sync full meta response message.")
+
+	if len(entry_metadata) == 0:
+		Logcat.info("No metadata received. Sync-full finished.")
+		return
+
+	var meta_query_message_sessoin =  _send_message({
+		"type": "sync-full-meta-query",
+		"payload": {
+			"skip": skip + len(entry_metadata)
+		},
+	})
+	_sent['sync-full-meta-query-count'] +=  1
+	Logcat.info("Sending sync full meta query message #%s [%s]." % [
+		_sent['sync-full-meta-query-count'], meta_query_message_sessoin
+	])
+
+	var fresher_metadata = Database.Entry.filter_new_or_fresher_metadata(entry_metadata)
+	var entries_query_session =  _send_message({
+		"type": "sync-full-entries-query",
+		"payload": {
+			"uuids": fresher_metadata.map(func (item): return item.uuid),
+		},
+	})
+	_sent['sync-full-entries-query-count'] += 1
+	Logcat.info("Sending sync full entries query #%s [%s]." % [
+		_sent['sync-full-entries-query-count'], entries_query_session
+	])
+
 func _sync_full_entries_query_message_handler(message):
 	var uuids = message.payload.uuids
 	var entries = []
 	if len(uuids) > 0:
-		entries = Database.Entry.find_by_uuids(uuids)
+		entries = Database.Entry.find_by_uuids(uuids, false)
 	_reply_message(
 		message, {
 			"type": "sync-full-entries-response",
@@ -222,6 +350,27 @@ func _sync_full_entries_query_message_handler(message):
 		}
 	)
 
+func _sync_full_entries_response_message_handler(message):
+	var entries = message.payload.entries
+	_received['sync-full-entries-response-count'] += 1
+	Logcat.info("Receiving sync full entries response message #%s [%s]." % [
+		_received['sync-full-entries-response-count'], message.session
+	])
+
+	for entry in entries:
+		Database.Entry.save_if_new_or_fresher(entry)
+
 func _goodbye_message_handler(_message):
 	_received['goodbye'] = true
 	Logcat.info("Received goodbye message from peer node.")
+
+func _clean_up_after_sync_full():
+	if _is_sync_full_excuted():
+		if _is_sync_full_succeed() and _received['sync-full-entries-response-first-cursor']:
+			Database.PeerNode.save({
+				"uuid": _peer_node_uuid,
+				"historyCursor": _received['sync-full-entries-response-first-cursor'],
+			})
+			Logcat.info("Sync full suceed and cursor is updated.")
+		else:
+			Logcat.info("Sync full has failed or no cursor was submitted by peer, and hence no cursor is updated.")

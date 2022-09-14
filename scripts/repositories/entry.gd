@@ -55,14 +55,32 @@ func save(entry: Dictionary):
 		insert(entry)
 
 func save_if_new_or_fresher(new_entry: Dictionary):
-	var old_entry = find_by_uuid(new_entry.uuid)
+	Logcat.verbose("Checking entry [%s] (%s)." % [new_entry.uuid, new_entry["updatedAt"]])
+	var old_entry = find_by_uuid(new_entry.uuid, false)
 	if old_entry:
-		var old_entry_updated_at = Datetime.new(old_entry["updatedAt"]).to_unix_time()
-		var new_entry_updated_at = Datetime.new(new_entry["updatedAt"]).to_unix_time()
+		var old_entry_updated_at = Datetime.from_iso_timestamp(old_entry["updatedAt"]).to_unix_time()
+		var new_entry_updated_at = Datetime.from_iso_timestamp(new_entry["updatedAt"]).to_unix_time()
 		if new_entry_updated_at > old_entry_updated_at:
+			Logcat.verbose("Updating entry because it is fresher. (compared to %s.)" % old_entry["updatedAt"])
 			update(new_entry, false)
+		else:
+			Logcat.verbose("Skipped update because entry is not fresher. (compared to %s)" % old_entry["updatedAt"])
 	else:
+		Logcat.verbose("Saving entry because it is new.")
 		insert(new_entry)
+
+func filter_new_or_fresher_metadata(metadata_array: Array) -> Array:
+	var result = []
+	for metadata in metadata_array:
+		var entry = find_by_uuid(metadata["uuid"], false)
+		if entry:
+			var entry_updated_at = Datetime.from_iso_timestamp(entry["updatedAt"]).to_unix_time()
+			var metadata_updated_at = Datetime.from_iso_timestamp(metadata["updatedAt"]).to_unix_time()
+			if metadata_updated_at > entry_updated_at:
+				result.append(metadata)
+		else:
+			result.append(metadata)
+	return result
 
 func select_rows(
 	query_condition: String,
@@ -89,16 +107,16 @@ func select_rows(
 	result.map(func (item): _from_plain_dict(item))
 	return result
 
-func find_by_uuid(uuid: String):
-	var entries = select_rows("uuid='%s'" % uuid)
+func find_by_uuid(uuid: String, discard_removed := true):
+	var entries = select_rows("uuid='%s'" % uuid, discard_removed)
 	if len(entries) == 0:
 		return {}
 	return entries[0]
 
-func find_by_uuids(uuids: Array):
+func find_by_uuids(uuids: Array, discard_removed := true):
 	var uuids_string = ', '.join(PackedStringArray(uuids.map(func(uuid): return "'%s'" % uuid)))
 	var query_conditon = 'uuid in (%s)' % uuids_string
-	return self.select_rows(query_conditon, false)
+	return self.select_rows(query_conditon, discard_removed)
 
 func soft_remove(entry: Dictionary):
 	entry["removedAt"] = Datetime.new().to_iso_timestamp()

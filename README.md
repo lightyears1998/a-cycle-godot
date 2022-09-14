@@ -4,5 +4,9 @@
 
 A productivity application that evolves with me.
 
+## Features
+
 - 🚧 **Under development...** 🚧
-- The app could work offline. ~~To enable data synchronization/backup across multiple devices, it should cooperate with [a dedicated server](https://github.com/lightyears1998/a-cycle-server). WebDav support is under consideration.~~
+- **Cross-device Synchronization** The application can be used completely offline. However, if needed, cross-device synchronization of the application can be enabled by setting up [a dedicated server](https://github.com/lightyears1998/a-cycle-server). The dedicated server software is also free and open source under the same license as this one.
+  - Cross-device synchronization without server intervention is not supported yet at this time. It will be implemented in the future and replace the current server intervention method.
+  - WebDav support is under consideration.
