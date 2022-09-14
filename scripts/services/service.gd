@@ -1,7 +1,7 @@
 extends Node
 
-@onready var Sync = preload("res://scripts/services/sync.gd").new()
-@onready var Backup = preload("res://scripts/services/backup.gd").new()
+var Sync = load("res://scripts/services/sync.gd").new()
+var Backup = load("res://scripts/services/backup.gd").new()
 
 func _init() -> void:
 	Sync.name = "Sync"
