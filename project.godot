@@ -81,12 +81,16 @@ file_logging/log_path.editor="user://logs_dev/godot.log"
 
 [display]
 
-window/size/viewport_width=600
+window/size/viewport_width=648
 window/size/viewport_height=1024
 window/energy_saving/keep_screen_on=false
 window/handheld/orientation=1
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_width"
+
+[editor]
+
+export/convert_text_resources_to_binary=false
 
 [editor_plugins]
 
@@ -95,11 +99,3 @@ enabled=PackedStringArray("res://addons/godot-sqlite/plugin.cfg")
 [gui]
 
 theme/custom="res://themes/main_theme.tres"
-
-[internationalization]
-
-locale/locale_filter_mode=0
-
-[rendering]
-
-shader_compiler/shader_cache/enabled=false

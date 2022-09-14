@@ -22,27 +22,25 @@ metadata/_edit_lock_ = true
 
 [node name="HomeScreen" type="VBoxContainer" parent="."]
 layout_mode = 2
-offset_left = 8.0
-offset_top = 16.0
-offset_right = 600.0
-offset_bottom = 1008.0
+offset_right = 648.0
+offset_bottom = 1024.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TabContainer" type="CenterContainer" parent="HomeScreen"]
 unique_name_in_owner = true
 layout_mode = 2
-offset_right = 592.0
-offset_bottom = 945.0
+offset_right = 648.0
+offset_bottom = 989.0
 size_flags_vertical = 3
 
 [node name="FocusTab" parent="HomeScreen/TabContainer" instance=ExtResource("2_atg77")]
 unique_name_in_owner = true
 layout_mode = 2
-offset_left = 96.0
-offset_top = 218.0
-offset_right = 496.0
-offset_bottom = 727.0
+offset_left = 124.0
+offset_top = 282.0
+offset_right = 524.0
+offset_bottom = 707.0
 
 [node name="ActivityTab" parent="HomeScreen/TabContainer" instance=ExtResource("3_37p4l")]
 unique_name_in_owner = true
@@ -51,10 +49,10 @@ layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 178.0
-offset_top = 453.0
-offset_right = 413.0
-offset_bottom = 491.0
+offset_left = 241.0
+offset_top = 481.0
+offset_right = 406.0
+offset_bottom = 507.0
 grow_horizontal = 1
 grow_vertical = 1
 script = ExtResource("4_exiww")
@@ -63,10 +61,10 @@ script = ExtResource("4_exiww")
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-offset_left = 175.0
-offset_top = 453.0
-offset_right = 417.0
-offset_bottom = 491.0
+offset_left = 240.0
+offset_top = 481.0
+offset_right = 407.0
+offset_bottom = 507.0
 
 [node name="LedgerTab" parent="HomeScreen/TabContainer" instance=ExtResource("6_5cyvq")]
 unique_name_in_owner = true
@@ -75,10 +73,10 @@ layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 178.0
-offset_top = 453.0
-offset_right = 413.0
-offset_bottom = 491.0
+offset_left = 241.0
+offset_top = 481.0
+offset_right = 406.0
+offset_bottom = 507.0
 grow_horizontal = 1
 grow_vertical = 1
 script = ExtResource("7_jcb4e")
@@ -90,10 +88,10 @@ layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 178.0
-offset_top = 453.0
-offset_right = 413.0
-offset_bottom = 491.0
+offset_left = 241.0
+offset_top = 481.0
+offset_right = 406.0
+offset_bottom = 507.0
 grow_horizontal = 1
 grow_vertical = 1
 
@@ -105,10 +103,10 @@ layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 40.0
-offset_top = 30.0
-offset_right = 552.0
-offset_bottom = 915.0
+offset_left = 68.0
+offset_top = 82.0
+offset_right = 580.0
+offset_bottom = 907.0
 grow_horizontal = 1
 grow_vertical = 1
 
@@ -116,64 +114,65 @@ grow_vertical = 1
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-offset_left = 204.0
-offset_top = 301.0
-offset_right = 387.0
-offset_bottom = 644.0
+offset_left = 258.0
+offset_top = 353.0
+offset_right = 390.0
+offset_bottom = 636.0
 
 [node name="ButtomNavigationBar" type="HBoxContainer" parent="HomeScreen"]
 layout_mode = 2
-offset_top = 949.0
-offset_right = 592.0
-offset_bottom = 992.0
+offset_top = 993.0
+offset_right = 648.0
+offset_bottom = 1024.0
 alignment = 1
 
 [node name="FocusButton" type="Button" parent="HomeScreen/ButtomNavigationBar"]
 layout_mode = 2
-offset_right = 74.0
-offset_bottom = 43.0
+offset_left = 109.0
+offset_right = 162.0
+offset_bottom = 31.0
 text = "Focus"
 
 [node name="ActivityButton" type="Button" parent="HomeScreen/ButtomNavigationBar"]
 layout_mode = 2
-offset_left = 78.0
-offset_right = 171.0
-offset_bottom = 43.0
+offset_left = 166.0
+offset_right = 232.0
+offset_bottom = 31.0
 text = "Activity"
 
 [node name="TodoListButton" type="Button" parent="HomeScreen/ButtomNavigationBar"]
 layout_mode = 2
-offset_left = 175.0
-offset_right = 241.0
-offset_bottom = 43.0
+offset_left = 236.0
+offset_right = 283.0
+offset_bottom = 31.0
 text = "Todo"
 
 [node name="LedgerButton" type="Button" parent="HomeScreen/ButtomNavigationBar"]
 layout_mode = 2
-offset_left = 245.0
-offset_right = 329.0
-offset_bottom = 43.0
+offset_left = 287.0
+offset_right = 348.0
+offset_bottom = 31.0
 text = "Ledger"
 
 [node name="HealthButton" type="Button" parent="HomeScreen/ButtomNavigationBar"]
 layout_mode = 2
-offset_left = 333.0
-offset_right = 416.0
-offset_bottom = 43.0
+offset_left = 352.0
+offset_right = 412.0
+offset_bottom = 31.0
 text = "Health"
 
 [node name="DiaryButton" type="Button" parent="HomeScreen/ButtomNavigationBar"]
 layout_mode = 2
-offset_left = 420.0
-offset_right = 488.0
-offset_bottom = 43.0
+offset_left = 416.0
+offset_right = 465.0
+offset_bottom = 31.0
 text = "Diary"
 
 [node name="SettingsButton" type="Button" parent="HomeScreen/ButtomNavigationBar"]
 layout_mode = 2
-offset_left = 492.0
-offset_right = 592.0
-offset_bottom = 43.0
+offset_left = 469.0
+offset_right = 539.0
+offset_bottom = 31.0
 text = "Settings"
 
 [connection signal="pressed" from="HomeScreen/ButtomNavigationBar/FocusButton" to="." method="_on_focus_button_pressed"]

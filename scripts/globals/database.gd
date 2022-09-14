@@ -1,17 +1,14 @@
 extends Node
 
-var db: SQLite = null
-var db_path: String = Settings.db_path
-var db_verbosity_level := SQLite.NORMAL if not Settings.is_dev_env() else SQLite.VERY_VERBOSE
+var db: SQLite = SQLite.new()
 
-func _ready():
+func _init() -> void:
 	_open_db()
 	_create_table()
 
 func _open_db():
-	db = SQLite.new()
-	db.path = db_path
-	db.verbosity_level = db_verbosity_level
+	db.path = Settings.db_path
+	db.verbosity_level = SQLite.NORMAL if not Settings.is_dev_env() else SQLite.VERY_VERBOSE
 	db.open_db()
 
 func _create_table():
@@ -36,10 +33,3 @@ func _create_table():
 		"historyCursor": { "data_type": "text", "default": "'{}'" },
 		"updatedAt": { "data_type": "int" },
 	})
-
-func _exit_tree():
-	_clean_up()
-
-func _clean_up():
-	if db:
-		db.close_db()

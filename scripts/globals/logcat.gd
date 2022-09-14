@@ -4,7 +4,7 @@ signal log_logged(timestamp: Datetime, statement: String, level: String)
 
 const BUFFER_SIZE = 512
 
-var log_buffer := Array()
+var log_buffer = Array()
 var log_buffer_idx := 0
 
 func _init() -> void:

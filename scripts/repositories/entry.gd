@@ -1,5 +1,7 @@
 extends RefCounted
 
+var EntryHistoryRepo = load("res://scripts/repositories/entry_history.gd").new()
+
 const ENTRY_TEMPLATE = {
 	"uuid": "uuid",
 	"removedAt": null,
@@ -31,7 +33,7 @@ func create() -> Dictionary:
 
 func insert(entry: Dictionary):
 	entry.uuid = Utils.uuidv4()
-	var ok = Database.EntryHistory.write_history(entry)
+	var ok = EntryHistoryRepo.write_history(entry)
 	if ok:
 		ok = Database.db.insert_row('entry', _to_plain_dict(entry))
 		if !ok:
@@ -41,7 +43,7 @@ func update(entry: Dictionary, update_stamp := true):
 	if update_stamp:
 		entry["updatedAt"] = Datetime.new().to_iso_timestamp()
 		entry["updatedBy"] = Settings.app_config.node_uuid
-	var ok = Database.EntryHistory.write_history(entry)
+	var ok = EntryHistoryRepo.write_history(entry)
 	if ok:
 		ok = Database.db.update_rows('entry', "uuid='%s'" % entry.uuid, _to_plain_dict(entry))
 		if !ok:

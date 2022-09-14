@@ -1,7 +1,7 @@
 extends Node
 
 var app_config = AppConfig.new()
-var save_path = "user://app_config{suffix}.tres".format({"suffix": _get_file_suffix()})
+var app_config_path = "user://app_config{suffix}.tres".format({"suffix": _get_file_suffix()})
 var time_zone = Time.get_time_zone_from_system()
 var db_path = "user://database{suffix}.sqlite3".format({"suffix": _get_file_suffix()})
 
@@ -12,14 +12,14 @@ func _get_file_suffix() -> String:
 	return "_dev" if is_dev_env() else ""
 
 func _save_app_config():
-	ResourceSaver.save(app_config, save_path)
+	ResourceSaver.save(app_config, app_config_path)
 
 func _is_app_config_exists():
-	return File.new().file_exists(save_path)
+	return File.new().file_exists(app_config_path)
 
 func _load_app_config():
 	if _is_app_config_exists():
-		var loaded_config = ResourceLoader.load(save_path, "AppConfig")
+		var loaded_config = ResourceLoader.load(app_config_path, "AppConfig")
 		if loaded_config:
 			app_config = loaded_config
 		app_config._normalize()
