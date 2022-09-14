@@ -12,6 +12,7 @@ var config = SyncServerConfig.new()
 @onready var username_edit = %UsernameEdit as LineEdit
 @onready var password_edit = %PasswordEdit as LineEdit
 @onready var use_tls_check_box = %UseTlsCheckBox as CheckBox
+@onready var enabled_check_box = %EnabledCheckBox as CheckBox
 
 @onready var test_result_label = %TestResultLabel as Label
 @onready var http_request = %HttpRequest as HTTPRequest
@@ -24,6 +25,7 @@ func _ready():
 	username_edit.text = config.username
 	password_edit.text = config.password
 	use_tls_check_box.button_pressed = config.use_tls
+	enabled_check_box.button_pressed = config.enabled
 
 func _update_config_from_ui_input(config_to_update: SyncServerConfig):
 	config_to_update.host = host_edit.text
@@ -33,6 +35,7 @@ func _update_config_from_ui_input(config_to_update: SyncServerConfig):
 	config_to_update.username = username_edit.text
 	config_to_update.password = password_edit.text
 	config_to_update.use_tls = use_tls_check_box.button_pressed
+	config_to_update.enabled = enabled_check_box.button_pressed
 
 func _append_test_result(text: String):
 	test_result_label.text += "\n"

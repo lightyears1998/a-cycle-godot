@@ -13,6 +13,7 @@ grow_vertical = 2
 script = ExtResource("1_mp0hp")
 
 [node name="TopBar" parent="." instance=ExtResource("2_rnjm8")]
+layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
 offset_right = 600.0
@@ -20,17 +21,20 @@ offset_bottom = 43.0
 grow_horizontal = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
 offset_top = 47.0
 offset_right = 600.0
 offset_bottom = 1024.0
 size_flags_vertical = 3
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
 offset_right = 600.0
-offset_bottom = 367.0
+offset_bottom = 409.0
 columns = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
 offset_top = 2.0
 offset_right = 114.0
 offset_bottom = 40.0
@@ -39,6 +43,7 @@ text = "Host"
 [node name="HostEdit" type="LineEdit" parent="VBoxContainer/GridContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
 offset_left = 118.0
 offset_right = 518.0
 offset_bottom = 43.0
@@ -46,6 +51,7 @@ caret_blink = true
 caret_blink_speed = 0.5
 
 [node name="Label6" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
 offset_top = 49.0
 offset_right = 114.0
 offset_bottom = 87.0
@@ -54,6 +60,7 @@ text = "Path"
 [node name="PathEdit" type="LineEdit" parent="VBoxContainer/GridContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
 offset_left = 118.0
 offset_top = 47.0
 offset_right = 518.0
@@ -62,6 +69,7 @@ caret_blink = true
 caret_blink_speed = 0.5
 
 [node name="Label4" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
 offset_top = 96.0
 offset_right = 114.0
 offset_bottom = 134.0
@@ -70,6 +78,7 @@ text = "HTTP port"
 [node name="HttpPortEdit" type="LineEdit" parent="VBoxContainer/GridContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
 offset_left = 118.0
 offset_top = 94.0
 offset_right = 518.0
@@ -78,6 +87,7 @@ caret_blink = true
 caret_blink_speed = 0.5
 
 [node name="Label5" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
 offset_top = 143.0
 offset_right = 114.0
 offset_bottom = 181.0
@@ -86,6 +96,7 @@ text = "WS port"
 [node name="WsPortEdit" type="LineEdit" parent="VBoxContainer/GridContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
 offset_left = 118.0
 offset_top = 141.0
 offset_right = 518.0
@@ -94,6 +105,7 @@ caret_blink = true
 caret_blink_speed = 0.5
 
 [node name="Label2" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
 offset_top = 190.0
 offset_right = 114.0
 offset_bottom = 228.0
@@ -101,6 +113,7 @@ text = "Username"
 
 [node name="UsernameEdit" type="LineEdit" parent="VBoxContainer/GridContainer"]
 unique_name_in_owner = true
+layout_mode = 2
 offset_left = 118.0
 offset_top = 188.0
 offset_right = 518.0
@@ -109,6 +122,7 @@ caret_blink = true
 caret_blink_speed = 0.5
 
 [node name="Label3" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
 offset_top = 237.0
 offset_right = 114.0
 offset_bottom = 275.0
@@ -116,6 +130,7 @@ text = "Password"
 
 [node name="PasswordEdit" type="LineEdit" parent="VBoxContainer/GridContainer"]
 unique_name_in_owner = true
+layout_mode = 2
 offset_left = 118.0
 offset_top = 235.0
 offset_right = 518.0
@@ -125,6 +140,7 @@ caret_blink = true
 caret_blink_speed = 0.5
 
 [node name="Label7" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
 offset_top = 282.0
 offset_right = 114.0
 offset_bottom = 320.0
@@ -132,31 +148,50 @@ text = "Use TLS"
 
 [node name="UseTlsCheckBox" type="CheckBox" parent="VBoxContainer/GridContainer"]
 unique_name_in_owner = true
+layout_mode = 2
 offset_left = 118.0
 offset_top = 282.0
 offset_right = 518.0
 offset_bottom = 320.0
 
-[node name="TestButton" type="Button" parent="VBoxContainer/GridContainer"]
-unique_name_in_owner = true
+[node name="Label8" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
 offset_top = 324.0
 offset_right = 114.0
-offset_bottom = 367.0
+offset_bottom = 362.0
+text = "Enabled"
+
+[node name="EnabledCheckBox" type="CheckBox" parent="VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 118.0
+offset_top = 324.0
+offset_right = 518.0
+offset_bottom = 362.0
+
+[node name="TestButton" type="Button" parent="VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_top = 366.0
+offset_right = 114.0
+offset_bottom = 409.0
 text = "Test"
 
 [node name="SaveButton" type="Button" parent="VBoxContainer/GridContainer"]
 unique_name_in_owner = true
+layout_mode = 2
 offset_left = 118.0
-offset_top = 324.0
+offset_top = 366.0
 offset_right = 518.0
-offset_bottom = 367.0
+offset_bottom = 409.0
 text = "Save"
 
 [node name="TestResultLabel" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
-offset_top = 371.0
+layout_mode = 2
+offset_top = 413.0
 offset_right = 600.0
-offset_bottom = 409.0
+offset_bottom = 451.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "Click button to test server config."

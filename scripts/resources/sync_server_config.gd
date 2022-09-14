@@ -8,6 +8,7 @@ class_name SyncServerConfig
 @export var username := ""
 @export var password := "" # TODO storaging hash instead of plain text to protect privacy.
 @export var use_tls := false
+@export var enabled := false
 
 @export var user_id := ""
 @export var token := ""

@@ -19,3 +19,15 @@ func get_user_token(config: SyncServerConfig) -> String:
 
 func sync(config: SyncServerConfig) -> void:
 	return await _socket.sync(config)
+
+func sync_with_all_servers() -> void:
+	for config in Settings.app_config.sync_servers:
+		if not config.enabled:
+			Logcat.info("Skipping disabled config %s." % config.get_identifier())
+			continue
+
+		Logcat.info("Syncing with %s." % config.get_identifier())
+		await Service.Sync.prepare_sync(config)
+		for idx in range(3):
+			Logcat.info("Performing sync #%d for %s." % [(idx + 1), config.get_identifier()])
+			await Service.Sync.sync(config)

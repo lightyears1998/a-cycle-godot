@@ -9,10 +9,7 @@ const LogcatScreen = preload("res://screens/logcat_screen.tscn")
 func _on_sync_button_pressed() -> void:
 	var previous_button_text = sync_button.text
 	sync_button.text = "Syncing..."
-	await Service.Sync.prepare_sync(Settings.app_config.sync_servers[0])
-	for idx in range(3):
-		Logcat.info("Performing sync #%d." % (idx + 1))
-		await Service.Sync.sync(Settings.app_config.sync_servers[0])
+	await Service.Sync.sync_with_all_servers()
 	sync_button.text = previous_button_text
 
 func _on_manage_servers_button_pressed():
