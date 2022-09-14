@@ -10,10 +10,6 @@ var Activity = ActivityRepository.new()
 var Diary = DiaryRepository.new()
 var PeerNode = PeerNodeRepository.new()
 
-var Entities = [
-	Entry, Activity, Diary
-]
-
 func _ready():
 	_open_db()
 	_create_table()

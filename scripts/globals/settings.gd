@@ -1,9 +1,9 @@
 extends Node
 
-var app_config := AppConfig.new()
-var save_path := "user://app_config{suffix}.tres".format({"suffix": _get_file_suffix()})
-var time_zone := Time.get_time_zone_from_system()
-var db_path := "user://database{suffix}.sqlite3".format({"suffix": _get_file_suffix()})
+var app_config = AppConfig.new()
+var save_path = "user://app_config{suffix}.tres".format({"suffix": _get_file_suffix()})
+var time_zone = Time.get_time_zone_from_system()
+var db_path = "user://database{suffix}.sqlite3".format({"suffix": _get_file_suffix()})
 
 func is_dev_env():
 	return not OS.has_feature("standalone")
