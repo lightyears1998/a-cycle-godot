@@ -19,7 +19,7 @@ static func now_iso_timestamp() -> String:
 	return Time.get_datetime_string_from_system(true, false) + "Z"
 
 static func _get_time_zone_bias_seconds() -> int:
-	return 60 * Settings.time_zone.bias
+	return 60 * Time.get_time_zone_from_system().bias
 
 static func from_unix_time(unix_time: int) -> Datetime:
 	return Datetime.new(unix_time)

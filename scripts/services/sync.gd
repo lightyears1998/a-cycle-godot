@@ -1,5 +1,4 @@
 extends Node
-class_name SyncService
 
 var _restful = preload("res://scripts/services/sync_restful.gd").new()
 var _socket = preload("res://scripts/services/sync_socket.gd").new()

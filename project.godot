@@ -9,40 +9,15 @@
 config_version=5
 
 _global_script_classes=[{
-"base": "EntryRepository",
-"class": &"ActivityRepository",
-"language": &"GDScript",
-"path": "res://scripts/repositories/activity.gd"
-}, {
 "base": "Resource",
 "class": &"AppConfig",
 "language": &"GDScript",
 "path": "res://scripts/resources/app_config.gd"
 }, {
-"base": "Node",
-"class": &"BackupService",
-"language": &"GDScript",
-"path": "res://scripts/services/backup.gd"
-}, {
 "base": "RefCounted",
 "class": &"Datetime",
 "language": &"GDScript",
 "path": "res://scripts/objects/datetime.gd"
-}, {
-"base": "EntryRepository",
-"class": &"DiaryRepository",
-"language": &"GDScript",
-"path": "res://scripts/repositories/diary.gd"
-}, {
-"base": "RefCounted",
-"class": &"EntryHistoryRepository",
-"language": &"GDScript",
-"path": "res://scripts/repositories/entry_history.gd"
-}, {
-"base": "RefCounted",
-"class": &"EntryRepository",
-"language": &"GDScript",
-"path": "res://scripts/repositories/entry.gd"
 }, {
 "base": "RefCounted",
 "class": &"HTTPHeaders",
@@ -53,11 +28,6 @@ _global_script_classes=[{
 "class": &"HTTPResponse",
 "language": &"GDScript",
 "path": "res://scripts/promises/promised_http_request/http_response.gd"
-}, {
-"base": "RefCounted",
-"class": &"PeerNodeRepository",
-"language": &"GDScript",
-"path": "res://scripts/repositories/peer_node.gd"
 }, {
 "base": "ConfirmationDialog",
 "class": &"PromisedConfirmationDialog",
@@ -73,27 +43,15 @@ _global_script_classes=[{
 "class": &"SyncServerConfig",
 "language": &"GDScript",
 "path": "res://scripts/resources/sync_server_config.gd"
-}, {
-"base": "Node",
-"class": &"SyncService",
-"language": &"GDScript",
-"path": "res://scripts/services/sync.gd"
 }]
 _global_script_class_icons={
-"ActivityRepository": "",
 "AppConfig": "",
-"BackupService": "",
 "Datetime": "",
-"DiaryRepository": "",
-"EntryHistoryRepository": "",
-"EntryRepository": "",
 "HTTPHeaders": "",
 "HTTPResponse": "",
-"PeerNodeRepository": "",
 "PromisedConfirmationDialog": "",
 "PromisedHTTPRequest": "",
-"SyncServerConfig": "",
-"SyncService": ""
+"SyncServerConfig": ""
 }
 
 [application]
