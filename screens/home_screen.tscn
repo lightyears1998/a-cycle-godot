@@ -51,10 +51,10 @@ grow_vertical = 1
 [node name="SettingsTab" parent="HomeScreen/TabContainer" instance=ExtResource("2_g2bml")]
 unique_name_in_owner = true
 visible = false
-offset_left = 206.0
-offset_top = 338.0
-offset_right = 386.0
-offset_bottom = 606.0
+offset_left = 204.0
+offset_top = 301.0
+offset_right = 387.0
+offset_bottom = 644.0
 
 [node name="ButtomNavigationBar" type="HBoxContainer" parent="HomeScreen"]
 offset_top = 949.0

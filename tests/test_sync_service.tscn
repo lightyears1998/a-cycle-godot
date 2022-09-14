@@ -16,14 +16,12 @@ unique_name_in_owner = true
 script = ExtResource("2_pykb2")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
-layout_mode = 2
 offset_right = 600.0
 offset_bottom = 510.0
 size_flags_vertical = 3
 
 [node name="Logger" type="CodeEdit" parent="ScrollContainer"]
 unique_name_in_owner = true
-layout_mode = 2
 offset_right = 600.0
 offset_bottom = 510.0
 size_flags_horizontal = 3
@@ -31,7 +29,6 @@ size_flags_vertical = 3
 editable = false
 
 [node name="SyncServiceTest" type="ScrollContainer" parent="."]
-layout_mode = 2
 offset_top = 514.0
 offset_right = 600.0
 offset_bottom = 1024.0
@@ -40,61 +37,52 @@ grow_vertical = 2
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="SyncServiceTest"]
-layout_mode = 2
 offset_right = 600.0
 offset_bottom = 510.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="ScrollContainer" parent="SyncServiceTest/HBoxContainer"]
-layout_mode = 2
 offset_right = 298.0
 offset_bottom = 510.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SyncServiceTest/HBoxContainer/VBoxContainer"]
-layout_mode = 2
 offset_right = 298.0
 offset_bottom = 510.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="GetUserIdButton" type="Button" parent="SyncServiceTest/HBoxContainer/VBoxContainer/VBoxContainer"]
-layout_mode = 2
 offset_right = 298.0
 offset_bottom = 43.0
 text = "Get User Id"
 
 [node name="GetUserTokenButton" type="Button" parent="SyncServiceTest/HBoxContainer/VBoxContainer/VBoxContainer"]
-layout_mode = 2
 offset_top = 47.0
 offset_right = 298.0
 offset_bottom = 90.0
 text = "Get User Token"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="SyncServiceTest/HBoxContainer"]
-layout_mode = 2
 offset_left = 302.0
 offset_right = 600.0
 offset_bottom = 510.0
 size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SyncServiceTest/HBoxContainer/ScrollContainer"]
-layout_mode = 2
 offset_right = 298.0
 offset_bottom = 510.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="PrepareSyncButton" type="Button" parent="SyncServiceTest/HBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
 offset_right = 298.0
 offset_bottom = 43.0
 text = "Prepare Sync"
 
 [node name="SyncButton" type="Button" parent="SyncServiceTest/HBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
 offset_top = 47.0
 offset_right = 298.0
 offset_bottom = 90.0
