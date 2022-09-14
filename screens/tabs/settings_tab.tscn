@@ -7,34 +7,43 @@
 theme_override_constants/separation = 32
 script = ExtResource("1_560g0")
 
-[node name="ManageServersButton" type="Button" parent="."]
+[node name="SyncButton" type="Button" parent="."]
+unique_name_in_owner = true
 layout_mode = 2
 offset_right = 183.0
 offset_bottom = 43.0
-text = "Manage Servers"
+text = "Sync"
 
-[node name="ExportButton" type="Button" parent="."]
+[node name="ManageServersButton" type="Button" parent="."]
 layout_mode = 2
 offset_top = 75.0
 offset_right = 183.0
 offset_bottom = 118.0
-text = "Export"
+text = "Manage Servers"
 
-[node name="LogcatButton" type="Button" parent="."]
+[node name="ExportButton" type="Button" parent="."]
 layout_mode = 2
 offset_top = 150.0
 offset_right = 183.0
 offset_bottom = 193.0
-text = "Logcat"
+text = "Export"
 
-[node name="CrashButton" type="Button" parent="."]
+[node name="LogcatButton" type="Button" parent="."]
 layout_mode = 2
 offset_top = 225.0
 offset_right = 183.0
 offset_bottom = 268.0
+text = "Logcat"
+
+[node name="CrashButton" type="Button" parent="."]
+layout_mode = 2
+offset_top = 300.0
+offset_right = 183.0
+offset_bottom = 343.0
 text = "Crash"
 script = ExtResource("2_frcag")
 
+[connection signal="pressed" from="SyncButton" to="." method="_on_sync_button_pressed"]
 [connection signal="pressed" from="ManageServersButton" to="." method="_on_manage_servers_button_pressed"]
 [connection signal="pressed" from="ExportButton" to="." method="_on_export_button_pressed"]
 [connection signal="pressed" from="LogcatButton" to="." method="_on_logcat_button_pressed"]

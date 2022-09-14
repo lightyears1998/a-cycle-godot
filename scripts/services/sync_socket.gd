@@ -48,6 +48,7 @@ func sync(config: SyncServerConfig):
 		"Authorization: Bearer %s" % config.token,
 		"A-Cycle-Peer-Node-Uuid: %s" % Settings.app_config.node_uuid
 	])
+	await _sync_completed_or_errored
 
 func _send_message(message: Dictionary) -> String:
 	if not "session" in message:
@@ -97,6 +98,7 @@ func _on_connection_closed(was_clean_closed: bool):
 	Logcat.info('WebSocket connection closed.')
 	if not was_clean_closed:
 		Logcat.verbose('WebSocket connection was not clean closed.')
+	_sync_completed_or_errored.emit()
 
 func _on_connection_error():
 	Logcat.info("WebSocket Connetion errored.")
