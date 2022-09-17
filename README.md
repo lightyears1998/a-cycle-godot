@@ -1,6 +1,6 @@
 # A Cycle
 
-[![Powered by Godot 4](https://img.shields.io/badge/Godot-v4.0.alpha15.official-blue)](https://godotengine.org/)
+[![Powered by Godot 4](https://img.shields.io/badge/Godot-v4.0.beta1.official-blue)](https://godotengine.org/)
 
 A productivity application that evolves with me.
 
