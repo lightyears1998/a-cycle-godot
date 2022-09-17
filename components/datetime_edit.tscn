@@ -16,7 +16,8 @@ datetime_dict = {
 
 [node name="DatetimeLabel" type="Label" parent="."]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(256, 0)
+custom_minimum_size = Vector2i(256, 0)
+layout_mode = 2
 offset_top = 2.0
 offset_right = 256.0
 offset_bottom = 40.0
@@ -25,6 +26,7 @@ text = "0000-01-01 00:00:00"
 
 [node name="PickButton" type="Button" parent="."]
 unique_name_in_owner = true
+layout_mode = 2
 offset_left = 260.0
 offset_right = 315.0
 offset_bottom = 43.0
@@ -32,6 +34,7 @@ text = "Pick"
 
 [node name="ClearButton" type="Button" parent="."]
 unique_name_in_owner = true
+layout_mode = 2
 offset_left = 319.0
 offset_right = 385.0
 offset_bottom = 43.0

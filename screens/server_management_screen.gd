@@ -10,7 +10,7 @@ var editing_idx = -1
 
 func _ready():
 	for item in sync_servers:
-		server_list.add_item(item.username + "@" + item.host)
+		server_list.add_item(item.get_identifier())
 		server_list.set_item_metadata(server_list.item_count - 1, item)
 
 func _update_sync_server_configs():
@@ -65,7 +65,7 @@ func _on_remove_server_button_pressed():
 
 func _on_editor_save_button_pressed(config: SyncServerConfig):
 	if editing_idx == -1:
-		server_list.add_item(config.username + "@" + config.host)
+		server_list.add_item(config.get_identifier())
 		server_list.set_item_metadata(server_list.item_count - 1, config)
 		editing_idx = server_list.item_count - 1
 	else:

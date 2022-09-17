@@ -16,20 +16,20 @@ script = ExtResource("1_mp0hp")
 layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
-offset_right = 600.0
+offset_right = 648.0
 offset_bottom = 43.0
 grow_horizontal = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 offset_top = 47.0
-offset_right = 600.0
+offset_right = 648.0
 offset_bottom = 1024.0
 size_flags_vertical = 3
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
 layout_mode = 2
-offset_right = 600.0
+offset_right = 648.0
 offset_bottom = 409.0
 columns = 2
 
@@ -42,13 +42,12 @@ text = "Host"
 
 [node name="HostEdit" type="LineEdit" parent="VBoxContainer/GridContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(400, 0)
+custom_minimum_size = Vector2i(400, 0)
 layout_mode = 2
 offset_left = 118.0
 offset_right = 518.0
 offset_bottom = 43.0
 caret_blink = true
-caret_blink_speed = 0.5
 
 [node name="Label6" type="Label" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -59,14 +58,13 @@ text = "Path"
 
 [node name="PathEdit" type="LineEdit" parent="VBoxContainer/GridContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(400, 0)
+custom_minimum_size = Vector2i(400, 0)
 layout_mode = 2
 offset_left = 118.0
 offset_top = 47.0
 offset_right = 518.0
 offset_bottom = 90.0
 caret_blink = true
-caret_blink_speed = 0.5
 
 [node name="Label4" type="Label" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -77,14 +75,13 @@ text = "HTTP port"
 
 [node name="HttpPortEdit" type="LineEdit" parent="VBoxContainer/GridContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(400, 0)
+custom_minimum_size = Vector2i(400, 0)
 layout_mode = 2
 offset_left = 118.0
 offset_top = 94.0
 offset_right = 518.0
 offset_bottom = 137.0
 caret_blink = true
-caret_blink_speed = 0.5
 
 [node name="Label5" type="Label" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -95,14 +92,13 @@ text = "WS port"
 
 [node name="WsPortEdit" type="LineEdit" parent="VBoxContainer/GridContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(400, 0)
+custom_minimum_size = Vector2i(400, 0)
 layout_mode = 2
 offset_left = 118.0
 offset_top = 141.0
 offset_right = 518.0
 offset_bottom = 184.0
 caret_blink = true
-caret_blink_speed = 0.5
 
 [node name="Label2" type="Label" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -119,7 +115,6 @@ offset_top = 188.0
 offset_right = 518.0
 offset_bottom = 231.0
 caret_blink = true
-caret_blink_speed = 0.5
 
 [node name="Label3" type="Label" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -137,7 +132,6 @@ offset_right = 518.0
 offset_bottom = 278.0
 secret = true
 caret_blink = true
-caret_blink_speed = 0.5
 
 [node name="Label7" type="Label" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -190,7 +184,7 @@ text = "Save"
 unique_name_in_owner = true
 layout_mode = 2
 offset_top = 413.0
-offset_right = 600.0
+offset_right = 648.0
 offset_bottom = 451.0
 size_flags_horizontal = 3
 size_flags_vertical = 1

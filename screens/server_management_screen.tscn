@@ -4,25 +4,26 @@
 [ext_resource type="PackedScene" uid="uid://822i4oxf53qt" path="res://components/top_bar.tscn" id="1_sbf8p"]
 
 [node name="VBoxContainer" type="VBoxContainer"]
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 592.0
-offset_bottom = 1008.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_r3dbc")
 
 [node name="TopBar" parent="." instance=ExtResource("1_sbf8p")]
 layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
-offset_right = 584.0
+offset_right = 648.0
 offset_bottom = 43.0
 grow_horizontal = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
 offset_top = 47.0
-offset_right = 584.0
-offset_bottom = 1000.0
+offset_right = 648.0
+offset_bottom = 1024.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
@@ -31,26 +32,26 @@ size_flags_vertical = 3
 layout_mode = 2
 offset_left = 8.0
 offset_top = 16.0
-offset_right = 576.0
-offset_bottom = 937.0
+offset_right = 640.0
+offset_bottom = 961.0
 
 [node name="AddServerButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-offset_right = 568.0
+offset_right = 632.0
 offset_bottom = 43.0
 text = "Add Server"
 
 [node name="EditServerButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 offset_top = 47.0
-offset_right = 568.0
+offset_right = 632.0
 offset_bottom = 90.0
 text = "Edit Server"
 
 [node name="RemoveServerButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 offset_top = 94.0
-offset_right = 568.0
+offset_right = 632.0
 offset_bottom = 137.0
 text = "Remove Server"
 
@@ -58,8 +59,8 @@ text = "Remove Server"
 unique_name_in_owner = true
 layout_mode = 2
 offset_top = 141.0
-offset_right = 568.0
-offset_bottom = 921.0
+offset_right = 632.0
+offset_bottom = 945.0
 size_flags_vertical = 3
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/AddServerButton" to="." method="_on_add_server_button_pressed"]

@@ -22,4 +22,4 @@ func get_socket_url() -> String:
 	return schema + "://" + host + ":" + str(ws_port) + "/" + path + '/socket'
 
 func get_identifier() -> String:
-	return "%s@%s" % [username, host]
+	return "%s@%s%s" % [username, host, "" if enabled else " (disabled)"]
