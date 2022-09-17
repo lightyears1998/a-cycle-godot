@@ -2,7 +2,7 @@
 .godot/
 
 # Binary dependencies
-addons/bin
+addons/**/bin
 
 # Exported assets
 exports
