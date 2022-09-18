@@ -1,4 +1,5 @@
 extends Node
+class_name ServiceSingleton
 
 var Sync = load("res://scripts/services/sync.gd").new()
 var Backup = load("res://scripts/services/backup.gd").new()

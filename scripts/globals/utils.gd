@@ -1,4 +1,5 @@
 extends Node
+class_name UtilsSingleton
 
 ## Generate a randome uuidv4 string.
 ## see: <https://en.wikipedia.org/wiki/Universally_unique_identifier>

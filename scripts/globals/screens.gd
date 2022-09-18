@@ -1,4 +1,5 @@
 extends Node
+class_name ScreensSingleton
 
 var go_back_stack: Array[Node] = []
 

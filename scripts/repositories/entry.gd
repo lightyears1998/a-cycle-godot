@@ -1,4 +1,5 @@
 extends RefCounted
+class_name EntryRepository
 
 var EntryHistoryRepo = load("res://scripts/repositories/entry_history.gd").new()
 

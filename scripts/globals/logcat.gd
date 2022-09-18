@@ -1,4 +1,5 @@
 extends Node
+class_name LogcatSingleton
 
 signal log_logged(timestamp: Datetime, statement: String, level: String)
 

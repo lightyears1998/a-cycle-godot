@@ -1,4 +1,5 @@
 extends Node
+class_name DatabaseSingleton
 
 var db: SQLite = SQLite.new()
 

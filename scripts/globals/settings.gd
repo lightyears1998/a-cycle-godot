@@ -1,4 +1,5 @@
 extends Node
+class_name SettingsSingleton
 
 var app_config = AppConfig.new()
 var app_config_path = "user://app_config{suffix}.tres".format({"suffix": _get_file_suffix()})

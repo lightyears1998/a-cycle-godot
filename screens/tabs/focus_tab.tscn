@@ -7,6 +7,7 @@ script = ExtResource("1_ryggw")
 
 [node name="ClockingLabel" type="Label" parent="."]
 unique_name_in_owner = true
+layout_mode = 2
 offset_right = 400.0
 offset_bottom = 38.0
 text = "00:00"
@@ -14,12 +15,14 @@ horizontal_alignment = 1
 
 [node name="StatusLabel" type="Label" parent="."]
 unique_name_in_owner = true
+layout_mode = 2
 offset_top = 42.0
 offset_right = 400.0
 offset_bottom = 80.0
 text = "Wating to start."
 
 [node name="TitleLabel" type="Label" parent="."]
+layout_mode = 2
 offset_top = 84.0
 offset_right = 400.0
 offset_bottom = 122.0
@@ -27,11 +30,13 @@ text = "Title"
 
 [node name="TitleEdit" type="LineEdit" parent="."]
 unique_name_in_owner = true
+layout_mode = 2
 offset_top = 126.0
 offset_right = 400.0
 offset_bottom = 169.0
 
 [node name="DescriptionLabel" type="Label" parent="."]
+layout_mode = 2
 offset_top = 173.0
 offset_right = 400.0
 offset_bottom = 211.0
@@ -39,7 +44,8 @@ text = "Description"
 
 [node name="DescriptionEdit" type="TextEdit" parent="."]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(400, 200)
+custom_minimum_size = Vector2i(400, 200)
+layout_mode = 2
 offset_top = 215.0
 offset_right = 400.0
 offset_bottom = 415.0
@@ -48,6 +54,7 @@ scroll_smooth = true
 
 [node name="StartPauseButton" type="Button" parent="."]
 unique_name_in_owner = true
+layout_mode = 2
 offset_top = 419.0
 offset_right = 400.0
 offset_bottom = 462.0
@@ -55,6 +62,7 @@ text = "Start / Pause / Continue"
 
 [node name="FinishButton" type="Button" parent="."]
 unique_name_in_owner = true
+layout_mode = 2
 offset_top = 466.0
 offset_right = 400.0
 offset_bottom = 509.0
