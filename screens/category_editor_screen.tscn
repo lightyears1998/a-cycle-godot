@@ -1,12 +1,81 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjqsimrht7rle"]
+[gd_scene load_steps=3 format=3 uid="uid://cjqsimrht7rle"]
 
 [ext_resource type="PackedScene" uid="uid://822i4oxf53qt" path="res://components/top_bar.tscn" id="1_ivijs"]
+[ext_resource type="Script" path="res://screens/category_editor_screen.gd" id="1_t4dsx"]
 
 [node name="CategoryEditorScreen" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t4dsx")
 
 [node name="TopBar" parent="." instance=ExtResource("1_ivijs")]
 layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
-offset_right = 98.0
+offset_right = 648.0
 offset_bottom = 43.0
+grow_horizontal = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_top = 47.0
+offset_right = 648.0
+offset_bottom = 1024.0
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+offset_right = 648.0
+offset_bottom = 43.0
+
+[node name="CategoryNameEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_right = 253.0
+offset_bottom = 43.0
+size_flags_horizontal = 3
+
+[node name="CreateButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+offset_left = 257.0
+offset_right = 443.0
+offset_bottom = 43.0
+text = "Create Category"
+
+[node name="RenameButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+offset_left = 447.0
+offset_right = 547.0
+offset_bottom = 43.0
+text = "Rename"
+
+[node name="RemoveButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+offset_left = 551.0
+offset_right = 648.0
+offset_bottom = 43.0
+text = "Remove"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+offset_top = 47.0
+offset_right = 648.0
+offset_bottom = 977.0
+size_flags_vertical = 3
+
+[node name="CategoryTree" type="Tree" parent="VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_right = 648.0
+offset_bottom = 930.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/CreateButton" to="." method="_on_create_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/RenameButton" to="." method="_on_rename_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/RemoveButton" to="." method="_on_remove_button_pressed"]
+[connection signal="item_selected" from="VBoxContainer/ScrollContainer/CategoryTree" to="." method="_on_category_tree_item_selected"]
+[connection signal="nothing_selected" from="VBoxContainer/ScrollContainer/CategoryTree" to="." method="_on_category_tree_nothing_selected"]

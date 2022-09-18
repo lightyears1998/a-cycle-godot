@@ -9,48 +9,41 @@ script = ExtResource("1_560g0")
 
 [node name="SyncButton" type="Button" parent="."]
 unique_name_in_owner = true
-layout_mode = 2
 offset_right = 196.0
 offset_bottom = 43.0
 text = "Sync"
 
 [node name="WindowSettingsButton" type="Button" parent="."]
-layout_mode = 2
 offset_top = 75.0
 offset_right = 196.0
 offset_bottom = 118.0
 text = "Window Settings"
 
 [node name="ManageServersButton" type="Button" parent="."]
-layout_mode = 2
 offset_top = 150.0
 offset_right = 196.0
 offset_bottom = 193.0
 text = "Manage Servers"
 
 [node name="CategoryEditorButton" type="Button" parent="."]
-layout_mode = 2
 offset_top = 225.0
 offset_right = 196.0
 offset_bottom = 268.0
 text = "Category Editor"
 
 [node name="ExportButton" type="Button" parent="."]
-layout_mode = 2
 offset_top = 300.0
 offset_right = 196.0
 offset_bottom = 343.0
 text = "Export"
 
 [node name="LogcatButton" type="Button" parent="."]
-layout_mode = 2
 offset_top = 375.0
 offset_right = 196.0
 offset_bottom = 418.0
 text = "Logcat"
 
 [node name="CrashButton" type="Button" parent="."]
-layout_mode = 2
 offset_top = 450.0
 offset_right = 196.0
 offset_bottom = 493.0
