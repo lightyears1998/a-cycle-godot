@@ -1,16 +1,20 @@
 extends EntryRepository
 class_name ActivityRepository
 
-const ACTIIVITY_TEMPLATE = {
+const ENTRY_CONTENT_TYPE := "activity"
+
+const ACTIIVITY_CONTENT_TEMPLATE = {
 	"title": "text",
 	"description": "text",
 	"category": [
-		"category_id"
+		"category_fully_qualified_name_or_uuid"
 	],
 	"startDate": "unix_time",
 	"endDate": "unix_time",
 	"isTransient": false,
-	"metadata": {}
+	"metadata": {
+		# Placeholder for future use.
+	}
 }
 
 func create():

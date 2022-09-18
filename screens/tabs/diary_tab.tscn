@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://screens/tabs/diary_tab.gd" id="1_vp0qv"]
 
 [node name="DiaryTab" type="VBoxContainer"]
-custom_minimum_size = Vector2(512, 0)
+custom_minimum_size = Vector2i(512, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -12,20 +12,23 @@ grow_vertical = 2
 script = ExtResource("1_vp0qv")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-offset_right = 600.0
+layout_mode = 2
+offset_right = 648.0
 offset_bottom = 43.0
 
 [node name="PreviousDayButton" type="Button" parent="HBoxContainer"]
 unique_name_in_owner = true
+layout_mode = 2
 offset_right = 31.0
 offset_bottom = 43.0
 text = " < "
 
 [node name="DateLabel" type="Label" parent="HBoxContainer"]
 unique_name_in_owner = true
+layout_mode = 2
 offset_left = 35.0
 offset_top = 2.0
-offset_right = 565.0
+offset_right = 613.0
 offset_bottom = 40.0
 size_flags_horizontal = 3
 text = "YYYY-MM-DD"
@@ -34,73 +37,85 @@ vertical_alignment = 1
 
 [node name="NextDayButton" type="Button" parent="HBoxContainer"]
 unique_name_in_owner = true
-offset_left = 569.0
-offset_right = 600.0
+layout_mode = 2
+offset_left = 617.0
+offset_right = 648.0
 offset_bottom = 43.0
 text = " > "
 
 [node name="DiaryList" type="ItemList" parent="."]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 256)
+custom_minimum_size = Vector2i(0, 256)
+layout_mode = 2
 offset_top = 47.0
-offset_right = 600.0
+offset_right = 648.0
 offset_bottom = 303.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
 offset_top = 307.0
-offset_right = 600.0
+offset_right = 648.0
 offset_bottom = 838.0
 
 [node name="TitleLabel" type="Label" parent="VBoxContainer"]
-offset_right = 600.0
+layout_mode = 2
+offset_right = 648.0
 offset_bottom = 38.0
 text = "Title"
 
 [node name="TitleEdit" type="LineEdit" parent="VBoxContainer"]
 unique_name_in_owner = true
+layout_mode = 2
 offset_top = 42.0
-offset_right = 600.0
+offset_right = 648.0
 offset_bottom = 85.0
 editable = false
 
 [node name="ContentLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
 offset_top = 89.0
-offset_right = 600.0
+offset_right = 648.0
 offset_bottom = 127.0
 text = "Content"
 
 [node name="ContentEdit" type="TextEdit" parent="VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 400)
+custom_minimum_size = Vector2i(0, 400)
+layout_mode = 2
 offset_top = 131.0
-offset_right = 600.0
+offset_right = 648.0
 offset_bottom = 531.0
 editable = false
+wrap_mode = 1
 
 [node name="ActionBar" type="HBoxContainer" parent="."]
+layout_mode = 2
 offset_top = 842.0
-offset_right = 600.0
+offset_right = 648.0
 offset_bottom = 885.0
 alignment = 1
 
 [node name="AddDiaryButton" type="Button" parent="ActionBar"]
 unique_name_in_owner = true
-offset_left = 97.0
-offset_right = 215.0
+layout_mode = 2
+offset_left = 121.0
+offset_right = 239.0
 offset_bottom = 43.0
 text = "Add Diary"
 
 [node name="EditDiaryButton" type="Button" parent="ActionBar"]
 unique_name_in_owner = true
-offset_left = 219.0
-offset_right = 337.0
+layout_mode = 2
+offset_left = 243.0
+offset_right = 361.0
 offset_bottom = 43.0
 text = "Edit Diary"
 
 [node name="RemoveDiaryButton" type="Button" parent="ActionBar"]
 unique_name_in_owner = true
-offset_left = 341.0
-offset_right = 503.0
+layout_mode = 2
+offset_left = 365.0
+offset_right = 527.0
 offset_bottom = 43.0
 text = "Remove Diary"
 
