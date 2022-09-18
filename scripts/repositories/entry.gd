@@ -1,9 +1,9 @@
 extends RefCounted
 class_name EntryRepository
 
-var EntryHistoryRepo = load("res://scripts/repositories/entry_history.gd").new()
+var EntryHistoryRepo = EntryHistoryRepository.new()
 
-const ENTRY_TEMPLATE = {
+const ENTRY_CONTENT_TEMPLATE = {
 	"uuid": "uuid",
 	"removedAt": null,
 	"contentType": "text",
@@ -24,12 +24,18 @@ func _from_plain_dict(entry: Dictionary) -> Dictionary:
 	return entry
 
 func create() -> Dictionary:
-	var entry = ENTRY_TEMPLATE.duplicate(true)
+	var entry = ENTRY_CONTENT_TEMPLATE.duplicate(true)
 	var created_at = Datetime.new().to_iso_timestamp()
 	entry.uuid = null
 	entry["createdAt"] = created_at
 	entry["updatedAt"] = created_at
 	entry["updatedBy"] = Settings.app_config.node_uuid
+	return entry
+
+func fork(content_type: String, content: Dictionary) -> Dictionary:
+	var entry = self.create()
+	entry["contentType"] = content_type
+	entry["content"] = content
 	return entry
 
 func insert(entry: Dictionary):

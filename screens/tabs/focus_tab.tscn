@@ -5,68 +5,74 @@
 [node name="FocusTab" type="VBoxContainer"]
 script = ExtResource("1_ryggw")
 
-[node name="ClockingLabel" type="Label" parent="."]
-unique_name_in_owner = true
-layout_mode = 2
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 offset_right = 400.0
-offset_bottom = 38.0
+offset_bottom = 43.0
+
+[node name="ClockingLabel" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+offset_top = 2.0
+offset_right = 326.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
 text = "00:00"
 horizontal_alignment = 1
 
+[node name="ClockModeButton" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+offset_left = 330.0
+offset_right = 400.0
+offset_bottom = 43.0
+text = "Clock"
+
 [node name="StatusLabel" type="Label" parent="."]
 unique_name_in_owner = true
-layout_mode = 2
-offset_top = 42.0
+offset_top = 47.0
 offset_right = 400.0
-offset_bottom = 80.0
+offset_bottom = 85.0
 text = "Wating to start."
 
 [node name="TitleLabel" type="Label" parent="."]
-layout_mode = 2
-offset_top = 84.0
+offset_top = 89.0
 offset_right = 400.0
-offset_bottom = 122.0
+offset_bottom = 127.0
 text = "Title"
 
 [node name="TitleEdit" type="LineEdit" parent="."]
 unique_name_in_owner = true
-layout_mode = 2
-offset_top = 126.0
+offset_top = 131.0
 offset_right = 400.0
-offset_bottom = 169.0
+offset_bottom = 174.0
 
 [node name="DescriptionLabel" type="Label" parent="."]
-layout_mode = 2
-offset_top = 173.0
+offset_top = 178.0
 offset_right = 400.0
-offset_bottom = 211.0
+offset_bottom = 216.0
 text = "Description"
 
 [node name="DescriptionEdit" type="TextEdit" parent="."]
 unique_name_in_owner = true
 custom_minimum_size = Vector2i(400, 200)
-layout_mode = 2
-offset_top = 215.0
+offset_top = 220.0
 offset_right = 400.0
-offset_bottom = 415.0
+offset_bottom = 420.0
 wrap_mode = 1
 scroll_smooth = true
 
 [node name="StartPauseButton" type="Button" parent="."]
 unique_name_in_owner = true
-layout_mode = 2
-offset_top = 419.0
+offset_top = 424.0
 offset_right = 400.0
-offset_bottom = 462.0
+offset_bottom = 467.0
 text = "Start / Pause / Continue"
 
 [node name="FinishButton" type="Button" parent="."]
 unique_name_in_owner = true
-layout_mode = 2
-offset_top = 466.0
+offset_top = 471.0
 offset_right = 400.0
-offset_bottom = 509.0
+offset_bottom = 514.0
 text = "Finish"
 
+[connection signal="pressed" from="HBoxContainer/ClockModeButton" to="." method="_on_clock_mode_button_pressed"]
 [connection signal="pressed" from="StartPauseButton" to="." method="_on_start_pause_button_pressed"]
 [connection signal="pressed" from="FinishButton" to="." method="_on_finish_button_pressed"]

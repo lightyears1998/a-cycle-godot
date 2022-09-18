@@ -24,6 +24,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://scripts/services/backup.gd"
 }, {
+"base": "EntryRepository",
+"class": &"CategoryRepository",
+"language": &"GDScript",
+"path": "res://scripts/repositories/category.gd"
+}, {
 "base": "Node",
 "class": &"DatabaseSingleton",
 "language": &"GDScript",
@@ -48,6 +53,11 @@ _global_script_classes=[{
 "class": &"EntryRepository",
 "language": &"GDScript",
 "path": "res://scripts/repositories/entry.gd"
+}, {
+"base": "Node",
+"class": &"FocusService",
+"language": &"GDScript",
+"path": "res://scripts/services/focus.gd"
 }, {
 "base": "Node",
 "class": &"LogcatSingleton",
@@ -104,6 +114,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://scripts/services/sync.gd"
 }, {
+"base": "EntryRepository",
+"class": &"TodoItemRepository",
+"language": &"GDScript",
+"path": "res://scripts/repositories/todo.gd"
+}, {
 "base": "Node",
 "class": &"UtilsSingleton",
 "language": &"GDScript",
@@ -113,11 +128,13 @@ _global_script_class_icons={
 "ActivityRepository": "",
 "AppConfig": "",
 "BackupService": "",
+"CategoryRepository": "",
 "DatabaseSingleton": "",
 "Datetime": "",
 "DiaryRepository": "",
 "EntryHistoryRepository": "",
 "EntryRepository": "",
+"FocusService": "",
 "LogcatSingleton": "",
 "PeerNodeRepository": "",
 "PromisedConfirmationDialog": "",
@@ -129,6 +146,7 @@ _global_script_class_icons={
 "SettingsSingleton": "",
 "SyncServerConfig": "",
 "SyncService": "",
+"TodoItemRepository": "",
 "UtilsSingleton": ""
 }
 
@@ -150,8 +168,8 @@ Logcat="*res://scripts/globals/logcat.gd"
 Utils="*res://scripts/globals/utils.gd"
 Settings="*res://scripts/globals/settings.gd"
 Database="*res://scripts/globals/database.gd"
-Service="*res://scripts/services/service.gd"
 Screens="*res://scripts/globals/screens.gd"
+Service="*res://scripts/services/service.gd"
 
 [debug]
 
@@ -163,8 +181,7 @@ window/size/viewport_width=648
 window/size/viewport_height=1024
 window/energy_saving/keep_screen_on=false
 window/handheld/orientation=1
-window/stretch/mode="viewport"
-window/stretch/aspect="keep_width"
+window/stretch/aspect="ignore"
 
 [editor]
 
