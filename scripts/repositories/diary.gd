@@ -3,21 +3,18 @@ class_name DiaryRepository
 
 const ENTRY_CONTENT_TYPE := "diary"
 
-const DIARY_TEMPLATE = {
+const DIARY_CONTENT_TEMPLATE = {
 	"date": "unix_time",
 	"title": "text",
 	"content": "text",
 }
 
 func create(date: int = 0, title: String = "", content: String = "") -> Dictionary:
-	var diary = DIARY_TEMPLATE.duplicate(true)
+	var diary = DIARY_CONTENT_TEMPLATE.duplicate(true)
 	diary.date = date
 	diary.title = title
 	diary.content = content
-	var entry = super.create()
-	entry["contentType"] = ENTRY_CONTENT_TYPE
-	entry.content = diary
-	return entry
+	return super.fork(ENTRY_CONTENT_TYPE, diary)
 
 func find_by_date(date: Datetime, discard_removed := true) -> Array[Dictionary]:
 	var lower_bound = date.get_the_beginning_of_the_day().to_unix_time()
