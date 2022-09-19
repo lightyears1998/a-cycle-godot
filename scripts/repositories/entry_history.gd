@@ -47,5 +47,7 @@ func get_last_history_cursor() -> Dictionary:
 	var ok = Database.db.query("select * from entry_history order by id desc limit 1")
 	if not ok:
 		return {}
+	if len(Database.db.query_result) == 0:
+		return {}
 	var cursor = Database.db.query_result.front()
 	return cursor if cursor else {}

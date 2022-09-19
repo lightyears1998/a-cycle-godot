@@ -30,4 +30,4 @@ func sync_with_all_servers() -> void:
 		await self.prepare_sync(config)
 		for idx in range(3):
 			Logcat.info("Performing sync #%d for %s." % [(idx + 1), config.get_identifier()])
-			await Service.Sync.sync(config)
+			await self.sync(config)
