@@ -66,6 +66,7 @@ func _on_remove_activity_button_pressed() -> void:
 		ActivityRepo.soft_remove(activity)
 		activity_list.remove_item(_selected_activity_idx)
 		_selected_activity_idx = -1
+	_read_activities()
 	_update_ui()
 
 func _on_activity_list_item_selected(index: int) -> void:
