@@ -4,7 +4,7 @@ class_name EntryRepository
 var EntryHistoryRepo = EntryHistoryRepository.new()
 
 const ENTRY_CONTENT_TEMPLATE = {
-	"uuid": "uuid",
+	"uuid": "",
 	"removedAt": null,
 	"contentType": "text",
 	"content": {},
@@ -26,7 +26,7 @@ func _from_plain_dict(entry: Dictionary) -> Dictionary:
 func create() -> Dictionary:
 	var entry = ENTRY_CONTENT_TEMPLATE.duplicate(true)
 	var created_at = Datetime.new().to_iso_timestamp()
-	entry.uuid = null
+	entry.uuid = ""
 	entry["createdAt"] = created_at
 	entry["updatedAt"] = created_at
 	entry["updatedBy"] = Settings.app_config.node_uuid
@@ -39,7 +39,8 @@ func fork(content_type: String, content: Dictionary) -> Dictionary:
 	return entry
 
 func insert(entry: Dictionary):
-	entry.uuid = Utils.uuidv4()
+	if entry.uuid.is_empty():
+		entry.uuid = Utils.uuidv4()
 	var ok = EntryHistoryRepo.write_history(entry)
 	if ok:
 		ok = Database.db.insert_row('entry', _to_plain_dict(entry))
