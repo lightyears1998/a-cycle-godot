@@ -38,32 +38,40 @@ func fork(content_type: String, content: Dictionary) -> Dictionary:
 	entry["content"] = content
 	return entry
 
-func insert(entry: Dictionary):
+func insert(entry: Dictionary) -> bool:
 	if entry.uuid.is_empty():
 		entry.uuid = Utils.uuidv4()
 	var ok = EntryHistoryRepo.write_history(entry)
-	if ok:
-		ok = Database.db.insert_row('entry', _to_plain_dict(entry))
-		if !ok:
-			Logcat.error(Database.db.error_message)
+	if !ok:
+		Logcat.error("Can't write entry history.")
+		return false
+	ok = Database.db.insert_row('entry', _to_plain_dict(entry))
+	if !ok:
+		Logcat.error(Database.db.error_message)
+		return false
+	return true
 
-func update(entry: Dictionary, update_stamp := true):
+func update(entry: Dictionary, update_stamp := true) -> bool:
 	if update_stamp:
 		entry["updatedAt"] = Datetime.new().to_iso_timestamp()
 		entry["updatedBy"] = Settings.app_config.node_uuid
 	var ok = EntryHistoryRepo.write_history(entry)
-	if ok:
-		ok = Database.db.update_rows('entry', "uuid='%s'" % entry.uuid, _to_plain_dict(entry))
-		if !ok:
-			Logcat.error(Database.db.error_message)
+	if !ok:
+		Logcat.error("Error writing entry history.")
+		return false
+	ok = Database.db.update_rows('entry', "uuid='%s'" % entry.uuid, _to_plain_dict(entry))
+	if !ok:
+		Logcat.error(Database.db.error_message)
+		return false
+	return true
 
-func save(entry: Dictionary):
+func save(entry: Dictionary) -> bool:
 	if entry.uuid:
-		update(entry)
+		return update(entry)
 	else:
-		insert(entry)
+		return insert(entry)
 
-func save_if_new_or_fresher(new_entry: Dictionary):
+func save_if_new_or_fresher(new_entry: Dictionary) -> bool:
 	Logcat.verbose("Checking entry [%s] (%s)." % [new_entry.uuid, new_entry["updatedAt"]])
 	var old_entry = find_by_uuid(new_entry.uuid, false)
 	if old_entry:
@@ -71,12 +79,13 @@ func save_if_new_or_fresher(new_entry: Dictionary):
 		var new_entry_updated_at = Datetime.from_iso_timestamp(new_entry["updatedAt"]).to_unix_time()
 		if new_entry_updated_at > old_entry_updated_at:
 			Logcat.verbose("Updating entry because it is fresher. (compared to %s.)" % old_entry["updatedAt"])
-			update(new_entry, false)
+			return update(new_entry, false)
 		else:
 			Logcat.verbose("Skipped update because entry is not fresher. (compared to %s)" % old_entry["updatedAt"])
+			return false
 	else:
 		Logcat.verbose("Saving entry because it is new.")
-		insert(new_entry)
+		return insert(new_entry)
 
 func filter_new_or_fresher_metadata(metadata_array: Array) -> Array:
 	var result = []
@@ -127,6 +136,6 @@ func find_by_uuids(uuids: Array, discard_removed := true):
 	var query_conditon = 'uuid in (%s)' % uuids_string
 	return self.select_rows(query_conditon, discard_removed)
 
-func soft_remove(entry: Dictionary):
+func soft_remove(entry: Dictionary) -> bool:
 	entry["removedAt"] = Datetime.new().to_iso_timestamp()
-	update(entry)
+	return update(entry)
