@@ -1,34 +1,30 @@
 extends VBoxContainer
 
 var DiaryEditorScreen = load("res://screens/diary_editor_screen.tscn")
-
-var datetime_dict: Dictionary:
-	get:
-		return _datetime.to_local_datetime_dict()
-	set(value):
-		_datetime = Datetime.from_local_datetime_dict(value)
-		_update_ui()
-
 var DiaryRepo = load("res://scripts/repositories/diary.gd").new()
 
 var _diaries := []
 var _selected_diary_idx := -1
 var _datetime := Datetime.new()
 
-@onready var date_label = %DateLabel as Label
+@onready var datetime_bar = %DatetimeBar as DatetimeBar
 @onready var diary_list = %DiaryList as ItemList
 @onready var title_edit = %TitleEdit as LineEdit
 @onready var content_edit = %ContentEdit as TextEdit
 
-func _get_date_string() -> String:
-	return "%04d-%02d-%02d" % [datetime_dict["year"], datetime_dict["month"], datetime_dict['day']]
+func _ready() -> void:
+	_on_screen_resume()
+
+func _on_screen_resume() -> void:
+	datetime_bar.set_datetime(_datetime)
+	_read_diaries()
+	_update_ui()
 
 func _read_diaries() -> void:
 	_diaries = DiaryRepo.find_by_date(_datetime)
 	_diaries.sort_custom(func (a, b): return a.content.date < b.content.date)
 
 func _update_ui() -> void:
-	date_label.text = _get_date_string()
 	diary_list.clear()
 	for diary in _diaries:
 		diary_list.add_item("%s @ %s" % [diary.content.title, Datetime.new(diary.content.date).format("HH:mm")])
@@ -45,20 +41,8 @@ func _update_ui() -> void:
 		title_edit.text = ""
 		content_edit.text = ""
 
-func _ready() -> void:
-	_on_screen_resume()
-
-func _on_screen_resume() -> void:
-	_read_diaries()
-	_update_ui()
-
-func _on_previous_day_button_pressed() -> void:
-	datetime_dict = _datetime.get_previous_day().to_local_datetime_dict()
-	_read_diaries()
-	_update_ui()
-
-func _on_next_day_button_pressed() -> void:
-	datetime_dict = _datetime.get_next_day().to_local_datetime_dict()
+func _on_datetime_bar_datetime_changed(datetime):
+	_datetime = datetime
 	_read_diaries()
 	_update_ui()
 

@@ -12,15 +12,15 @@ var Diary = DiaryRepository.new()
 var Category = CategoryRepository.new()
 var TodoItem = TodoItemRepository.new()
 
-var _repos = [
+var repos = [
 	PeerNode, Entry, EntryHistory, Diary, Category, TodoItem
 ]
 
 func _init() -> void:
 	var ok := _open_db()
 	if ok:
-		_maintenance()
 		_create_table()
+		_maintenance()
 
 func _open_db() -> bool:
 	db.path = Settings.db_path
