@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjqsimrht7rle"]
+[gd_scene load_steps=4 format=3 uid="uid://cjqsimrht7rle"]
 
 [ext_resource type="PackedScene" uid="uid://822i4oxf53qt" path="res://components/top_bar.tscn" id="1_ivijs"]
 [ext_resource type="Script" path="res://screens/category_editor_screen.gd" id="1_t4dsx"]
+[ext_resource type="PackedScene" uid="uid://wrqaahw6lqwx" path="res://components/category_tree.tscn" id="3_8umc2"]
 
 [node name="CategoryEditorScreen" type="VBoxContainer"]
 anchors_preset = 15
@@ -66,16 +67,9 @@ offset_right = 648.0
 offset_bottom = 977.0
 size_flags_vertical = 3
 
-[node name="CategoryTree" type="Tree" parent="VBoxContainer/ScrollContainer"]
-unique_name_in_owner = true
+[node name="CategoryTreeControl" parent="VBoxContainer/ScrollContainer" instance=ExtResource("3_8umc2")]
 layout_mode = 2
-offset_right = 648.0
-offset_bottom = 930.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/CreateButton" to="." method="_on_create_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/RenameButton" to="." method="_on_rename_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/RemoveButton" to="." method="_on_remove_button_pressed"]
-[connection signal="item_selected" from="VBoxContainer/ScrollContainer/CategoryTree" to="." method="_on_category_tree_item_selected"]
-[connection signal="nothing_selected" from="VBoxContainer/ScrollContainer/CategoryTree" to="." method="_on_category_tree_nothing_selected"]

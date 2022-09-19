@@ -9,7 +9,12 @@ var PeerNode = PeerNodeRepository.new()
 var Entry = EntryRepository.new()
 var EntryHistory = EntryHistoryRepository.new()
 var Diary = DiaryRepository.new()
+var Category = CategoryRepository.new()
 var TodoItem = TodoItemRepository.new()
+
+var _repos = [
+	PeerNode, Entry, EntryHistory, Diary, Category, TodoItem
+]
 
 func _init() -> void:
 	var ok := _open_db()

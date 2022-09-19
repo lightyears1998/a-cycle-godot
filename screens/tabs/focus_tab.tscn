@@ -6,13 +6,15 @@
 script = ExtResource("1_ryggw")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
 offset_right = 400.0
 offset_bottom = 43.0
 
 [node name="ClockingLabel" type="Label" parent="HBoxContainer"]
 unique_name_in_owner = true
+layout_mode = 2
 offset_top = 2.0
-offset_right = 326.0
+offset_right = 340.0
 offset_bottom = 40.0
 size_flags_horizontal = 3
 text = "00:00"
@@ -20,19 +22,22 @@ horizontal_alignment = 1
 
 [node name="ClockModeButton" type="Button" parent="HBoxContainer"]
 unique_name_in_owner = true
-offset_left = 330.0
+layout_mode = 2
+offset_left = 344.0
 offset_right = 400.0
 offset_bottom = 43.0
-text = "Clock"
+text = "Mini"
 
 [node name="StatusLabel" type="Label" parent="."]
 unique_name_in_owner = true
+layout_mode = 2
 offset_top = 47.0
 offset_right = 400.0
 offset_bottom = 85.0
 text = "Wating to start."
 
 [node name="TitleLabel" type="Label" parent="."]
+layout_mode = 2
 offset_top = 89.0
 offset_right = 400.0
 offset_bottom = 127.0
@@ -40,11 +45,13 @@ text = "Title"
 
 [node name="TitleEdit" type="LineEdit" parent="."]
 unique_name_in_owner = true
+layout_mode = 2
 offset_top = 131.0
 offset_right = 400.0
 offset_bottom = 174.0
 
 [node name="DescriptionLabel" type="Label" parent="."]
+layout_mode = 2
 offset_top = 178.0
 offset_right = 400.0
 offset_bottom = 216.0
@@ -53,6 +60,7 @@ text = "Description"
 [node name="DescriptionEdit" type="TextEdit" parent="."]
 unique_name_in_owner = true
 custom_minimum_size = Vector2i(400, 200)
+layout_mode = 2
 offset_top = 220.0
 offset_right = 400.0
 offset_bottom = 420.0
@@ -61,6 +69,7 @@ scroll_smooth = true
 
 [node name="StartPauseButton" type="Button" parent="."]
 unique_name_in_owner = true
+layout_mode = 2
 offset_top = 424.0
 offset_right = 400.0
 offset_bottom = 467.0
@@ -68,6 +77,7 @@ text = "Start / Pause / Continue"
 
 [node name="FinishButton" type="Button" parent="."]
 unique_name_in_owner = true
+layout_mode = 2
 offset_top = 471.0
 offset_right = 400.0
 offset_bottom = 514.0

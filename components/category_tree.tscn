@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://wrqaahw6lqwx"]
+
+[node name="CategoryTreeControl" type="Tree"]
+unique_name_in_owner = true
+offset_right = 648.0
+offset_bottom = 930.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
