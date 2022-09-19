@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://c4xo2kdn6f0sy"]
+[gd_scene load_steps=3 format=3 uid="uid://c4xo2kdn6f0sy"]
 
 [ext_resource type="Script" path="res://screens/tabs/activity_tab.gd" id="1_ol6s7"]
+[ext_resource type="PackedScene" uid="uid://dlbx4tf4vlot5" path="res://components/datetime_bar.tscn" id="2_l15pi"]
 
 [node name="ActivityTab" type="VBoxContainer"]
+custom_minimum_size = Vector2i(512, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -10,11 +12,4 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ol6s7")
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 2
-offset_top = 493.0
-offset_right = 648.0
-offset_bottom = 531.0
-size_flags_vertical = 6
-text = "Not implemented yet"
-horizontal_alignment = 1
+[node name="DatetimeBar" parent="." instance=ExtResource("2_l15pi")]

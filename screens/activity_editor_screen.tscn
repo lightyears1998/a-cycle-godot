@@ -1,0 +1,105 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjeap5osw84fo"]
+
+[ext_resource type="PackedScene" uid="uid://822i4oxf53qt" path="res://components/top_bar.tscn" id="1_pnar6"]
+[ext_resource type="Script" path="res://screens/activity_editor_screen.gd" id="1_qc5di"]
+[ext_resource type="PackedScene" uid="uid://2iokc6u23ov1" path="res://components/datetime_edit.tscn" id="2_174ad"]
+[ext_resource type="PackedScene" uid="uid://b5dp3in4k2664" path="res://components/category_picker.tscn" id="2_gvyn3"]
+
+[node name="ActivityEditorScreen" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qc5di")
+
+[node name="TopBar" parent="." instance=ExtResource("1_pnar6")]
+anchors_preset = 0
+anchor_right = 0.0
+offset_right = 648.0
+offset_bottom = 43.0
+grow_horizontal = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_top = 47.0
+offset_right = 648.0
+offset_bottom = 1024.0
+size_flags_vertical = 3
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer"]
+offset_right = 648.0
+offset_bottom = 38.0
+text = "Title"
+
+[node name="TitleEdit" type="LineEdit" parent="VBoxContainer"]
+unique_name_in_owner = true
+offset_top = 42.0
+offset_right = 648.0
+offset_bottom = 85.0
+
+[node name="DescriptionLabel" type="Label" parent="VBoxContainer"]
+offset_top = 89.0
+offset_right = 648.0
+offset_bottom = 127.0
+text = "Description"
+
+[node name="DescriptionEdit" type="TextEdit" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2i(0, 128)
+offset_top = 131.0
+offset_right = 648.0
+offset_bottom = 259.0
+
+[node name="CategoryLabel" type="Label" parent="VBoxContainer"]
+offset_top = 263.0
+offset_right = 648.0
+offset_bottom = 301.0
+text = "Category"
+
+[node name="CategoryPicker" parent="VBoxContainer" instance=ExtResource("2_gvyn3")]
+unique_name_in_owner = true
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_top = 305.0
+offset_right = 648.0
+offset_bottom = 348.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="StartDate" type="Label" parent="VBoxContainer"]
+offset_top = 352.0
+offset_right = 648.0
+offset_bottom = 390.0
+text = "Start Datetime"
+
+[node name="StartDatetimeEdit" parent="VBoxContainer" instance=ExtResource("2_174ad")]
+unique_name_in_owner = true
+offset_top = 394.0
+offset_right = 648.0
+offset_bottom = 437.0
+
+[node name="EndDate" type="Label" parent="VBoxContainer"]
+offset_top = 441.0
+offset_right = 648.0
+offset_bottom = 479.0
+text = "End Datetime"
+
+[node name="EndDatetimeEdit" parent="VBoxContainer" instance=ExtResource("2_174ad")]
+unique_name_in_owner = true
+offset_top = 483.0
+offset_right = 648.0
+offset_bottom = 526.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+offset_top = 530.0
+offset_right = 648.0
+offset_bottom = 573.0
+alignment = 1
+
+[node name="SaveActivityButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+offset_left = 248.0
+offset_right = 399.0
+offset_bottom = 43.0
+text = "Save Activity"

@@ -3,10 +3,10 @@ class_name ActivityRepository
 
 const ACTIIVITY_ENTRY_CONTENT_TYPE := "activity"
 
-const ACTIIVITY_CONTENT_TEMPLATE = {
+const ACTIIVITY_ENTRY_CONTENT_TEMPLATE = {
 	"title": "", # text
 	"description": "", # text
-	"category": [
+	"categories": [
 		# category_uid
 	],
 	"startDate": 0, # unix_time
@@ -17,5 +17,6 @@ const ACTIIVITY_CONTENT_TEMPLATE = {
 	}
 }
 
-func create():
-	pass
+func create() -> Dictionary:
+	var content = ACTIIVITY_ENTRY_CONTENT_TEMPLATE.duplicate(true)
+	return super.fork(ACTIIVITY_ENTRY_CONTENT_TYPE, content)
