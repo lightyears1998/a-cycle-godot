@@ -5,6 +5,7 @@ const CURRENT_DATABASE_SCHEMA := 1
 
 var db: SQLite = SQLite.new()
 
+var PeerNode = PeerNodeRepository.new()
 var Entry = EntryRepository.new()
 var EntryHistory = EntryHistoryRepository.new()
 var Diary = DiaryRepository.new()
