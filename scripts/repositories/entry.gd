@@ -24,6 +24,9 @@ func _from_plain_dict(entry: Dictionary) -> Dictionary:
 	return entry
 
 func create() -> Dictionary:
+	return _create()
+
+func _create() -> Dictionary:
 	var entry = ENTRY_CONTENT_TEMPLATE.duplicate(true)
 	var created_at = Datetime.new().to_iso_timestamp()
 	entry.uuid = ""
@@ -33,7 +36,7 @@ func create() -> Dictionary:
 	return entry
 
 func fork(content_type: String, content: Dictionary) -> Dictionary:
-	var entry = self.create()
+	var entry = _create()
 	entry["contentType"] = content_type
 	entry["content"] = content
 	return entry
