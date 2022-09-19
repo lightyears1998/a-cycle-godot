@@ -7,10 +7,12 @@ enum Status {
 	PAUSED,
 }
 
-var _status = Status.STOPPED
+var focusing_activity_title := ""
 var status: Status:
 	set(next_status): set_status(next_status)
 	get: return _status
+
+var _status = Status.STOPPED
 
 var start_unix_time = 0
 var accumulated_unix_time = 0

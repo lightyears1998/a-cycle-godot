@@ -48,3 +48,6 @@ func _on_finish_button_pressed():
 
 func _on_clock_mode_button_pressed():
 	Screens.go_to(FocusClock.instantiate())
+
+func _on_title_edit_text_changed(new_text):
+	Service.Focus.focusing_activity_title = new_text
