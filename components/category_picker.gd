@@ -18,6 +18,13 @@ var selected_category:
 var _selected_category = null
 var _expanded_for_selection = false
 
+func select_by_category_uids(uids: Array):
+	var uid = uids.front() if len(uids) > 0 else null
+	if category_tree and uid in category_tree._map:
+		selected_category = category_tree._map[uid]
+	else:
+		selected_category = null
+
 func _update_ui():
 	category_tree.visible = _expanded_for_selection
 	if _expanded_for_selection:
@@ -39,6 +46,7 @@ func _on_category_tree_category_selected(category_node):
 func _on_select_or_confirm_button_pressed():
 	if _expanded_for_selection:
 		selected_category = category_tree._selected_node
+		category_changed.emit(selected_category)
 	_expanded_for_selection = !_expanded_for_selection
 	_update_ui()
 
