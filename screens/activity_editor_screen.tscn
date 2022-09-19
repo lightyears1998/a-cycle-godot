@@ -67,34 +67,46 @@ offset_bottom = 348.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="StartDate" type="Label" parent="VBoxContainer"]
+[node name="StartDateHBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 offset_top = 352.0
 offset_right = 648.0
-offset_bottom = 390.0
+offset_bottom = 395.0
+
+[node name="StartDateLabel" type="Label" parent="VBoxContainer/StartDateHBoxContainer"]
+offset_top = 2.0
+offset_right = 259.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
 text = "Start Datetime"
 
-[node name="StartDatetimeEdit" parent="VBoxContainer" instance=ExtResource("2_174ad")]
+[node name="StartDatetimeEdit" parent="VBoxContainer/StartDateHBoxContainer" instance=ExtResource("2_174ad")]
 unique_name_in_owner = true
-offset_top = 394.0
+offset_left = 263.0
 offset_right = 648.0
-offset_bottom = 437.0
+offset_bottom = 43.0
 
-[node name="EndDate" type="Label" parent="VBoxContainer"]
-offset_top = 441.0
+[node name="EndDateHBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+offset_top = 399.0
 offset_right = 648.0
-offset_bottom = 479.0
+offset_bottom = 442.0
+
+[node name="EndDateLabel" type="Label" parent="VBoxContainer/EndDateHBoxContainer"]
+offset_top = 2.0
+offset_right = 259.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
 text = "End Datetime"
 
-[node name="EndDatetimeEdit" parent="VBoxContainer" instance=ExtResource("2_174ad")]
+[node name="EndDatetimeEdit" parent="VBoxContainer/EndDateHBoxContainer" instance=ExtResource("2_174ad")]
 unique_name_in_owner = true
-offset_top = 483.0
+offset_left = 263.0
 offset_right = 648.0
-offset_bottom = 526.0
+offset_bottom = 43.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-offset_top = 530.0
+offset_top = 446.0
 offset_right = 648.0
-offset_bottom = 573.0
+offset_bottom = 489.0
 alignment = 1
 
 [node name="SaveActivityButton" type="Button" parent="VBoxContainer/HBoxContainer"]
@@ -103,3 +115,5 @@ offset_left = 248.0
 offset_right = 399.0
 offset_bottom = 43.0
 text = "Save Activity"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/SaveActivityButton" to="." method="_on_save_activity_button_pressed"]

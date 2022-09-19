@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-var DiaryEditorScreen = load("res://screens/diary_editor_screen.tscn")
+var DiaryEditorScreen = preload("res://screens/diary_editor_screen.tscn")
 var DiaryRepo = load("res://scripts/repositories/diary.gd").new()
 
 var _diaries := []

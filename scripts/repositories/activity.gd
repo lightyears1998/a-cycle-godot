@@ -20,3 +20,10 @@ const ACTIIVITY_ENTRY_CONTENT_TEMPLATE = {
 func create() -> Dictionary:
 	var content = ACTIIVITY_ENTRY_CONTENT_TEMPLATE.duplicate(true)
 	return super.fork(ACTIIVITY_ENTRY_CONTENT_TYPE, content)
+
+func find_by_start_date(date: Datetime, discard_removed := true) -> Array[Dictionary]:
+	var lower_bound = date.get_the_beginning_of_the_day().to_unix_time()
+	var upper_bound = date.get_the_end_of_the_day().to_unix_time()
+	var activities = super.select_rows("contentType='%s'" % ACTIIVITY_ENTRY_CONTENT_TYPE, discard_removed)
+	activities = activities.filter(func (activity): return activity.content["startDate"] >= lower_bound and activity.content["startDate"] <= upper_bound)
+	return activities

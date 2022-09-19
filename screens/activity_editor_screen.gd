@@ -1,12 +1,14 @@
 extends VBoxContainer
 
+signal activity_changed(activity)
+
 var ActivityRepo = Database.Activity
 var CategoryRepo = Database.Category
 
 var activity = ActivityRepo.create()
 
 @onready var title_edit = %TitleEdit as LineEdit
-@onready var description_edit = %DescriptionEdit as LineEdit
+@onready var description_edit = %DescriptionEdit as TextEdit
 @onready var category_picker = %CategoryPicker as CategoryPicker
 @onready var start_datetime_edit = %StartDatetimeEdit
 @onready var end_datetime_edit = %EndDatetimeEdit
@@ -25,5 +27,24 @@ func _update_ui():
 func _update_category_picker_ui():
 	var categories = activity["content"]["categories"]
 	if len(categories) == 0:
-		category_picker.sele
-	CategoryRepo.find_by_category_uid()
+		category_picker.selected_category = null
+		return
+	var first_category_uid = categories.front()
+	var category = CategoryRepo.find_by_category_uid(first_category_uid)
+	category_picker.selected_category = category
+
+func _update_activity():
+	var content = activity.content
+	content["title"] = title_edit.text
+	content["description"] = description_edit.text
+	content["categories"].clear()
+	if category_picker.selected_category != null:
+		var category_uid = category_picker.selected_category.uid
+		content["categories"].append(category_uid)
+	content["startDate"] = Datetime.from_local_datetime_dict(start_datetime_edit.datetime_dict).to_unix_time()
+	content["endDate"] = Datetime.from_local_datetime_dict(end_datetime_edit.datetime_dict).to_unix_time()
+
+func _on_save_activity_button_pressed():
+	_update_activity()
+	ActivityRepo.save(activity)
+	activity_changed.emit(activity)

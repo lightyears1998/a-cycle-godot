@@ -47,4 +47,3 @@ func _on_clear_button_pressed():
 	_expanded_for_selection = false
 	_update_ui()
 	category_changed.emit(selected_category)
-
