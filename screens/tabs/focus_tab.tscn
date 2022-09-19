@@ -1,20 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://cpj3ktsvpuugf"]
+[gd_scene load_steps=3 format=3 uid="uid://cpj3ktsvpuugf"]
 
 [ext_resource type="Script" path="res://screens/tabs/focus_tab.gd" id="1_ryggw"]
+[ext_resource type="PackedScene" uid="uid://b5dp3in4k2664" path="res://components/category_picker.tscn" id="2_me28g"]
 
 [node name="FocusTab" type="VBoxContainer"]
 script = ExtResource("1_ryggw")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 2
-offset_right = 400.0
+offset_right = 512.0
 offset_bottom = 43.0
 
 [node name="ClockingLabel" type="Label" parent="HBoxContainer"]
 unique_name_in_owner = true
-layout_mode = 2
 offset_top = 2.0
-offset_right = 340.0
+offset_right = 452.0
 offset_bottom = 40.0
 size_flags_horizontal = 3
 text = "00:00"
@@ -22,68 +21,79 @@ horizontal_alignment = 1
 
 [node name="ClockModeButton" type="Button" parent="HBoxContainer"]
 unique_name_in_owner = true
-layout_mode = 2
-offset_left = 344.0
-offset_right = 400.0
+offset_left = 456.0
+offset_right = 512.0
 offset_bottom = 43.0
 text = "Mini"
 
 [node name="StatusLabel" type="Label" parent="."]
 unique_name_in_owner = true
-layout_mode = 2
 offset_top = 47.0
-offset_right = 400.0
+offset_right = 512.0
 offset_bottom = 85.0
 text = "Wating to start."
 
 [node name="TitleLabel" type="Label" parent="."]
-layout_mode = 2
 offset_top = 89.0
-offset_right = 400.0
+offset_right = 512.0
 offset_bottom = 127.0
 text = "Title"
 
 [node name="TitleEdit" type="LineEdit" parent="."]
 unique_name_in_owner = true
-layout_mode = 2
 offset_top = 131.0
-offset_right = 400.0
+offset_right = 512.0
 offset_bottom = 174.0
 
-[node name="DescriptionLabel" type="Label" parent="."]
-layout_mode = 2
+[node name="CategoryLabel" type="Label" parent="."]
 offset_top = 178.0
-offset_right = 400.0
+offset_right = 512.0
 offset_bottom = 216.0
+text = "Category"
+
+[node name="CategoryPicker" parent="." instance=ExtResource("2_me28g")]
+unique_name_in_owner = true
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_top = 220.0
+offset_right = 512.0
+offset_bottom = 263.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="DescriptionLabel" type="Label" parent="."]
+offset_top = 267.0
+offset_right = 512.0
+offset_bottom = 305.0
 text = "Description"
 
 [node name="DescriptionEdit" type="TextEdit" parent="."]
 unique_name_in_owner = true
 custom_minimum_size = Vector2i(400, 200)
-layout_mode = 2
-offset_top = 220.0
-offset_right = 400.0
-offset_bottom = 420.0
+offset_top = 309.0
+offset_right = 512.0
+offset_bottom = 509.0
 wrap_mode = 1
 scroll_smooth = true
 
 [node name="StartPauseButton" type="Button" parent="."]
 unique_name_in_owner = true
-layout_mode = 2
-offset_top = 424.0
-offset_right = 400.0
-offset_bottom = 467.0
+offset_top = 513.0
+offset_right = 512.0
+offset_bottom = 556.0
 text = "Start / Pause / Continue"
 
 [node name="FinishButton" type="Button" parent="."]
 unique_name_in_owner = true
-layout_mode = 2
-offset_top = 471.0
-offset_right = 400.0
-offset_bottom = 514.0
+offset_top = 560.0
+offset_right = 512.0
+offset_bottom = 603.0
 text = "Finish"
 
 [connection signal="pressed" from="HBoxContainer/ClockModeButton" to="." method="_on_clock_mode_button_pressed"]
 [connection signal="text_changed" from="TitleEdit" to="." method="_on_title_edit_text_changed"]
+[connection signal="category_changed" from="CategoryPicker" to="." method="_on_category_picker_category_changed"]
+[connection signal="text_changed" from="DescriptionEdit" to="." method="_on_description_edit_text_changed"]
 [connection signal="pressed" from="StartPauseButton" to="." method="_on_start_pause_button_pressed"]
 [connection signal="pressed" from="FinishButton" to="." method="_on_finish_button_pressed"]

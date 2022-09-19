@@ -19,7 +19,7 @@ func _ready():
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_ALWAYS_ON_TOP, true)
 
 func _update_ui():
-	title_labbel.text = str(Service.Focus.focusing_activity_title).strip_edges()
+	title_labbel.text = str(Service.Focus.focusing_activity["content"]["title"]).strip_edges()
 	if title_labbel.text.is_empty():
 		title_labbel.hide()
 

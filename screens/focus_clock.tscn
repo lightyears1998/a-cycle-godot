@@ -8,6 +8,7 @@ script = ExtResource("1_lrbsg")
 
 [node name="ClockingLabel" type="Label" parent="."]
 unique_name_in_owner = true
+layout_mode = 2
 offset_right = 256.0
 offset_bottom = 38.0
 size_flags_vertical = 6
@@ -17,6 +18,7 @@ vertical_alignment = 1
 
 [node name="TitleLabel" type="Label" parent="."]
 unique_name_in_owner = true
+layout_mode = 2
 offset_top = 44.0
 offset_right = 256.0
 offset_bottom = 79.0
@@ -25,6 +27,7 @@ horizontal_alignment = 1
 
 [node name="RestoreButton" type="Button" parent="."]
 unique_name_in_owner = true
+layout_mode = 2
 offset_top = 85.0
 offset_right = 256.0
 offset_bottom = 128.0
