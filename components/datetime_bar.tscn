@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlbx4tf4vlot5"]
+
+[ext_resource type="Script" path="res://components/datetime_bar.gd" id="1_j5tju"]
+
+[node name="DatetimeBar" type="HBoxContainer"]
+offset_right = 648.0
+offset_bottom = 43.0
+script = ExtResource("1_j5tju")
+
+[node name="PreviousDayButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+offset_right = 31.0
+offset_bottom = 43.0
+text = " < "
+
+[node name="DatetimeLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 35.0
+offset_top = 2.0
+offset_right = 613.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+text = "YYYY-MM-DD"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NextDayButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 617.0
+offset_right = 648.0
+offset_bottom = 43.0
+text = " > "
+
+[connection signal="pressed" from="PreviousDayButton" to="." method="_on_previous_day_button_pressed"]
+[connection signal="pressed" from="NextDayButton" to="." method="_on_next_day_button_pressed"]

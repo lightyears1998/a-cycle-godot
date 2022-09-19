@@ -39,6 +39,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://scripts/objects/datetime.gd"
 }, {
+"base": "HBoxContainer",
+"class": &"DatetimeBar",
+"language": &"GDScript",
+"path": "res://components/datetime_bar.gd"
+}, {
 "base": "EntryRepository",
 "class": &"DiaryRepository",
 "language": &"GDScript",
@@ -131,6 +136,7 @@ _global_script_class_icons={
 "CategoryRepository": "",
 "DatabaseSingleton": "",
 "Datetime": "",
+"DatetimeBar": "",
 "DiaryRepository": "",
 "EntryHistoryRepository": "",
 "EntryRepository": "",
