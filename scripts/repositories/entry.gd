@@ -4,13 +4,13 @@ class_name EntryRepository
 var EntryHistoryRepo = EntryHistoryRepository.new()
 
 const ENTRY_CONTENT_TEMPLATE = {
-	"uuid": "",
-	"removedAt": null,
-	"contentType": "text",
+	"uuid": "", # empty string or uuid
+	"removedAt": null, # null or timestamp
+	"contentType": "", # text
 	"content": {},
-	"createdAt": "timestamp",
-	"updatedAt": "timestamp",
-	"updatedBy": "uuid",
+	"createdAt": "", # timestamp
+	"updatedAt": "", # timestamp
+	"updatedBy": "", # updated uuid
 }
 
 func _to_plain_dict(entry: Dictionary) -> Dictionary:

@@ -4,13 +4,13 @@ class_name ActivityRepository
 const ENTRY_CONTENT_TYPE := "activity"
 
 const ACTIIVITY_CONTENT_TEMPLATE = {
-	"title": "text",
-	"description": "text",
+	"title": "", # text
+	"description": "", # text
 	"category": [
-		"category_fully_qualified_name_or_uuid"
+		# category_uid
 	],
-	"startDate": "unix_time",
-	"endDate": "unix_time",
+	"startDate": 0, # unix_time
+	"endDate": 0, # unix_time
 	"isTransient": false,
 	"metadata": {
 		# Placeholder for future use.

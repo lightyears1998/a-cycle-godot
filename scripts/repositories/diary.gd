@@ -4,9 +4,9 @@ class_name DiaryRepository
 const ENTRY_CONTENT_TYPE := "diary"
 
 const DIARY_CONTENT_TEMPLATE = {
-	"date": "unix_time",
-	"title": "text",
-	"content": "text",
+	"date": 0, # unix_time
+	"title": "", # text
+	"content": "", # text
 }
 
 func create(date: int = 0, title: String = "", content: String = "") -> Dictionary:

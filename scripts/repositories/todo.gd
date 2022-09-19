@@ -4,16 +4,16 @@ class_name TodoItemRepository
 const TODO_ITEM_CONTENT_TYPE := "todo_item"
 
 const TODO_ITEM_CONTENT_TEMPLATE = {
-	"title": "text",
-	"description": "text",
+	"title": "", # text
+	"description": "", # text
 	"category": [
-		"category_fully_qualified_name_or_uuid"
+		# category-uid
 	],
-	"startDate": "unix_time",
-	"endDate": "unix_time",
-	"doneDate": "unix_time",
+	"startDate": 0, # unix_time
+	"endDate": 0, # unix_time
+	"doneDate": 0, # unix_time
 	"isTransient": false,
-	"repeat": "", # "by-week"
+	"repeat": "", # by-week
 	"metadata": {
 		# Placeholder for future use.
 	}

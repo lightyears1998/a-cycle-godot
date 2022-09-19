@@ -4,15 +4,16 @@ class_name CategoryRepository
 const ENTRY_CONTENT_TYPE := "category"
 
 const CATEGORY_TREE_ITEM_TEMPLATE := {
-	"uid": "qualified name or uuid",
-	"parent": "uid of parent category",
+	"uid": "", # qualified name for kernel category or uuid for custom ones
+	"parent": "", # empty string or uid of parent category
 	"children": [], # Array of children uid
 	"entry": null, # Associated database entry
 }
 
 const CATEGORY_CONTENT_TEMPLATE := {
-	"name": "category-name",
 	"parent": null,
+	"name": "",
+	"description": "",
 }
 
 var tree: Dictionary = {}
@@ -29,11 +30,11 @@ func _get_kenerls() -> Array[Dictionary]:
 #		{ "uuid": "", "c" }
 	]
 
-func get_tree() -> Dictionary:
+func _build_tree():
 	var customs = self._find_all_customs()
 	var kernels =  self._get_kernels()
 
-	var tree = {}
+	tree = {}
 	for category in categories:
 		tree[category.uuid] = {
 			"uid": category.uuid,
@@ -44,4 +45,9 @@ func get_tree() -> Dictionary:
 	for category in categories:
 		if category["parent"] and category["parent"] in tree:
 			tree[category["parent"]].children.append(category.uuid)
+
+func get_tree() -> Dictionary:
+	if tree.is_empty():
+		_build_tree()
+
 	return tree
