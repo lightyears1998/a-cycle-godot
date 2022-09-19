@@ -18,6 +18,7 @@ func _update_sync_server_configs():
 	for idx in range(server_list.item_count):
 		var config = server_list.get_item_metadata(idx)
 		sync_servers.push_back(config)
+	Settings.save()
 
 func _exit_tree():
 	_update_sync_server_configs()

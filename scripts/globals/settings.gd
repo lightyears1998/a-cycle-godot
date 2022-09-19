@@ -29,6 +29,9 @@ func _ready():
 	_load_app_config()
 	_log_settings()
 
+func save():
+	_save_app_config()
+
 func _exit_tree():
 	_save_app_config()
 
