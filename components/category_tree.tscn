@@ -1,8 +1,57 @@
-[gd_scene format=3 uid="uid://wrqaahw6lqwx"]
+[gd_scene load_steps=2 format=3 uid="uid://wrqaahw6lqwx"]
 
-[node name="CategoryTreeControl" type="Tree"]
+[ext_resource type="Script" path="res://components/category_tree.gd" id="1_6sxae"]
+
+[node name="CategoryTree" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6sxae")
+
+[node name="Toolbar" type="HBoxContainer" parent="."]
 unique_name_in_owner = true
 offset_right = 648.0
-offset_bottom = 930.0
+offset_bottom = 43.0
+
+[node name="NameEdit" type="LineEdit" parent="Toolbar"]
+unique_name_in_owner = true
+offset_right = 253.0
+offset_bottom = 43.0
+size_flags_horizontal = 3
+
+[node name="CreateButton" type="Button" parent="Toolbar"]
+unique_name_in_owner = true
+offset_left = 257.0
+offset_right = 443.0
+offset_bottom = 43.0
+text = "Create Category"
+
+[node name="RenameButton" type="Button" parent="Toolbar"]
+unique_name_in_owner = true
+offset_left = 447.0
+offset_right = 547.0
+offset_bottom = 43.0
+text = "Rename"
+
+[node name="RemoveButton" type="Button" parent="Toolbar"]
+unique_name_in_owner = true
+offset_left = 551.0
+offset_right = 648.0
+offset_bottom = 43.0
+text = "Remove"
+
+[node name="Tree" type="Tree" parent="."]
+unique_name_in_owner = true
+offset_top = 47.0
+offset_right = 648.0
+offset_bottom = 1024.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[connection signal="pressed" from="Toolbar/CreateButton" to="." method="_on_create_button_pressed"]
+[connection signal="pressed" from="Toolbar/RenameButton" to="." method="_on_rename_button_pressed"]
+[connection signal="pressed" from="Toolbar/RemoveButton" to="." method="_on_remove_button_pressed"]
+[connection signal="item_selected" from="Tree" to="." method="_on_tree_item_selected"]
+[connection signal="nothing_selected" from="Tree" to="." method="_on_tree_nothing_selected"]
