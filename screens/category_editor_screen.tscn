@@ -13,7 +13,6 @@ grow_vertical = 2
 script = ExtResource("1_t4dsx")
 
 [node name="TopBar" parent="." instance=ExtResource("1_ivijs")]
-layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
 offset_right = 648.0
@@ -21,7 +20,6 @@ offset_bottom = 43.0
 grow_horizontal = 1
 
 [node name="CategoryTree" parent="." instance=ExtResource("3_8umc2")]
-layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0

@@ -14,6 +14,7 @@ grow_vertical = 2
 script = ExtResource("1_qc5di")
 
 [node name="TopBar" parent="." instance=ExtResource("1_pnar6")]
+layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
 offset_right = 648.0
@@ -21,23 +22,27 @@ offset_bottom = 43.0
 grow_horizontal = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
 offset_top = 47.0
 offset_right = 648.0
 offset_bottom = 1024.0
 size_flags_vertical = 3
 
 [node name="TitleLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
 offset_right = 648.0
 offset_bottom = 38.0
 text = "Title"
 
 [node name="TitleEdit" type="LineEdit" parent="VBoxContainer"]
 unique_name_in_owner = true
+layout_mode = 2
 offset_top = 42.0
 offset_right = 648.0
 offset_bottom = 85.0
 
 [node name="DescriptionLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
 offset_top = 89.0
 offset_right = 648.0
 offset_bottom = 127.0
@@ -46,11 +51,13 @@ text = "Description"
 [node name="DescriptionEdit" type="TextEdit" parent="VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2i(0, 128)
+layout_mode = 2
 offset_top = 131.0
 offset_right = 648.0
 offset_bottom = 259.0
 
 [node name="CategoryLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
 offset_top = 263.0
 offset_right = 648.0
 offset_bottom = 301.0
@@ -58,6 +65,7 @@ text = "Category"
 
 [node name="CategoryPicker" parent="VBoxContainer" instance=ExtResource("2_gvyn3")]
 unique_name_in_owner = true
+layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -68,11 +76,13 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="StartDateHBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
 offset_top = 352.0
 offset_right = 648.0
 offset_bottom = 395.0
 
 [node name="StartDateLabel" type="Label" parent="VBoxContainer/StartDateHBoxContainer"]
+layout_mode = 2
 offset_top = 2.0
 offset_right = 259.0
 offset_bottom = 40.0
@@ -81,16 +91,19 @@ text = "Start Datetime"
 
 [node name="StartDatetimeEdit" parent="VBoxContainer/StartDateHBoxContainer" instance=ExtResource("2_174ad")]
 unique_name_in_owner = true
+layout_mode = 2
 offset_left = 263.0
 offset_right = 648.0
 offset_bottom = 43.0
 
 [node name="EndDateHBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
 offset_top = 399.0
 offset_right = 648.0
 offset_bottom = 442.0
 
 [node name="EndDateLabel" type="Label" parent="VBoxContainer/EndDateHBoxContainer"]
+layout_mode = 2
 offset_top = 2.0
 offset_right = 259.0
 offset_bottom = 40.0
@@ -99,11 +112,13 @@ text = "End Datetime"
 
 [node name="EndDatetimeEdit" parent="VBoxContainer/EndDateHBoxContainer" instance=ExtResource("2_174ad")]
 unique_name_in_owner = true
+layout_mode = 2
 offset_left = 263.0
 offset_right = 648.0
 offset_bottom = 43.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
 offset_top = 446.0
 offset_right = 648.0
 offset_bottom = 489.0
@@ -111,6 +126,7 @@ alignment = 1
 
 [node name="SaveActivityButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
+layout_mode = 2
 offset_left = 248.0
 offset_right = 399.0
 offset_bottom = 43.0

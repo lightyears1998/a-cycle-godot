@@ -20,18 +20,9 @@ func _update_ui():
 	var content = activity["content"]
 	title_edit.text = content["title"]
 	description_edit.text = content["description"]
-	_update_category_picker_ui()
+	category_picker.select_by_category_uids(content['categories'])
 	start_datetime_edit.datetime_dict = Datetime.from_unix_time(content["startDate"]).to_local_datetime_dict()
 	end_datetime_edit.datetime_dict = Datetime.from_unix_time(content["endDate"]).to_local_datetime_dict()
-
-func _update_category_picker_ui():
-	var categories = activity["content"]["categories"]
-	if len(categories) == 0:
-		category_picker.selected_category = null
-		return
-	var first_category_uid = categories.front()
-	var category = CategoryRepo.find_by_category_uid(first_category_uid)
-	category_picker.selected_category = category
 
 func _update_activity():
 	var content = activity.content
