@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5dp3in4k2664"]
+
+[ext_resource type="Script" path="res://components/category_picker.gd" id="1_ljb4y"]
+[ext_resource type="PackedScene" uid="uid://wrqaahw6lqwx" path="res://components/category_tree.tscn" id="1_ndqy6"]
+
+[node name="CategoryPicker" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ljb4y")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 648.0
+offset_bottom = 43.0
+
+[node name="SelectedCategoryNameLabel" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+offset_top = 4.0
+offset_right = 389.0
+offset_bottom = 39.0
+size_flags_horizontal = 3
+
+[node name="SelectOrConfirmButton" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+offset_left = 393.0
+offset_right = 578.0
+offset_bottom = 43.0
+text = "Select / Confirm"
+
+[node name="ClearButton" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+offset_left = 582.0
+offset_right = 648.0
+offset_bottom = 43.0
+text = "Clear"
+
+[node name="CategoryTree" parent="." instance=ExtResource("1_ndqy6")]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2i(512, 512)
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_top = 39.0
+offset_right = 648.0
+offset_bottom = 551.0
+grow_horizontal = 1
+grow_vertical = 1
+editable = false
+
+[connection signal="pressed" from="HBoxContainer/SelectOrConfirmButton" to="." method="_on_select_or_confirm_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/ClearButton" to="." method="_on_clear_button_pressed"]
+[connection signal="category_selected" from="CategoryTree" to="." method="_on_category_tree_category_selected"]

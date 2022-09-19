@@ -49,6 +49,7 @@ offset_right = 648.0
 offset_bottom = 1024.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+hide_root = true
 
 [connection signal="pressed" from="Toolbar/CreateButton" to="." method="_on_create_button_pressed"]
 [connection signal="pressed" from="Toolbar/RenameButton" to="." method="_on_rename_button_pressed"]

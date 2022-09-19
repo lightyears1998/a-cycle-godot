@@ -3,6 +3,7 @@
 # 2. Enable or disable editing on builtin categories.
 
 extends VBoxContainer
+class_name CategoryTree
 
 signal category_selected(category_node: Dictionary)
 
@@ -127,9 +128,11 @@ func _ready():
 
 func _on_tree_item_selected():
 	_selected_tree_item = tree.get_selected()
+	category_selected.emit(_selected_node)
 
 func _on_tree_nothing_selected():
 	_selected_tree_item = null
+	category_selected.emit(_selected_node)
 
 func _create_node(parent_uid: String, category_name: String) -> Dictionary:
 	var node = CATEGORY_TREE_NODE_TEMPLATE.duplicate(true)
