@@ -28,7 +28,7 @@ func _update_ui():
 func _ready():
 	_update_ui()
 
-func _process(_delta):
+func _physics_process(_delta):
 	_update_ui()
 
 func _on_start_pause_button_pressed():

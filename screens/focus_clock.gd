@@ -27,7 +27,7 @@ func _on_screen_destroy():
 	$/root.size = _previous_window_size
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_ALWAYS_ON_TOP, _previous_window_always_on_top_flag)
 
-func _process(_delta):
+func _physics_process(_delta):
 	clocking_label.text = Service.Focus.get_clock_text()
 
 func _on_restore_button_pressed():
