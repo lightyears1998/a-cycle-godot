@@ -11,9 +11,16 @@ var EntryHistory = EntryHistoryRepository.new()
 var Diary = DiaryRepository.new()
 var Category = CategoryRepository.new()
 var TodoItem = TodoItemRepository.new()
+var Activity = ActivityRepository.new()
 
 var repos = [
-	PeerNode, Entry, EntryHistory, Diary, Category, TodoItem
+	PeerNode,
+	Entry,
+	EntryHistory,
+	Diary,
+	Category,
+	TodoItem,
+	Activity
 ]
 
 func _init() -> void:
