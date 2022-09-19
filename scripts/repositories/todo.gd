@@ -1,9 +1,9 @@
 extends EntryRepository
 class_name TodoItemRepository
 
-const TODO_ITEM_CONTENT_TYPE := "todo_item"
+const TODO_ITEM_ENTRY_CONTENT_TYPE := "todo_item"
 
-const TODO_ITEM_CONTENT_TEMPLATE = {
+const TODO_ITEM_ENTRY_CONTENT_TEMPLATE = {
 	"title": "", # text
 	"description": "", # text
 	"category": [
@@ -20,5 +20,5 @@ const TODO_ITEM_CONTENT_TEMPLATE = {
 }
 
 func create() -> Dictionary:
-	var content = TODO_ITEM_CONTENT_TEMPLATE.duplicate(true)
-	return super.fork(TODO_ITEM_CONTENT_TYPE, content)
+	var content = TODO_ITEM_ENTRY_CONTENT_TEMPLATE.duplicate(true)
+	return super.fork(TODO_ITEM_ENTRY_CONTENT_TYPE, content)

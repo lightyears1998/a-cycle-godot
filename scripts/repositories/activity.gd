@@ -1,7 +1,7 @@
 extends EntryRepository
 class_name ActivityRepository
 
-const ENTRY_CONTENT_TYPE := "activity"
+const ACTIIVITY_ENTRY_CONTENT_TYPE := "activity"
 
 const ACTIIVITY_CONTENT_TEMPLATE = {
 	"title": "", # text
