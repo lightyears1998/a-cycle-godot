@@ -1,0 +1,20 @@
+on: [push]
+
+name: Make Badge
+
+jobs:
+  make-badge:
+    name: Make Badge
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+          fetch-depth: 0
+      - name: Generate a Lines of Code Badge
+        uses: lightyears1998/tokei-badge@master
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: out
