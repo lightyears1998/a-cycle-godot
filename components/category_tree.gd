@@ -76,7 +76,7 @@ func _get_builtin_categories_tree() -> Dictionary:
 		_build_builtin_category_tree_item("kernel/sleeping", "kernel", "Sleeping"),
 		_build_builtin_category_tree_item("kernel/sports", "kernel", "Sports"),
 		_build_builtin_category_tree_item("kernel/grooming", "kernel", "Grooming"),
-		_build_builtin_category_tree_item("kernel/sumarizing", "kernel", "Sumarizing"),
+		_build_builtin_category_tree_item("kernel/summarizing", "kernel", "Summarizing"),
 	]
 	var builtin_tree = {}
 	for node in builtin_nodes:
