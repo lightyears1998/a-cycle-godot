@@ -19,7 +19,7 @@ func list() -> Array[Dictionary]:
 
 func find_by_category_uid(category_uid: String) -> Dictionary:
 	var categories = self.list()
-	var targets = categories.filter(func (item): item.content.uid == category_uid)
+	var targets = categories.filter(func (item): return item.content.uid == category_uid)
 	if len(targets) == 0:
 		return {}
 	return targets.front()
