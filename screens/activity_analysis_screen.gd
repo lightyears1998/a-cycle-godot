@@ -24,6 +24,21 @@ func _get_time_progress() -> float:
 	porgress_percentage = clampf(porgress_percentage, 0., 1.)
 	return porgress_percentage
 
+func _add_item_to_summary_container(item_name: String, timespan: float):
+	var hour = timespan / Datetime.HOUR_IN_SECONDS
+	var percentage = timespan / Datetime.DAY_IN_SECONDS * 100
+
+	var name_label = Label.new()
+	name_label.text = item_name
+	var hour_label = Label.new()
+	hour_label.text = "%.2fhr" % hour
+	var percentage_label = Label.new()
+	percentage_label.text = "%.2f%%" % percentage
+
+	summary_container.add_child(name_label)
+	summary_container.add_child(hour_label)
+	summary_container.add_child(percentage_label)
+
 func _make_summary() -> void:
 	var summary := {}
 	for activity in _activities:
@@ -34,16 +49,17 @@ func _make_summary() -> void:
 		if category_name not in summary:
 			summary[category_name] = 0
 		summary[category_name] += timespan
+
 	var keys = summary.keys()
 	keys.sort()
+
+	var accumluated_timespan = 0.
 	for key in keys:
 		var timespan = float(summary[key])
+		accumluated_timespan += timespan
+		_add_item_to_summary_container(key, timespan)
+
+	var unknown_timespan = clampf(Datetime.DAY_IN_SECONDS - accumluated_timespan, 0, Datetime.DAY_IN_SECONDS)
+	if unknown_timespan != 0.:
 		var name_label = Label.new()
-		name_label.text = key
-		var hour_label = Label.new()
-		hour_label.text = "%.2fhr" % (timespan / Datetime.HOUR_IN_SECONDS)
-		var percentage_label = Label.new()
-		percentage_label.text = "%.2f%%" % (timespan / Datetime.DAY_IN_SECONDS * 100)
-		summary_container.add_child(name_label)
-		summary_container.add_child(hour_label)
-		summary_container.add_child(percentage_label)
+		_add_item_to_summary_container("(unknown)", unknown_timespan)
