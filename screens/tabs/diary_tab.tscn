@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bhjschdcxwhq4"]
+[gd_scene load_steps=4 format=3 uid="uid://bhjschdcxwhq4"]
 
 [ext_resource type="Script" path="res://screens/tabs/diary_tab.gd" id="1_vp0qv"]
 [ext_resource type="PackedScene" uid="uid://dlbx4tf4vlot5" path="res://components/datetime_bar.tscn" id="2_l825c"]
+[ext_resource type="Script" path="res://scripts/promises/promised_confirmation_dialog.gd" id="3_qd5u7"]
 
 [node name="DiaryTab" type="VBoxContainer"]
 custom_minimum_size = Vector2i(512, 0)
@@ -80,6 +81,11 @@ offset_left = 365.0
 offset_right = 527.0
 offset_bottom = 43.0
 text = "Remove Diary"
+
+[node name="RemoveDiaryConfirmationDialog" type="ConfirmationDialog" parent="ActionBar/RemoveDiaryButton"]
+unique_name_in_owner = true
+dialog_text = "Do you want to remove selected diary?"
+script = ExtResource("3_qd5u7")
 
 [connection signal="datetime_changed" from="DatetimeBar" to="." method="_on_datetime_bar_datetime_changed"]
 [connection signal="item_selected" from="DiaryList" to="." method="_on_diary_list_item_selected"]

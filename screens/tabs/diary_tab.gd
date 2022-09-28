@@ -1,7 +1,7 @@
 extends VBoxContainer
 
 var DiaryEditorScreen = preload("res://screens/diary_editor_screen.tscn")
-var DiaryRepo = load("res://scripts/repositories/diary.gd").new()
+var DiaryRepo = Database.Diary
 
 var _diaries := []
 var _selected_diary_idx := -1
@@ -59,9 +59,11 @@ func _on_add_diary_button_pressed() -> void:
 func _on_remove_diary_button_pressed() -> void:
 	if _selected_diary_idx != -1:
 		var diary = diary_list.get_item_metadata(_selected_diary_idx)
-		DiaryRepo.soft_remove(diary)
-		diary_list.remove_item(_selected_diary_idx)
-		_selected_diary_idx = -1
+		var should_remove = await %RemoveDiaryConfirmationDialog.prompt_user_to_make_decision()
+		if should_remove:
+			DiaryRepo.soft_remove(diary)
+			diary_list.remove_item(_selected_diary_idx)
+			_selected_diary_idx = -1
 	_update_ui()
 
 func _on_edit_diary_button_pressed() -> void:

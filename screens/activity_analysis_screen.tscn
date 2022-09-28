@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://o3lpbvk6w5es"]
+
+[ext_resource type="Script" path="res://screens/activity_analysis_screen.gd" id="1_tu6gt"]
+[ext_resource type="PackedScene" uid="uid://822i4oxf53qt" path="res://components/top_bar.tscn" id="2_x0301"]
+
+[node name="ActivityAnalysisScreen" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tu6gt")
+
+[node name="TopBar" parent="." instance=ExtResource("2_x0301")]
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+offset_right = 648.0
+offset_bottom = 43.0
+grow_horizontal = 1

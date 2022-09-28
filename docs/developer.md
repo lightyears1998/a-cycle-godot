@@ -1,6 +1,18 @@
 # For Developer
 
-Similar projects:
+## Architecture
+
+We use a lot autoloads in this project.
+
+If we group the autoloads in the same category into a node,
+it's going to reduce the number of autoload nodes at the top level.
+Howerver, if we do so, it breaks the type hinting in GDScript
+and it sounds a bit anti-pattern.
+So we will stick to top level autoloads.
+
+---
+
+## Similar projects:
 
 - <https://github.com/Mad-Cookies-Studio/mad-productivity>
 
