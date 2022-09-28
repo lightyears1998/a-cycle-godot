@@ -1,6 +1,6 @@
 # A Cycle
 
-[![Lines of Code Badge](https://lightyears1998.github.io/a-cycle/badge.svg)](https://github.com/lightyears1998/a-cycle/)
+[![Lines of Code Badge](https://cdn.jsdelivr.net/gh/lightyears1998/a-cycle@gh-pages/badge.svg)](https://github.com/lightyears1998/a-cycle/)
 [![Powered by Godot 4](https://img.shields.io/badge/Godot-v4.0.beta1.official-blue)](https://godotengine.org/)
 
 A productivity application that evolves with me.
