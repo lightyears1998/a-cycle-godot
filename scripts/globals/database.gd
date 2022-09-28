@@ -5,24 +5,6 @@ const CURRENT_DATABASE_SCHEMA := 1
 
 var db: SQLite = SQLite.new()
 
-var PeerNode = PeerNodeRepository.new()
-var Entry = EntryRepository.new()
-var EntryHistory = EntryHistoryRepository.new()
-var Diary = DiaryRepository.new()
-var Category = CategoryRepository.new()
-var TodoItem = TodoItemRepository.new()
-var Activity = ActivityRepository.new()
-
-var repos = [
-	PeerNode,
-	Entry,
-	EntryHistory,
-	Diary,
-	Category,
-	TodoItem,
-	Activity
-]
-
 func _init() -> void:
 	var ok := _open_db()
 	if ok:

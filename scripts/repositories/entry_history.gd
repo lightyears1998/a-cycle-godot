@@ -1,5 +1,4 @@
-extends RefCounted
-class_name EntryHistoryRepository
+extends Node
 
 func write_history(entry: Dictionary) -> bool:
 	var ok = Database.db.insert_row('entry_history', {

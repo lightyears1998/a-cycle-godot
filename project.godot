@@ -9,30 +9,15 @@
 config_version=5
 
 _global_script_classes=[{
-"base": "EntryRepository",
-"class": &"ActivityRepository",
-"language": &"GDScript",
-"path": "res://scripts/repositories/activity.gd"
-}, {
 "base": "Resource",
 "class": &"AppConfig",
 "language": &"GDScript",
 "path": "res://scripts/resources/app_config.gd"
 }, {
-"base": "Node",
-"class": &"BackupService",
-"language": &"GDScript",
-"path": "res://scripts/services/backup.gd"
-}, {
 "base": "VBoxContainer",
 "class": &"CategoryPicker",
 "language": &"GDScript",
 "path": "res://components/category_picker.gd"
-}, {
-"base": "EntryRepository",
-"class": &"CategoryRepository",
-"language": &"GDScript",
-"path": "res://scripts/repositories/category.gd"
 }, {
 "base": "VBoxContainer",
 "class": &"CategoryTree",
@@ -54,35 +39,10 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://components/datetime_bar.gd"
 }, {
-"base": "EntryRepository",
-"class": &"DiaryRepository",
-"language": &"GDScript",
-"path": "res://scripts/repositories/diary.gd"
-}, {
-"base": "RefCounted",
-"class": &"EntryHistoryRepository",
-"language": &"GDScript",
-"path": "res://scripts/repositories/entry_history.gd"
-}, {
-"base": "RefCounted",
-"class": &"EntryRepository",
-"language": &"GDScript",
-"path": "res://scripts/repositories/entry.gd"
-}, {
-"base": "Node",
-"class": &"FocusService",
-"language": &"GDScript",
-"path": "res://scripts/services/focus.gd"
-}, {
 "base": "Node",
 "class": &"LogcatSingleton",
 "language": &"GDScript",
 "path": "res://scripts/globals/logcat.gd"
-}, {
-"base": "RefCounted",
-"class": &"PeerNodeRepository",
-"language": &"GDScript",
-"path": "res://scripts/repositories/peer_node.gd"
 }, {
 "base": "ConfirmationDialog",
 "class": &"PromisedConfirmationDialog",
@@ -110,11 +70,6 @@ _global_script_classes=[{
 "path": "res://scripts/globals/screens.gd"
 }, {
 "base": "Node",
-"class": &"ServiceSingleton",
-"language": &"GDScript",
-"path": "res://scripts/services/service.gd"
-}, {
-"base": "Node",
 "class": &"SettingsSingleton",
 "language": &"GDScript",
 "path": "res://scripts/globals/settings.gd"
@@ -125,46 +80,25 @@ _global_script_classes=[{
 "path": "res://scripts/resources/sync_server_config.gd"
 }, {
 "base": "Node",
-"class": &"SyncService",
-"language": &"GDScript",
-"path": "res://scripts/services/sync.gd"
-}, {
-"base": "EntryRepository",
-"class": &"TodoItemRepository",
-"language": &"GDScript",
-"path": "res://scripts/repositories/todo.gd"
-}, {
-"base": "Node",
 "class": &"UtilsSingleton",
 "language": &"GDScript",
 "path": "res://scripts/globals/utils.gd"
 }]
 _global_script_class_icons={
-"ActivityRepository": "",
 "AppConfig": "",
-"BackupService": "",
 "CategoryPicker": "",
-"CategoryRepository": "",
 "CategoryTree": "",
 "DatabaseSingleton": "",
 "Datetime": "",
 "DatetimeBar": "",
-"DiaryRepository": "",
-"EntryHistoryRepository": "",
-"EntryRepository": "",
-"FocusService": "",
 "LogcatSingleton": "",
-"PeerNodeRepository": "",
 "PromisedConfirmationDialog": "",
 "PromisedHTTPHeaders": "",
 "PromisedHTTPRequest": "",
 "PromisedHTTPResponse": "",
 "ScreensSingleton": "",
-"ServiceSingleton": "",
 "SettingsSingleton": "",
 "SyncServerConfig": "",
-"SyncService": "",
-"TodoItemRepository": "",
 "UtilsSingleton": ""
 }
 
@@ -185,9 +119,18 @@ config/quit_on_go_back=false
 Logcat="*res://scripts/globals/logcat.gd"
 Utils="*res://scripts/globals/utils.gd"
 Settings="*res://scripts/globals/settings.gd"
-Database="*res://scripts/globals/database.gd"
 Screens="*res://scripts/globals/screens.gd"
-Service="*res://scripts/services/service.gd"
+Database="*res://scripts/globals/database.gd"
+EntryHistoryRepository="*res://scripts/repositories/entry_history.gd"
+PeerNodeRepository="*res://scripts/repositories/peer_node.gd"
+EntryRepository="*res://scripts/repositories/entry.gd"
+ActivityRepository="*res://scripts/repositories/activity.gd"
+CategoryRepository="*res://scripts/repositories/category.gd"
+DiaryRepository="*res://scripts/repositories/diary.gd"
+TodoItemRepository="*res://scripts/repositories/todo_item.gd"
+SyncService="*res://scripts/services/sync.gd"
+FocusService="*res://scripts/services/focus.gd"
+BackupService="*res://scripts/services/backup.gd"
 
 [debug]
 

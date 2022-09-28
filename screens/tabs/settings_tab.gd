@@ -11,7 +11,7 @@ var CategoryEditorScreen = preload("res://screens/category_editor_screen.tscn")
 func _on_sync_button_pressed() -> void:
 	var previous_button_text = sync_button.text
 	sync_button.text = "Syncing..."
-	await Service.Sync.sync_with_all_servers()
+	await SyncService.sync_with_all_servers()
 	sync_button.text = previous_button_text
 
 func _on_manage_servers_button_pressed():

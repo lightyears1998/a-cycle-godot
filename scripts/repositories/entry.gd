@@ -1,7 +1,4 @@
-extends RefCounted
-class_name EntryRepository
-
-var EntryHistoryRepo = EntryHistoryRepository.new()
+extends Node
 
 const ENTRY_CONTENT_TEMPLATE = {
 	"uuid": "", # empty string or uuid
@@ -44,7 +41,7 @@ func fork(content_type: String, content: Dictionary) -> Dictionary:
 func insert(entry: Dictionary) -> bool:
 	if entry.uuid.is_empty():
 		entry.uuid = Utils.uuidv4()
-	var ok = EntryHistoryRepo.write_history(entry)
+	var ok = EntryHistoryRepository.write_history(entry)
 	if !ok:
 		Logcat.error("Can't write entry history.")
 		return false
@@ -58,7 +55,7 @@ func update(entry: Dictionary, update_stamp := true) -> bool:
 	if update_stamp:
 		entry["updatedAt"] = Datetime.new().to_iso_timestamp()
 		entry["updatedBy"] = Settings.app_config.node_uuid
-	var ok = EntryHistoryRepo.write_history(entry)
+	var ok = EntryHistoryRepository.write_history(entry)
 	if !ok:
 		Logcat.error("Error writing entry history.")
 		return false

@@ -2,10 +2,7 @@ extends VBoxContainer
 
 signal activity_changed(activity)
 
-var ActivityRepo = Database.Activity
-var CategoryRepo = Database.Category
-
-var activity = ActivityRepo.create()
+var activity = ActivityRepository.create()
 
 @onready var title_edit = %TitleEdit as LineEdit
 @onready var description_edit = %DescriptionEdit as TextEdit
@@ -37,5 +34,5 @@ func _update_activity():
 
 func _on_save_activity_button_pressed():
 	_update_activity()
-	ActivityRepo.save(activity)
+	ActivityRepository.save(activity)
 	activity_changed.emit(activity)

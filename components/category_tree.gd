@@ -42,7 +42,7 @@ var _selected_node:
 var _map: Dictionary = {}
 
 func _get_user_defined_category_map() -> Dictionary:
-	var user_defined_entries = Database.Category.list()
+	var user_defined_entries = CategoryRepository.list()
 	var user_defined_map = {}
 	for entry in user_defined_entries:
 		var node = {}
@@ -139,18 +139,18 @@ func _create_node(parent_uid: String, category_name: String) -> Dictionary:
 	node["uid"] = Utils.uuidv4()
 	node["parent_uid"] = parent_uid
 	node["name"] = category_name
-	node["entry"] = Database.Category.create()
+	node["entry"] = CategoryRepository.create()
 	return node
 
 func _save_node(node: Dictionary) -> bool:
 	if node.entry:
 		_update_node_entry(node)
-		return Database.Category.save(node.entry)
+		return CategoryRepository.save(node.entry)
 	return false
 
 func _remove_node(node: Dictionary) -> bool:
 	if node.entry:
-		return Database.Category.soft_remove(node.entry)
+		return CategoryRepository.soft_remove(node.entry)
 	return false
 
 func _on_create_button_pressed():

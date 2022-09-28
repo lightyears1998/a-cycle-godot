@@ -1,5 +1,4 @@
 extends Node
-class_name FocusService
 
 signal focusing_activity_changed
 
@@ -9,7 +8,7 @@ enum Status {
 	PAUSED,
 }
 
-var focusing_activity: Dictionary = Database.Activity.create()
+var focusing_activity: Dictionary = ActivityRepository.create()
 var status: Status:
 	get: return _status
 
@@ -21,7 +20,7 @@ var accumulated_unix_time = 0
 var total_unix_time = 0
 
 func reset():
-	focusing_activity = Database.Activity.create()
+	focusing_activity = ActivityRepository.create()
 	focusing_activity_changed.emit()
 	_status = Status.STOPPED
 	start_unix_time = 0
@@ -48,7 +47,7 @@ func _save_activity_phase():
 	focusing_activity.uuid = ""
 	focusing_activity.content["startDate"] = int(phase_start_unix_time)
 	focusing_activity.content["endDate"] = int(Time.get_unix_time_from_system())
-	Database.Activity.save(focusing_activity)
+	ActivityRepository.save(focusing_activity)
 
 func _set_status(next_status):
 	var current_unix_time = Time.get_unix_time_from_system()

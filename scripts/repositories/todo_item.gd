@@ -1,5 +1,4 @@
-extends EntryRepository
-class_name TodoItemRepository
+extends "res://scripts/repositories/entry.gd"
 
 const TODO_ITEM_ENTRY_CONTENT_TYPE := "todo_item"
 

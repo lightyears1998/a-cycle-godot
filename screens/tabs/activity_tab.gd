@@ -1,7 +1,6 @@
 extends VBoxContainer
 
 var ActivityEditorScreen = preload("res://screens/activity_editor_screen.tscn")
-var ActivityRepo = Database.Activity
 
 var _activities := []
 var _selected_activity_idx := -1
@@ -19,7 +18,7 @@ func _on_screen_resume() -> void:
 	_update_ui()
 
 func _read_activities() -> void:
-	_activities = ActivityRepo.find_by_start_date(_datetime)
+	_activities = ActivityRepository.find_by_start_date(_datetime)
 	_activities.sort_custom(func (a, b): return a.content["startDate"] < b.content["startDate"])
 
 func _update_ui() -> void:
@@ -63,7 +62,7 @@ func _on_edit_activity_button_pressed() -> void:
 func _on_remove_activity_button_pressed() -> void:
 	if _selected_activity_idx != -1:
 		var activity = activity_list.get_item_metadata(_selected_activity_idx)
-		ActivityRepo.soft_remove(activity)
+		ActivityRepository.soft_remove(activity)
 		activity_list.remove_item(_selected_activity_idx)
 		_selected_activity_idx = -1
 	_read_activities()

@@ -11,7 +11,7 @@ var FocusClock = preload("res://screens/focus_clock.tscn")
 @onready var finish_button = %FinishButton as Button
 
 func _update_ui():
-	match Service.Focus.status:
+	match FocusService.status:
 		FocusService.Status.STOPPED:
 			status_label.text = "Waiting to start."
 			start_pause_button.text = "Start"
@@ -26,46 +26,46 @@ func _update_ui():
 			finish_button.disabled = true
 
 func _update_clocking_label():
-	clocking_label.text = Service.Focus.get_clock_text()
+	clocking_label.text = FocusService.get_clock_text()
 
 func _ready():
-	Service.Focus.focusing_activity_changed.connect(_on_focusing_activity_changed)
+	FocusService.focusing_activity_changed.connect(_on_focusing_activity_changed)
 	_update_ui()
 
 func _physics_process(_delta):
 	_update_clocking_label()
 
 func _on_focusing_activity_changed():
-	var activity = Service.Focus.focusing_activity
+	var activity = FocusService.focusing_activity
 	title_edit.text = activity.content.title
 	category_picker.select_by_category_uids(activity.content["categories"])
 	description_edit.text = activity.content.description
 
 func _on_start_pause_button_pressed():
-	match Service.Focus.status:
+	match FocusService.status:
 		FocusService.Status.STOPPED:
-			Service.Focus.start_focusing()
+			FocusService.start_focusing()
 		FocusService.Status.FOCUSING:
-			Service.Focus.pause_focusing()
+			FocusService.pause_focusing()
 		FocusService.Status.PAUSED:
-			Service.Focus.continue_focusing()
+			FocusService.continue_focusing()
 	_update_ui()
 
 func _on_finish_button_pressed():
-	if Service.Focus.status == FocusService.Status.FOCUSING or Service.Focus.status == FocusService.Status.PAUSED:
-		Service.Focus.complete_focusing()
+	if FocusService.status == FocusService.Status.FOCUSING or FocusService.status == FocusService.Status.PAUSED:
+		FocusService.complete_focusing()
 		_update_ui()
 
 func _on_clock_mode_button_pressed():
 	Screens.go_to(FocusClock.instantiate())
 
 func _on_title_edit_text_changed(new_text):
-	Service.Focus.focusing_activity["content"]["title"] = new_text
+	FocusService.focusing_activity["content"]["title"] = new_text
 
 func _on_description_edit_text_changed() -> void:
-	Service.Focus.focusing_activity["content"]["description"] = description_edit.text
+	FocusService.focusing_activity["content"]["description"] = description_edit.text
 
 func _on_category_picker_category_changed(category) -> void:
-	Service.Focus.focusing_activity["content"]["categories"].clear()
+	FocusService.focusing_activity["content"]["categories"].clear()
 	if category:
-		Service.Focus.focusing_activity["content"]["categories"].append(category.uid)
+		FocusService.focusing_activity["content"]["categories"].append(category.uid)

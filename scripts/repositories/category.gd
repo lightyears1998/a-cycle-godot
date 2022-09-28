@@ -1,5 +1,4 @@
-extends EntryRepository
-class_name CategoryRepository
+extends "res://scripts/repositories/entry.gd"
 
 const CATEGORY_ENTRY_CONTENT_TYPE := "category"
 

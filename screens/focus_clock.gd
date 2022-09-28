@@ -19,7 +19,7 @@ func _ready():
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_ALWAYS_ON_TOP, true)
 
 func _update_ui():
-	title_labbel.text = str(Service.Focus.focusing_activity["content"]["title"]).strip_edges()
+	title_labbel.text = str(FocusService.focusing_activity["content"]["title"]).strip_edges()
 	if title_labbel.text.is_empty():
 		title_labbel.hide()
 
@@ -36,7 +36,7 @@ func _on_screen_destroy():
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_ALWAYS_ON_TOP, _previous_window_always_on_top_flag)
 
 func _physics_process(_delta):
-	clocking_label.text = Service.Focus.get_clock_text()
+	clocking_label.text = FocusService.get_clock_text()
 
 func _on_restore_button_pressed():
 	Screens.go_back_otherwise_quit()

@@ -1,8 +1,7 @@
 extends Node
-class_name SyncService
 
-var _restful = load("res://scripts/services/sync_restful.gd").new()
-var _socket = load("res://scripts/services/sync_socket.gd").new()
+var _restful = load("res://scripts/services/sync/sync_restful.gd").new()
+var _socket = load("res://scripts/services/sync/sync_socket.gd").new()
 
 func _enter_tree() -> void:
 	add_child(_restful)

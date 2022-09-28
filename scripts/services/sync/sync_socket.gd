@@ -162,7 +162,7 @@ func _handshake_message_handler(message):
 	_init_sync_from_peer_node()
 
 func _init_sync_from_peer_node():
-	var node = Database.PeerNode.find_by_uuid(_peer_node_uuid)
+	var node = PeerNodeRepository.find_by_uuid(_peer_node_uuid)
 	if node:
 		Logcat.info("Node record found, performing recent-sync.")
 		Logcat.info("Found cursor: %s" % str(node["historyCursor"]))
@@ -173,7 +173,7 @@ func _init_sync_from_peer_node():
 			"uuid": _peer_node_uuid,
 			"historyCursor": {}
 		}
-		Database.PeerNode.save(node)
+		PeerNodeRepository.save(node)
 		_send_sync_full_meta_query_message(0)
 	_has_sync_begun = true
 
@@ -210,19 +210,19 @@ func _sync_recent_request_message_handler(message):
 
 	if cursor:
 		Logcat.info("Validating history cursor.")
-		var ok = Database.EntryHistory.validate_history_cursor(cursor)
+		var ok = EntryHistoryRepository.validate_history_cursor(cursor)
 		if !ok:
 			Logcat.info("History cursor invalid.")
 			reply_invalid_cursor_message.call()
 			return
 		else:
 			Logcat.info("History cursor valid.")
-			var following_histories = Database.EntryHistory.get_following_histories(cursor)
+			var following_histories = EntryHistoryRepository.get_following_histories(cursor)
 			var next_cursor = cursor
 			var entries = []
 			if (len(following_histories) > 0):
 				next_cursor = following_histories.back()
-				entries = Database.Entry.find_by_uuids(following_histories.map(func (item): return item["entryUuid"]), false)
+				entries = EntryRepository.find_by_uuids(following_histories.map(func (item): return item["entryUuid"]), false)
 			else:
 				Logcat.info("History cursor is the lastest cursor.")
 
@@ -264,13 +264,13 @@ func _sync_recent_response_message_handler(message):
 	var entries = message.payload['entries']
 
 	if history_cursor:
-		Database.PeerNode.save({
+		PeerNodeRepository.save({
 			"uuid": _peer_node_uuid,
 			"historyCursor": history_cursor
 		})
 
 	for entry in entries:
-		Database.Entry.save_if_new_or_fresher(entry)
+		EntryRepository.save_if_new_or_fresher(entry)
 
 	if len(entries) == 0:
 		Logcat.info("Entries payload of received message is empty. Sync-full finishes.")
@@ -283,8 +283,8 @@ func _sync_recent_response_message_handler(message):
 
 func _sync_full_meta_query_message_handler(message):
 	var skip = int(message.payload.skip)
-	var current_cursor = Database.EntryHistory.get_last_history_cursor()
-	var entry_metadata = Database.Entry.select_rows("", false, "uuid, createdAt, updatedAt, updatedBy", skip, 50)
+	var current_cursor = EntryHistoryRepository.get_last_history_cursor()
+	var entry_metadata = EntryRepository.select_rows("", false, "uuid, createdAt, updatedAt, updatedBy", skip, 50)
 	_reply_message(
 		message, {
 			"type": "sync-full-meta-response",
@@ -326,7 +326,7 @@ func _sync_full_meta_response_message_handler(message):
 		_sent['sync-full-meta-query-count'], meta_query_message_sessoin
 	])
 
-	var fresher_metadata = Database.Entry.filter_new_or_fresher_metadata(entry_metadata)
+	var fresher_metadata = EntryRepository.filter_new_or_fresher_metadata(entry_metadata)
 	var entries_query_session =  _send_message({
 		"type": "sync-full-entries-query",
 		"payload": {
@@ -342,7 +342,7 @@ func _sync_full_entries_query_message_handler(message):
 	var uuids = message.payload.uuids
 	var entries = []
 	if len(uuids) > 0:
-		entries = Database.Entry.find_by_uuids(uuids, false)
+		entries = EntryRepository.find_by_uuids(uuids, false)
 	_reply_message(
 		message, {
 			"type": "sync-full-entries-response",
@@ -360,7 +360,7 @@ func _sync_full_entries_response_message_handler(message):
 	])
 
 	for entry in entries:
-		Database.Entry.save_if_new_or_fresher(entry)
+		EntryRepository.save_if_new_or_fresher(entry)
 
 func _goodbye_message_handler(_message):
 	_received['goodbye'] = true
@@ -369,7 +369,7 @@ func _goodbye_message_handler(_message):
 func _clean_up_after_sync_full():
 	if _is_sync_full_excuted():
 		if _is_sync_full_succeed() and _received['sync-full-entries-response-first-cursor']:
-			Database.PeerNode.save({
+			PeerNodeRepository.save({
 				"uuid": _peer_node_uuid,
 				"historyCursor": _received['sync-full-entries-response-first-cursor'],
 			})
