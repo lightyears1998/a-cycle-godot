@@ -2,7 +2,7 @@ extends "res://scripts/repositories/entry.gd"
 
 const ACTIIVITY_ENTRY_CONTENT_TYPE := "activity"
 
-const ACTIIVITY_ENTRY_CONTENT_TEMPLATE = {
+const ACTIIVITY_ENTRY_CONTENT_TEMPLATE := {
 	"title": "", # text
 	"description": "", # text
 	"categories": [
@@ -20,9 +20,26 @@ func create() -> Dictionary:
 	var content = ACTIIVITY_ENTRY_CONTENT_TEMPLATE.duplicate(true)
 	return super.fork(ACTIIVITY_ENTRY_CONTENT_TYPE, content)
 
-func find_by_start_date(date: Datetime, discard_removed := true) -> Array[Dictionary]:
-	var lower_bound = date.get_the_beginning_of_the_day().to_unix_time()
-	var upper_bound = date.get_the_end_of_the_day().to_unix_time()
+func _find_filter_and_sort(discard_removed := true, filter = func (): return true) -> Array[Dictionary]:
 	var activities = super.select_rows("contentType='%s'" % ACTIIVITY_ENTRY_CONTENT_TYPE, discard_removed)
-	activities = activities.filter(func (activity): return activity.content["startDate"] >= lower_bound and activity.content["startDate"] <= upper_bound)
+	activities = activities.filter(filter)
+	activities.sort_custom(func (a, b): return a.content["startDate"] < b.content["startDate"])
 	return activities
+
+func find_by_start_date(date: Datetime, discard_removed := true) -> Array[Dictionary]:
+	var boundary = DayBoundary.new(date)
+	var filter = func (activity):
+		return activity.content["startDate"] >= boundary.lower_bound and activity.content["startDate"] <= boundary.upper_bound
+	return _find_filter_and_sort(discard_removed, filter)
+
+func find_by_end_date(date: Datetime, discard_removed := true) -> Array[Dictionary]:
+	var boundary = DayBoundary.new(date)
+	var filter = func (activity):
+		return activity.content["endDate"] >= boundary.lower_bound and activity.content["endDate"] <= boundary.upper_bound
+	return _find_filter_and_sort(discard_removed, filter)
+
+func find_by_date(date: Datetime, discard_removed := true):
+	var boundary = DayBoundary.new(date)
+	var filter = func (activity):
+		return activity.content["endDate"] >= boundary.lower_bound and activity.content["startDate"] <= boundary.upper_bound
+	return _find_filter_and_sort(discard_removed, filter)

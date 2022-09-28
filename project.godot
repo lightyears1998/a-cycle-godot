@@ -39,6 +39,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://components/datetime_bar.gd"
 }, {
+"base": "RefCounted",
+"class": &"DayBoundary",
+"language": &"GDScript",
+"path": "res://scripts/objects/day_boundary.gd"
+}, {
 "base": "Node",
 "class": &"LogcatSingleton",
 "language": &"GDScript",
@@ -91,6 +96,7 @@ _global_script_class_icons={
 "DatabaseSingleton": "",
 "Datetime": "",
 "DatetimeBar": "",
+"DayBoundary": "",
 "LogcatSingleton": "",
 "PromisedConfirmationDialog": "",
 "PromisedHTTPHeaders": "",

@@ -1,6 +1,10 @@
 extends RefCounted
 class_name Datetime
 
+const MINUTE_IN_SECONDS := 60
+const HOUR_IN_SECONDS := MINUTE_IN_SECONDS * 60
+const DAY_IN_SECONDS := HOUR_IN_SECONDS * 24
+
 var _local_unix_time := 0
 var _local_unix_time_bias_from_utc := 0
 
