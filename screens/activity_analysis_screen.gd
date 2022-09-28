@@ -61,5 +61,4 @@ func _make_summary() -> void:
 
 	var unknown_timespan = clampf(Datetime.DAY_IN_SECONDS - accumluated_timespan, 0, Datetime.DAY_IN_SECONDS)
 	if unknown_timespan != 0.:
-		var name_label = Label.new()
 		_add_item_to_summary_container("(unknown)", unknown_timespan)
