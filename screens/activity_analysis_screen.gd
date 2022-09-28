@@ -20,19 +20,23 @@ func _read_activities() -> void:
 
 func _get_time_progress() -> float:
 	var progress_in_secs = Datetime.new().to_unix_time() - datetime.get_the_beginning_of_the_day().to_unix_time()
-	return float(progress_in_secs) / Datetime.DAY_IN_SECONDS
+	var porgress_percentage = float(progress_in_secs) / Datetime.DAY_IN_SECONDS
+	porgress_percentage = clampf(porgress_percentage, 0., 1.)
+	return porgress_percentage
 
 func _make_summary() -> void:
 	var summary := {}
 	for activity in _activities:
-		var category_name_or_uid = activity.content.categories.front() if len(activity.content.categories) > 0 else "No Category"
+		var category_name_or_uid = activity.content.categories.front() if len(activity.content.categories) > 0 else "(No Category)"
 		var category_entry = CategoryRepository.find_by_category_uid(category_name_or_uid)
 		var category_name = category_entry.content.name if category_entry else category_name_or_uid
 		var timespan = activity.content["endDate"] - activity.content["startDate"]
 		if category_name not in summary:
 			summary[category_name] = 0
 		summary[category_name] += timespan
-	for key in summary.keys():
+	var keys = summary.keys()
+	keys.sort()
+	for key in keys:
 		var timespan = float(summary[key])
 		var name_label = Label.new()
 		name_label.text = key
