@@ -15,4 +15,6 @@ A productivity application that evolves with me.
 
 ## Develop
 
-The project requires libs from `godot-sqlite` addon to work. You can either compile the libs from source or download them from `godot-sqlite` repository.
+The project requires some GDExtension addons to work properly. You can either [compile the addons from source](https://github.com/lightyears1998/a-cycle-gdextension-source) or manually copy the addons files from a GitHub Release to the project's addons directory.
+
+*Note: You must use the GDExtension addon files corresponding to the version of your Godot editor, or the Godot editor will crash.*
