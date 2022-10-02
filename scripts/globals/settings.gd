@@ -16,7 +16,8 @@ func _save_app_config():
 	ResourceSaver.save(app_config, app_config_path)
 
 func _is_app_config_exists():
-	return File.new().file_exists(app_config_path)
+	var file_access = FileAccess.open(app_config_path, FileAccess.READ)
+	return file_access.is_open()
 
 func _load_app_config():
 	if _is_app_config_exists():
