@@ -12,3 +12,7 @@ A productivity application that evolves with me.
   - Cross-device synchronization without server intervention is not supported yet at this time. It will be implemented in the future and coexist  the current server intervention method.
   - WebDav support is under consideration.
 - **Diary** Keep a diary to memorize flashing moments in daily life.
+
+## Develop
+
+The project requires libs from `godot-sqlite` addon to work. You can either compile the libs from source or download them from `godot-sqlite` repository.
