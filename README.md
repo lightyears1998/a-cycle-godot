@@ -3,7 +3,7 @@
 [![Lines of Code Badge](https://cdn.jsdelivr.net/gh/lightyears1998/a-cycle@gh-pages/badge.svg)](https://github.com/lightyears1998/a-cycle/)
 [![Powered by Godot 4](https://img.shields.io/badge/Godot-v4.0.beta2.mono.official%20[f8745f2f7]-blue)](https://godotengine.org/)
 
-A productivity application that evolves with me.
+A productivity application that evolves with me. All comments, suggestions, code reviews, and PRs are welcome.
 
 ## Features
 
@@ -13,8 +13,6 @@ A productivity application that evolves with me.
   - WebDav support is under consideration.
 - **Diary** Keep a diary to memorize flashing moments in daily life.
 
-## Develop
+## Development
 
-The project requires some GDExtension addons to work properly. You can either [compile the addons from source](https://github.com/lightyears1998/a-cycle-gdextension-source) or manually copy the addons files from a GitHub Release to the project's addons directory.
-
-*Note: You must use the GDExtension addon files corresponding to the version of your Godot editor, or the Godot editor will crash.*
+Please refer to [docs/developer.md](docs/developer.md).

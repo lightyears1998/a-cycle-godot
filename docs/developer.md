@@ -1,18 +1,24 @@
 # For Developer
 
+## Compile / Build
+
+The project leverages some GDExtension add-ons. Those add-ons should be compiled from [source](https://github.com/lightyears1998/a-cycle-gdextension-source).
+
 ## Architecture
+
+### Autoloads
 
 We use a lot autoloads in this project.
 
 If we group the autoloads in the same category into a node,
 it's going to reduce the number of autoload nodes at the top level.
-Howerver, if we do so, it breaks the type hinting in GDScript
+However, if we do so, it breaks the type hinting in GDScript
 and it sounds a bit anti-pattern.
 So we will stick to top level autoloads.
 
 ---
 
-## Similar projects:
+## Similar projects
 
 - <https://github.com/Mad-Cookies-Studio/mad-productivity>
 
