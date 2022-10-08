@@ -110,11 +110,12 @@ _global_script_class_icons={
 
 [application]
 
-config/name="A Cycle"
+config/name="acycle"
 config/description="A Cycle, the productivity application."
 run/main_scene="res://screens/home_screen.tscn"
 config/use_custom_user_dir=true
-config/features=PackedStringArray("4.0")
+config/custom_user_dir_name="A Cycle"
+config/features=PackedStringArray("4.0", "C#")
 run/flush_stdout_on_print=true
 config/icon="res://icon.svg"
 config/auto_accept_quit=false
@@ -150,6 +151,10 @@ window/energy_saving/keep_screen_on=false
 window/handheld/orientation=1
 window/stretch/aspect="ignore"
 
+[dotnet]
+
+project/assembly_name="acycle"
+
 [editor]
 
 export/convert_text_resources_to_binary=false
@@ -161,3 +166,12 @@ enabled=PackedStringArray("res://addons/godot-sqlite/plugin.cfg")
 [gui]
 
 theme/custom="res://themes/main_theme.tres"
+
+[internationalization]
+
+locale/locale_filter_mode=0
+
+[mono]
+
+export/aot/enabled=true
+export/aot/full_aot=true
