@@ -1,9 +1,11 @@
-# A Cycle
+# A Cycle (Godot)
 
 [![Lines of Code Badge](https://cdn.jsdelivr.net/gh/lightyears1998/a-cycle@gh-pages/badge.svg)](https://github.com/lightyears1998/a-cycle/)
 [![Powered by Godot 4](https://img.shields.io/badge/Godot-v4.0.beta2.mono.official%20[f8745f2f7]-blue)](https://godotengine.org/)
 
 A productivity application that evolves with me. All comments, suggestions, code reviews, and PRs are welcome.
+
+**Note**: This application will be moving to [a new repository](https://github.com/lightyears1998/a-cycle-maui) and migrating to .NET MAUI soon.
 
 ## Features
 
